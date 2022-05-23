@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/23 12:25:25 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/23 15:06:08 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,28 @@
 #  define BUFFER_SIZE 42
 # endif
 
-typedef struct s_map
+typedef struct s_info
 {
 	char	**map;
-}t_map;
+}t_info;
+
+typedef struct s_texture
+{
+	void	*no;
+	void	*so;
+	void	*we;
+	void	*ea;
+}t_texture;
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*mlx_window;
-	t_map	map;
+	void		*mlx;
+	void		*mlx_window;
+	t_info		info;
+	t_texture	texture;
 }t_game;
 
-t_map	ft_errors_check(int argc, char **argv);
+t_info	ft_errors_check(int argc, char **argv);
 void	ft_put_error(int msg_id);
 char	*get_next_line(int fd);
 

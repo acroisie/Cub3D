@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:21:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/23 12:18:49 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/23 15:09:08 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_put_error(int msg_id)
 {
 	printf("Error\n");
 	if (msg_id == 1)
-		printf("Too few arguments\n");
+		printf("Argument missing\n");
 	if (msg_id == 2)
 		printf("Too many arguments\n");
 	if (msg_id == 3)
@@ -84,11 +84,11 @@ void	ft_put_error(int msg_id)
 	exit (1);
 }
 
-t_map	ft_errors_check(int argc, char **argv)
+t_info	ft_errors_check(int argc, char **argv)
 {
-	t_map	map;
+	t_info	info;
 
-	map.map = NULL; //To delete
+	info.map = NULL;
 	if (argc < 2)
 		ft_put_error(1);
 	else if (argc > 2)
@@ -103,5 +103,5 @@ t_map	ft_errors_check(int argc, char **argv)
 	// 	ft_put_error(10);
 	// ft_init_map(argv[1], &map);
 	// ft_check_map(&map);
-	return (map);
+	return (info);
 }

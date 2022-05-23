@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3D_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/23 15:06:14 by acroisie         ###   ########lyon.fr   */
+/*   Created: 2022/05/23 13:54:51 by acroisie          #+#    #+#             */
+/*   Updated: 2022/05/23 13:55:42 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int	main(int argc, char **argv)
+int	ft_count_line(char *argv)
 {
-	t_game	game;
+	int		fd;
+	int		count;
+	char	*line;
 
-	game.info = ft_errors_check(argc, argv);
-	return (0);
+	fd = open(argv, O_RDONLY);
+	count = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		count++;
+	}
+	free(line);
+	close(fd);
+	return (count);
 }
