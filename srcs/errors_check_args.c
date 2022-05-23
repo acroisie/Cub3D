@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_check.c                                     :+:      :+:    :+:   */
+/*   errors_check_args.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:21:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/23 11:36:04 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/23 12:18:49 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,16 @@ void	ft_put_error(int msg_id)
 		printf("You must provide a file, not a folder\n");
 	if (msg_id == 5)
 		printf("Cannot open the file\n");
-	if (msg_id == 6)
-		printf("Map not rectangular\n");
-	if (msg_id == 7)
-		printf("Wrong character used, you must use \"E,C,P,1,0\"\n");
-	if (msg_id == 8)
-		printf("Map is not closed\n");
-	if (msg_id == 9)
-		printf("Wrong number of items, put 1*P & at least 1*C, 1*E\n");
-	if (msg_id == 10)
-		printf("File is empty\n");
+	// if (msg_id == 6)
+	// 	printf("Map not rectangular\n");
+	// if (msg_id == 7)
+	// 	printf("Wrong character used, you must use \"E,C,P,1,0\"\n");
+	// if (msg_id == 8)
+	// 	printf("Map is not closed\n");
+	// if (msg_id == 9)
+	// 	printf("Wrong number of items, put 1*P & at least 1*C, 1*E\n");
+	// if (msg_id == 10)
+	// 	printf("File is empty\n");
 	exit (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/23 11:36:14 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/23 12:25:25 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 # include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 typedef struct s_map
 {
@@ -32,5 +39,6 @@ typedef struct s_game
 
 t_map	ft_errors_check(int argc, char **argv);
 void	ft_put_error(int msg_id);
+char	*get_next_line(int fd);
 
 #endif
