@@ -6,7 +6,7 @@
 #    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/05/23 12:26:10 by acroisie         ###   ########lyon.fr    #
+#    Updated: 2022/05/23 12:27:45 by acroisie         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC_FLAGS = -Wall -Werror -Wextra
 NAME := cub3D
 
 SRCS := errors_check_args.c \
-		get_next_line \
+		get_next_line.c \
 		main.c
 
 OBJS := $(SRCS:.c=.o)
