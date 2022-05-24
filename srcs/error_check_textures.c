@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/24 09:57:52 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/24 13:53:33 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,35 @@ int	ft_textures_check(char *argv, t_game *game)
 	char	*line;
 	int		i;
 	int		j;
+	int		fd;
 
 	i = 0;
-	j = 0;
-	line = get_next_line(argv[i]);
+	fd = open(argv, O_RDONLY);
+	line = get_next_line(fd);
 	while (line || i < 4)
 	{
+		j = 0;
 		if (ft_find_texture(line))
 		{
 			while (line[j] && (line[j] != '.'))
 			{
 				j++;
 				if (line[j] == '\0')
+				{
+					close(fd);
 					ft_put_error(7);
+				}
+			}
+			if (open(&line[j], O_RDONLY) > 0)
+			{
+				if (strncmp(line, "NO", 2))
+				
+				i++;
 			}
 		}
+		free(line);
+		line = get_next_line(fd);
 	}
+	close(fd);
 	return (0);
 }

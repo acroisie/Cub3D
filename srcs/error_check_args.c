@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 15:44:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/24 09:48:07 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/24 13:43:20 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int	ft_extension_check(char *argv)
 		return (1);
 	return (0);
 }
-
-
 
 int	ft_count_line(char *argv)
 {
