@@ -1,62 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_check_args.c                                :+:      :+:    :+:   */
+/*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:21:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/23 15:09:08 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/24 09:51:44 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-int	ft_opening_check(char *argv)
-{
-	int	fd;
-
-	fd = open(argv, O_RDONLY);
-	if (fd < 0)
-	{
-		close(fd);
-		return (1);
-	}
-	close(fd);
-	return (0);
-}
-
-int	ft_folder_check(char *argv)
-{
-	int	fd;
-
-	fd = open(argv, O_DIRECTORY);
-	if (fd > 0)
-	{
-		close(fd);
-		return (1);
-	}
-	close(fd);
-	return (0);
-}
-
-int	ft_extension_check(char *argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i])
-	{
-		if (argv[i] == '.')
-			break ;
-		i++;
-	}
-	if (argv[i] == '\0')
-		return (1);
-	if (ft_strncmp(&argv[ft_strlen(argv) - 4], ".cub", 4))
-		return (1);
-	return (0);
-}
 
 void	ft_put_error(int msg_id)
 {
@@ -71,24 +25,24 @@ void	ft_put_error(int msg_id)
 		printf("You must provide a file, not a folder\n");
 	if (msg_id == 5)
 		printf("Cannot open the file\n");
-	// if (msg_id == 6)
-	// 	printf("Map not rectangular\n");
+	if (msg_id == 6)
+		printf("File is empty\n");
+	if (msg_id == 7)
+		printf("Wrong texture path\n");
 	// if (msg_id == 7)
 	// 	printf("Wrong character used, you must use \"E,C,P,1,0\"\n");
 	// if (msg_id == 8)
 	// 	printf("Map is not closed\n");
 	// if (msg_id == 9)
 	// 	printf("Wrong number of items, put 1*P & at least 1*C, 1*E\n");
-	// if (msg_id == 10)
-	// 	printf("File is empty\n");
 	exit (1);
 }
 
-t_info	ft_errors_check(int argc, char **argv)
+t_game	ft_errors_check(int argc, char **argv)
 {
-	t_info	info;
+	t_game	game;
 
-	info.map = NULL;
+	game.info.map = NULL; //To delete
 	if (argc < 2)
 		ft_put_error(1);
 	else if (argc > 2)
@@ -99,9 +53,11 @@ t_info	ft_errors_check(int argc, char **argv)
 		ft_put_error(4);
 	else if (ft_opening_check(argv[1]))
 		ft_put_error(5);
-	// else if (!ft_count_line(argv[1]))
-	// 	ft_put_error(10);
+	else if (!ft_count_line(argv[1]))
+		ft_put_error(6);
+	else if (ft_textures_check(argv[1], &game))
+		ft_put_error(7);
 	// ft_init_map(argv[1], &map);
 	// ft_check_map(&map);
-	return (info);
+	return (game);
 }

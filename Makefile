@@ -6,7 +6,7 @@
 #    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/05/23 12:27:45 by acroisie         ###   ########lyon.fr    #
+#    Updated: 2022/05/24 09:44:47 by acroisie         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,10 @@ CC_FLAGS = -Wall -Werror -Wextra
 
 NAME := cub3D
 
-SRCS := errors_check_args.c \
+SRCS := cub3D_utils.c \
+		error_check_args.c \
+		error_check_textures.c \
+		error_check.c \
 		get_next_line.c \
 		main.c
 

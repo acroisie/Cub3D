@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/23 15:06:08 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/24 09:48:55 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,12 @@ typedef struct s_game
 	t_texture	texture;
 }t_game;
 
-t_info	ft_errors_check(int argc, char **argv);
+t_game	ft_errors_check(int argc, char **argv);
+int		ft_opening_check(char *argv);
+int		ft_folder_check(char *argv);
+int		ft_extension_check(char *argv);
+int		ft_count_line(char *argv);
+int		ft_textures_check(char *argv, t_game *game);
 void	ft_put_error(int msg_id);
 char	*get_next_line(int fd);
 
