@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/25 17:07:56 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/28 17:27:50 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 {
 	char	*temp;
 	int		i;
+	int		test; //To delete
 	int		save;
 	int		out;
 
@@ -67,8 +68,9 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 		return (1);
 	else if (out < 4)
 	{
-		temp = ft_strndup(&line[i + 5], 14);
-		printf("Debug: temp = %s\n", temp); // To delete
+		temp = ft_strndup(&line[i + 5], 20);
+		test = open(&line[i + 2], O_RDONLY);
+		printf("Debug: temp = %s, test = %d\n", temp, test); // To delete
 		if (open(&line[i + 2], O_RDONLY) < 0)
 			return (1);
 		else
