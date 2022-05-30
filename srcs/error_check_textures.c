@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/30 10:30:49 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/30 13:45:36 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,37 @@ int	ft_check_format_color(char *line)
 	i = 0;
 	j = 0;
 	k = 0;
-	while (line[i] != ',' && line[i])
+	while (line[i] == ' ')
 		i++;
-	if (line[i])
-		while (line[i + j] != ',' && line[i + j])
+	line = &line[i];
+	i = 0;
+	while (line[i] != ',' && line[i])
+	{
+		if (!ft_isdigit(line[i]) || i > 2)
+			return (1);
+		i++;
+	}
+	if (line[i + 1])
+	{
+		line = &line[i + 1];
+		while (line[j] != ',' && line[j])
+		{
+			if (!ft_isdigit(line[j]) || j > 2)
+				return (1);
 			j++;
-	if (line[i])
-		while (line[i + j + k] != '\n' && line[i + j + k])
+		}
+	}
+	if (line[j + 1])
+	{
+		line = &line[j + 1];
+		while (line[k] != '\n' && line[k])
+		{
+			if (!ft_isdigit(line[k]) || k > 2)
+				return (1);
 			k++;
-	if ((i - 1) <= 0 || i > 3)
-		return (1);
-	if ((j - 1) <= 0 || j > 3)
-		return (1);
-	if (k == 0 || k > 3)
+		}
+	}
+	if (i == 0 || k == 0 || j == 0)
 		return (1);
 	return (0);
 }
@@ -76,23 +94,12 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 	}
 	else
 	{
-		save = i + 1;
+		save = i + 2;
 		while (line[i] != '\n' && line[i])
-		{
-			printf("\nDebug %c\n", line[i]);
 			i++;
-		}
 		temp = ft_strndup(&line[save], (i - save));
 		if (ft_check_format_color(temp))
-		{
-			i = 0;
-			while (i < 6)
-			{
-				printf("Debug path[%d], %s\n", i, texture->path[i]);
-				i++;
-			}
 			ft_put_error(9);
-		}
 		else
 			texture->path[out] = ft_strdup(temp);
 	}

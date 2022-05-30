@@ -1,17 +1,17 @@
 
-SO ./asset/texture_so.xpm
 
+SO ./asset/texture_so.xpm
 
 NO ./asset/texture_no.xpm
 
 
-EA ./asset/texture_ea.xpm
+C 225,30,0
 
 WE ./asset/texture_we.xpm
 
-F 220,100,0
-C 225,30,0
+F 212,122,222
 
+EA ./asset/texture_ea.xpm
 
 1111111111111111111111111
 1000000000110000000000001
