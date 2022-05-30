@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/30 14:05:58 by acroisie         ###   ########lyon.fr   */
+/*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
+/*   Updated: 2022/05/30 14:11:29 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "include/cub3D.h"
 
-int	main(int argc, char **argv)
+void	ft_init_map(char *argv, t_game *game)
 {
-	t_game	game;
+	char	*line;
+	int		i;
+	int		j;
+	int		fd;
 
-	game = ft_errors_check(argc, argv);
-	(void)game;
-	return (0);
+	i = 0;
+	j = 0;
+
+	fd = open(argv, O_RDONLY);
+
+	line = get_next_line 
+	while (line)
+	{
+		
+	}
+
+	
 }

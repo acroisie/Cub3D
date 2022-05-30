@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:21:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/30 10:12:37 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/30 14:05:48 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_game	ft_errors_check(int argc, char **argv)
 {
 	t_game	game;
 
-	// game.info.map = NULL; //To delete
 	if (argc < 2)
 		ft_put_error(1);
 	else if (argc > 2)
@@ -60,7 +59,7 @@ t_game	ft_errors_check(int argc, char **argv)
 	else if (!ft_count_line(argv[1]))
 		ft_put_error(6);
 	ft_textures_check(argv[1], &game);
-	// ft_init_map(argv[1], &map);
-	// ft_check_map(&map);
+	ft_init_map(argv[1], &game);
+	ft_check_map(&map);
 	return (game);
 }
