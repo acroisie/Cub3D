@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/25 11:16:02 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/30 16:06:29 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_texture
 
 typedef struct s_game
 {
+	int			fd;
 	void		*mlx;
 	void		*mlx_window;
 	t_info		info;
@@ -58,5 +59,6 @@ int		ft_count_line(char *argv);
 void	ft_textures_check(char *argv, t_game *game);
 void	ft_put_error(int msg_id);
 char	*get_next_line(int fd);
+int		ft_init_check_map(t_game *game);
 
 #endif
