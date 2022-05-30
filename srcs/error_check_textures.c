@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/28 17:27:50 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/30 10:30:49 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 {
 	char	*temp;
 	int		i;
-	int		test; //To delete
 	int		save;
 	int		out;
 
@@ -52,26 +51,24 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 	out = -1;
 	while (line[i] == ' ')
 		i++;
-	if (strncmp(&line[i], "NO", 2))
+	if (!strncmp(&line[i], "NO", 2))
 		out = 0;
-	else if (strncmp(&line[i], "SO", 2))
+	else if (!strncmp(&line[i], "SO", 2))
 		out = 1;
-	else if (strncmp(&line[i], "WE", 2))
+	else if (!strncmp(&line[i], "WE", 2))
 		out = 2;
-	else if (strncmp(&line[i], "EA", 2))
+	else if (!strncmp(&line[i], "EA", 2))
 		out = 3;
-	else if (strncmp(&line[i], "F", 1))
+	else if (!strncmp(&line[i], "F", 1))
 		out = 4;
-	else if (strncmp(&line[i], "C", 1))
+	else if (!strncmp(&line[i], "C", 1))
 		out = 5;
 	if (out < 0)
 		return (1);
 	else if (out < 4)
 	{
 		temp = ft_strndup(&line[i + 5], 20);
-		test = open(&line[i + 2], O_RDONLY);
-		printf("Debug: temp = %s, test = %d\n", temp, test); // To delete
-		if (open(&line[i + 2], O_RDONLY) < 0)
+		if (open(temp, O_RDONLY) < 0)
 			return (1);
 		else
 			texture->path[out] = ft_strdup(temp);
@@ -79,14 +76,23 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 	}
 	else
 	{
-		// temp = ft_strndup(&line[i + 3], 14);
 		save = i + 1;
-		while (line[i] != '\n' || line[i])
+		while (line[i] != '\n' && line[i])
+		{
+			printf("\nDebug %c\n", line[i]);
 			i++;
+		}
 		temp = ft_strndup(&line[save], (i - save));
-		printf("Debug: temp = %s\n", temp); // To delete
 		if (ft_check_format_color(temp))
+		{
+			i = 0;
+			while (i < 6)
+			{
+				printf("Debug path[%d], %s\n", i, texture->path[i]);
+				i++;
+			}
 			ft_put_error(9);
+		}
 		else
 			texture->path[out] = ft_strdup(temp);
 	}
