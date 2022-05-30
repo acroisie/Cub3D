@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_textures.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/30 13:45:36 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/30 14:35:41 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ void	ft_textures_check(char *argv, t_game *game)
 			else
 			{
 				ft_free_split(game->texture.path);
-				close(fd);
 				ft_put_error(7);
 			}
 		}
@@ -133,10 +132,10 @@ void	ft_textures_check(char *argv, t_game *game)
 		line = get_next_line(fd);
 	}
 	free(line);
-	close(fd);
 	if (i < 6)
 	{
 		ft_free_split(game->texture.path);
 		ft_put_error(8);
 	}
+	game->fd = fd;
 }

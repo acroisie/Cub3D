@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:21:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/30 14:05:48 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/30 16:08:06 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ t_game	ft_errors_check(int argc, char **argv)
 	else if (!ft_count_line(argv[1]))
 		ft_put_error(6);
 	ft_textures_check(argv[1], &game);
-	ft_init_map(argv[1], &game);
-	ft_check_map(&map);
+	if (ft_init_check_map(&game) == -1)
+		ft_put_error(2);
+	//ft_check_map(game.info.map);
 	return (game);
 }
