@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:21:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/31 13:51:47 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/31 16:44:47 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ t_game	ft_errors_check(int argc, char **argv)
 		ft_put_error(6);
 	ft_textures_check(argv[1], &game);
 	ft_init_check_map(&game);
+	ft_check_walls(&game);
 	return (game);
 }

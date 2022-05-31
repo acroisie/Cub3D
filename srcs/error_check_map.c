@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/31 15:05:20 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/31 16:38:30 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,42 @@ int	ft_is_charset(char *line)
 	return (0);
 }
 
-int	ft_init_check_map(t_game *game)
+int	ft_destlen(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char	**ft_addline(char **src1, char *s2)
+{
+	int		i;
+	int		j;
+	char	**dest;
+
+	i = 0;
+	j = 0;
+	dest = ft_calloc((ft_destlen(src1) + 2), sizeof(char *));
+	if (dest == NULL)
+		return (NULL);
+	while (src1[j])
+		dest[i++] = ft_strdup(src1[j++]);
+	j = 0;
+	dest[i] = ft_strdup(s2);
+	dest[i + 1] = NULL;
+	dest[ft_destlen(dest)] = NULL;
+	ft_free_split(src1);
+	free(s2);
+	return (dest);
+}
+
+char	*pass_empty_line(t_game *game)
 {
 	char	*line;
 
-	(void)game;
 	line = get_next_line(game->fd);
 	while (line)
 	{
@@ -52,7 +83,16 @@ int	ft_init_check_map(t_game *game)
 		else
 			break ;
 	}
-	ft_count_line(game->fd);
+	return (line);
+}
+
+int	ft_init_check_map(t_game *game)
+{
+	char	*line;
+
+	line = ft_strdup(pass_empty_line(game));
+	game->info.map = ft_calloc((1), sizeof(char *));
+	game->info.map = ft_addline(game->info.map, line);
 	while (line)
 	{
 		if (line[0] == '\n')
@@ -60,19 +100,14 @@ int	ft_init_check_map(t_game *game)
 		else if (ft_is_charset(line))
 			ft_put_error(9);
 		line = get_next_line(game->fd);
-		free(line);
+		if (line && line[0] != '\n')
+			game->info.map = ft_addline(game->info.map, line);
 	}
-	while (line)
-	{
-		if (line[0] == '\n')
-		{
-			line = get_next_line(game->fd);
-			free(line);
-		}
-		else
-			break ;
-	}
+	line = pass_empty_line(game);
 	if (line)
+	{
+		ft_free_split(game->info.map);
 		ft_put_error(10);
+	}
 	return (0);
 }
