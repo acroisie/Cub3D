@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/30 16:06:29 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/05/31 11:27:02 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # include <sys/stat.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
+#  ifndef CHARSET
+#   define CHARSET "10NSEO \n"
+#  endif
 # endif
 
 typedef struct s_info

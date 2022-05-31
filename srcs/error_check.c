@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:21:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/31 08:29:56 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/31 13:51:47 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	ft_put_error(int msg_id)
 	if (msg_id == 7)
 		printf("Wrong texture path\n");
 	if (msg_id == 8)
-		printf("Missing texture\n");
-	if (msg_id == 9)
 		printf("Wrong color format\n");
-	if (msg_id == 10)
+	if (msg_id == 9)
 		printf("Wrong character used, you must use \"N,S,E,W,1,0\"\n");
+	if (msg_id == 10)
+		printf("Cut a map by newline is forbidden\n");
 	if (msg_id == 11)
 		printf("Map is not closed\n");
 	exit (1);
@@ -57,7 +57,6 @@ t_game	ft_errors_check(int argc, char **argv)
 	else if (!ft_count_line(argv[1]))
 		ft_put_error(6);
 	ft_textures_check(argv[1], &game);
-	if (ft_init_check_map(&game) == -1)
-		ft_put_error(10);
+	ft_init_check_map(&game);
 	return (game);
 }

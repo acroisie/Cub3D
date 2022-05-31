@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/31 08:32:35 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/31 10:05:38 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 	int		save;
 	int		out;
 
-	temp = NULL;
 	i = 0;
 	save = 0;
 	out = -1;
@@ -87,9 +86,15 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 	{
 		temp = ft_strndup(&line[i + 5], 20);
 		if (open(temp, O_RDONLY) < 0)
+		{
+			free(temp);
 			return (1);
+		}
 		else
+		{
+			free(temp);
 			texture->path[out] = ft_strdup(temp);
+		}
 		return (0);
 	}
 	else
@@ -99,9 +104,13 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 			i++;
 		temp = ft_strndup(&line[save], (i - save));
 		if (ft_check_format_color(temp))
-			ft_put_error(9);
+		{
+			ft_free_split(texture->path);
+			ft_put_error(8);
+		}
 		else
 			texture->path[out] = ft_strdup(temp);
+		free(temp);
 	}
 	return (0);
 }
@@ -111,8 +120,8 @@ void	ft_textures_check(char *argv, t_game *game)
 	int		i;
 	char	*line;
 
-	game->fd = open(argv, O_RDONLY);
 	i = 0;
+	game->fd = open(argv, O_RDONLY);
 	line = get_next_line(game->fd);
 	game->texture.path = ft_calloc(7, sizeof(char *));
 	while (line && i < 6)
@@ -131,10 +140,4 @@ void	ft_textures_check(char *argv, t_game *game)
 		line = get_next_line(game->fd);
 	}
 	free(line);
-	if (i < 6)
-	{
-		close()
-		ft_free_split(game->texture.path);
-		ft_put_error(8);
-	}
 }
