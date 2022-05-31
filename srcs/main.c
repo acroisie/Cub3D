@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/30 14:05:58 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/05/31 08:29:36 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,9 @@ int	main(int argc, char **argv)
 	(void)game;
 	return (0);
 }
+
+/*
+/------- To do list -------/
+- Leaks
+- Close fd
+*/

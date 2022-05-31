@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_textures.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/30 14:35:41 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/05/31 08:32:35 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,12 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 
 void	ft_textures_check(char *argv, t_game *game)
 {
-	int		fd;
 	int		i;
 	char	*line;
 
-	fd = open(argv, O_RDONLY);
+	game->fd = open(argv, O_RDONLY);
 	i = 0;
-	line = get_next_line(fd);
+	line = get_next_line(game->fd);
 	game->texture.path = ft_calloc(7, sizeof(char *));
 	while (line && i < 6)
 	{
@@ -129,13 +128,13 @@ void	ft_textures_check(char *argv, t_game *game)
 			}
 		}
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(game->fd);
 	}
 	free(line);
 	if (i < 6)
 	{
+		close()
 		ft_free_split(game->texture.path);
 		ft_put_error(8);
 	}
-	game->fd = fd;
 }

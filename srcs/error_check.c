@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:21:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/30 16:08:06 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/05/31 08:29:56 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ void	ft_put_error(int msg_id)
 		printf("Missing texture\n");
 	if (msg_id == 9)
 		printf("Wrong color format\n");
-	// if (msg_id == 7)
-	// 	printf("Wrong character used, you must use \"E,C,P,1,0\"\n");
-	// if (msg_id == 8)
-	// 	printf("Map is not closed\n");
-	// if (msg_id == 9)
-	// 	printf("Wrong number of items, put 1*P & at least 1*C, 1*E\n");
+	if (msg_id == 10)
+		printf("Wrong character used, you must use \"N,S,E,W,1,0\"\n");
+	if (msg_id == 11)
+		printf("Map is not closed\n");
 	exit (1);
 }
 
@@ -60,7 +58,6 @@ t_game	ft_errors_check(int argc, char **argv)
 		ft_put_error(6);
 	ft_textures_check(argv[1], &game);
 	if (ft_init_check_map(&game) == -1)
-		ft_put_error(2);
-	//ft_check_map(game.info.map);
+		ft_put_error(10);
 	return (game);
 }
