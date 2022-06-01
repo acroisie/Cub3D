@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:21:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/31 16:44:47 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/01 09:00:10 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_put_error(int msg_id)
 	if (msg_id == 10)
 		printf("Cut a map by newline is forbidden\n");
 	if (msg_id == 11)
-		printf("Map is not closed\n");
+		printf("Map is invalid\n");
 	exit (1);
 }
 

@@ -6,7 +6,7 @@
 #    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/05/31 13:58:36 by acroisie         ###   ########lyon.fr    #
+#    Updated: 2022/06/01 08:24:57 by acroisie         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ NAME := cub3D
 SRCS := error_check_args.c \
 		error_check_map.c \
 		error_check_textures.c \
+		error_check_walls.c \
 		error_check.c \
 		get_next_line.c \
 		main.c
