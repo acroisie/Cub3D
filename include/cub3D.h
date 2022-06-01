@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/01 09:48:59 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/01 11:37:30 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,7 @@ int		ft_init_check_map(t_game *game);
 int		ft_destlen(char **s);
 void	ft_walls_check(char **map);
 void	ft_supress_line_break(char *str);
+void	ft_display_map(t_game *game);
+void	my_put_pixel(t_game *game, int map_x, int map_y, int color);
 
 #endif

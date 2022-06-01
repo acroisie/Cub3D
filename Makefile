@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/06/01 08:24:57 by acroisie         ###   ########lyon.fr    #
+#    Updated: 2022/06/01 10:48:11 by lnemor           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,16 @@ CC_FLAGS = -Wall -Werror -Wextra
 
 NAME := cub3D
 
-SRCS := error_check_args.c \
+		
+		
+SRCS := main.c \
+		error_check_args.c \
 		error_check_map.c \
 		error_check_textures.c \
 		error_check_walls.c \
 		error_check.c \
 		get_next_line.c \
-		main.c
+		display_map.c
 		
 OBJS := $(SRCS:.c=.o)
 
