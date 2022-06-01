@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/31 16:38:30 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/01 09:51:09 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	**ft_addline(char **src1, char *s2)
 		dest[i++] = ft_strdup(src1[j++]);
 	j = 0;
 	dest[i] = ft_strdup(s2);
+	ft_supress_line_break(dest[i]);
 	dest[i + 1] = NULL;
 	dest[ft_destlen(dest)] = NULL;
 	ft_free_split(src1);

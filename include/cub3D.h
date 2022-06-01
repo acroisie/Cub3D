@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/01 08:24:39 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/01 09:48:59 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 typedef struct s_info
 {
 	char	**map;
+	int		pos_x;
+	int		pos_y;
+	char	pov;
 }t_info;
 
 typedef struct s_texture
@@ -64,6 +67,7 @@ void	ft_put_error(int msg_id);
 char	*get_next_line(int fd);
 int		ft_init_check_map(t_game *game);
 int		ft_destlen(char **s);
-void	ft_check_walls(t_game *game);
+void	ft_walls_check(char **map);
+void	ft_supress_line_break(char *str);
 
 #endif
