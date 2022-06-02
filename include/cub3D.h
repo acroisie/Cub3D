@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/01 14:38:47 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 13:42:08 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,19 @@ typedef struct s_info
 	char	**map;
 	int		pos_x;
 	int		pos_y;
+	int		size_h_map;
+	int		size_l_map;
 	char	pov;
 }t_info;
+
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*img_addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+}t_img;
 
 typedef struct s_texture
 {
@@ -61,6 +72,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*mlx_window;
 	t_info		info;
+	t_img		img;
 	t_texture	texture;
 }t_game;
 

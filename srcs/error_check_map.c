@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/01 14:43:13 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 13:44:30 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	ft_init_check_map(t_game *game)
 {
 	char	*line;
 
+	game->info.size_h_map = 0;
 	line = ft_strdup(pass_empty_line(game));
 	game->info.map = ft_calloc((1), sizeof(char *));
 	game->info.map = ft_addline(game->info.map, line);
@@ -103,6 +104,7 @@ int	ft_init_check_map(t_game *game)
 		line = get_next_line(game->fd);
 		if (line && line[0] != '\n')
 			game->info.map = ft_addline(game->info.map, line);
+		game->info.size_h_map += 24;
 	}
 	line = pass_empty_line(game);
 	if (line)
