@@ -6,11 +6,21 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:45:34 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/01 14:56:12 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 08:58:24 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+int	ft_map_y_size(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
 
 void	ft_supress_line_break(char *str)
 {
@@ -38,10 +48,11 @@ void	ft_walls_check(char **map)
 		{
 			if (map[i][j] == '0')
 			{
-				if (!map[i][j - 1] || map[i][j - 1] == ' ' \
+				if (i == 0 || j == 0 || i == ft_map_y_size(map) \
+				|| !map[i][j - 1] || map[i][j - 1] == ' ' \
 				|| !map[i][j + 1] || map[i][j + 1] == ' ' \
 				|| !map[i - 1][j] || map[i - 1][j] == ' ' \
-				|| !map[i + 1][j] || map[i + 1][j] == ' ')
+				|| !map[i + 1][j] || map[i + 1][j] == ' ' )
 					ft_put_error(MSG_11, 2);
 			}
 			j++;

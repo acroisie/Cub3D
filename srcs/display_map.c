@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/01 17:28:58 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 09:06:02 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	my_color(char *rgb)
 	color_tab[0] = atoi(colors[0]);
 	color_tab[1] = atoi(colors[1]);
 	color_tab[2] = atoi(colors[2]);
-	
+
 	dprintf(2, "%d\n", color_tab[0]);
 	dprintf(2, "%d\n", color_tab[1]);
 	dprintf(2, "%d\n", color_tab[2]);

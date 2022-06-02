@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/01 14:39:04 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 09:20:44 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	ft_check_format_color(char *line)
 {
-	int	i;
-	int	j;
-	int	k;
+	int		i;
+	int		j;
+	int		k;
+	char	**colors;
 
 	i = 0;
 	j = 0;
@@ -24,6 +25,7 @@ int	ft_check_format_color(char *line)
 	while (line[i] == ' ')
 		i++;
 	line = &line[i];
+	colors = ft_split(line, ',');
 	i = 0;
 	while (line[i] != ',' && line[i])
 	{
@@ -52,6 +54,9 @@ int	ft_check_format_color(char *line)
 		}
 	}
 	if (i == 0 || k == 0 || j == 0)
+		return (1);
+	if (ft_atoi (colors[0]) > 255 || ft_atoi (colors[1]) > 255 \
+	|| ft_atoi (colors[2]) > 255)
 		return (1);
 	return (0);
 }

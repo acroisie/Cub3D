@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/01 11:58:54 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 09:04:26 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_clean_exit(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	game;
+
 	game = ft_errors_check(argc, argv);
 	(void)game;
 	game.mlx = mlx_init();
