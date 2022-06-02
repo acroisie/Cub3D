@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/02 13:37:50 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 14:12:46 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define MSG_6 "File is empty"
 # define MSG_7 "Wrong texture path"
 # define MSG_8 "Wrong color format"
-# define MSG_9 "Wrong character used, you must use \"N,S,E,W,1,0\""
+# define MSG_9 "Wrong character used, you must use \"N,S,E,W,1,0,' ',\\n\""
 # define MSG_10 "Cut a map by newline is forbidden"
 # define MSG_11 "Map is invalid"
 
