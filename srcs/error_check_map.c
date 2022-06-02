@@ -6,11 +6,40 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/01 14:43:13 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 13:50:17 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+void	ft_player_check(t_game *game)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	while (game->info.map[i])
+	{
+		j = 0;
+		while (game->info.map[i][j])
+		{
+			k = 0;
+			while (CHARSET_2[k])
+			{
+				if (CHARSET_2[k] == game->info.map[i][j])
+				{
+					game->info.pos_x = j;
+					game->info.pos_y = i;
+					game->info.pov = game->info.map[i][j];
+				}
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 int	ft_is_charset(char *line)
 {
@@ -110,5 +139,6 @@ int	ft_init_check_map(t_game *game)
 		ft_free_split(game->info.map);
 		ft_put_error(MSG_10, 2);
 	}
+	ft_walls_check(game->info.map);
 	return (0);
 }

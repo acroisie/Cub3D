@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/01 14:38:47 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 13:37:50 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/stat.h>
 # define BUFFER_SIZE 42
 # define CHARSET "10NSEO \n"
+# define CHARSET_2 "10NSEO"
 # define MSG_1 "Argument missing"
 # define MSG_2 "Too many arguments"
 # define MSG_3 "Wrong map exstension, you must provide a .cub"
