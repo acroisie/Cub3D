@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/02 13:50:17 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 14:15:20 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_player_check(t_game *game)
 					game->info.pos_x = j;
 					game->info.pos_y = i;
 					game->info.pov = game->info.map[i][j];
+					game->info.map[i][j] = '0';
 				}
 				k++;
 			}
