@@ -6,7 +6,7 @@
 #    By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/06/01 10:48:11 by lnemor           ###   ########lyon.fr    #
+#    Updated: 2022/06/02 14:41:28 by lnemor           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS := main.c \
 		error_check_walls.c \
 		error_check.c \
 		get_next_line.c \
-		display_map.c
+		display_map.c \
+		hooks.c
 		
 OBJS := $(SRCS:.c=.o)
 

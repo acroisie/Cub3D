@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/02 13:43:46 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 18:44:39 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,36 +37,6 @@ int	my_color(char *rgb)
 	return (color);
 }
 
-void	pos_player(t_game *game)
-{
-	int		x;
-	int		y;
-	int		i;
-	int		j;
-
-	x = 0;
-	y = 0;
-	i = 0;
-	while (game->info.map[i])
-	{
-		x = 0;
-		j = 0;
-		while (game->info.map[i][j])
-		{
-			if (game->info.map[i][j] == 'N' || game->info.map[i][j] == 'S'
-				|| game->info.map[i][j] == 'E' || game->info.map[i][j] == 'W')
-			{
-				mlx_pixel_put(game->mlx, game->mlx_window,
-					x, y, 165466468);
-			}
-			x += 24;
-			j++;
-		}
-		y += 24;
-		i++;
-	}
-}
-
 void	ft_display_map(t_game *game)
 {
 	int	x;
@@ -88,7 +58,9 @@ void	ft_display_map(t_game *game)
 		{
 			if (game->info.map[i][j] == '1')
 				my_put_pixel(game, x, y, my_color(game->texture.path[4]));
-			if (game->info.map[i][j] == '0')
+			if (game->info.map[i][j] == '0' || game->info.map[i][j] == 'N'
+				|| game->info.map[i][j] == 'S' || game->info.map[i][j] == 'E'
+				|| game->info.map[i][j] == 'W')
 				my_put_pixel(game, x, y, my_color(game->texture.path[5]));
 			x += 24;
 			j++;
@@ -112,11 +84,98 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 		y = 0;
 		while (y < 24)
 		{
-			dst = game->img.img_addr + ((y + map_y) * game->img.size_line
-					+ (x + map_x) * (game->img.bits_per_pixel / 8));
-			*(unsigned int*)dst = color;
+			if (y == 0 || y == 24)
+			{
+				dst = game->img.img_addr + ((y + map_y) * game->img.size_line
+						+ (x + map_x) * (game->img.bits_per_pixel / 8));
+				*(unsigned int *)dst = 68248;
+			}
+			else
+			{
+				dst = game->img.img_addr + ((y + map_y) * game->img.size_line
+						+ (x + map_x) * (game->img.bits_per_pixel / 8));
+				*(unsigned int *)dst = color;
+			}
+			if (x == 0 || x == 24)
+			{
+				dst = game->img.img_addr + ((y + map_y) * game->img.size_line
+						+ (x + map_x) * (game->img.bits_per_pixel / 8));
+				*(unsigned int *)dst = 68248;
+			}
 			y++;
 		}
 		x++;
+	}
+}
+
+void	draw_player(t_game *game, char pov)
+{
+	int		x;
+	int		y;
+	int		wall_x;
+	int		wall_y;
+
+	x = 0;
+	while (x < 5)
+	{
+		y = 0;
+		while (y < 5)
+		{
+			mlx_pixel_put(game->mlx, game->mlx_window, x + game->info.pos_x,
+				y + game->info.pos_y, 5454548);
+			y++;
+		}
+		x++;
+	}
+	x = 0;
+	y = 0;
+	if (pov == 'E')
+	{
+		while (x < 30)
+		{
+			mlx_pixel_put(game->mlx, game->mlx_window, x + game->info.pos_x,
+				y + game->info.pos_y, 5454548);
+			x++;
+		}
+	}
+	else if (pov == 'O')
+	{
+		while (x > -30)
+		{
+			mlx_pixel_put(game->mlx, game->mlx_window, x + game->info.pos_x,
+				y + game->info.pos_y, 5454548);
+			x--;
+		}
+	}
+	else if (pov == 'N')
+	{
+		game->info.vect_p_x = game->info.pos_x + (x * cos(game->info.angle));
+		game->info.vect_p_y = game->info.pos_y + (y * sin(game->info.angle));
+		wall_x = (int)game->info.vect_p_x / 24;
+		wall_y = (int)game->info.vect_p_y / 24;
+		while (1)
+		{
+			if (game->info.map[wall_y][wall_x] == '1')
+				break;
+			game->info.vect_p_x = game->info.pos_x + (x * cos(game->info.angle));
+			game->info.vect_p_y = game->info.pos_y + (y * sin(game->info.angle));
+			mlx_pixel_put(game->mlx, game->mlx_window, game->info.vect_p_x,
+				game->info.vect_p_y, 5454548);
+			wall_x = (int)game->info.vect_p_x / 24;
+			wall_y = (int)game->info.vect_p_y / 24;
+			x++;
+			y++;
+		}
+		game->info.ray_len = (game->info.pos_x - game->info.vect_p_x)
+			/ (x * cos(game->info.angle));
+	}
+	else if (pov == 'S')
+	{
+		while (y < 30)
+		{
+			mlx_pixel_put(game->mlx, game->mlx_window, x + game->info.pos_x,
+				y + game->info.pos_y, 5454548);
+			y++;
+		}
 	}
 }

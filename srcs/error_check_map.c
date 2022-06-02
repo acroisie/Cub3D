@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/02 14:15:20 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 17:14:16 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_player_check(t_game *game)
 	int	k;
 
 	i = 0;
+	game->info.pos_x = 0;
+	game->info.pos_y = 0;
 	while (game->info.map[i])
 	{
 		j = 0;
@@ -29,8 +31,9 @@ void	ft_player_check(t_game *game)
 			{
 				if (CHARSET_2[k] == game->info.map[i][j])
 				{
-					game->info.pos_x = j;
-					game->info.pos_y = i;
+					game->info.pos_x = j * 24;
+					game->info.pos_y = i * 24;
+					game->info.angle = 0;
 					game->info.pov = game->info.map[i][j];
 					game->info.map[i][j] = '0';
 				}
@@ -142,6 +145,7 @@ int	ft_init_check_map(t_game *game)
 		ft_free_split(game->info.map);
 		ft_put_error(MSG_10, 2);
 	}
+	ft_player_check(game);
 	ft_walls_check(game->info.map);
 	return (0);
 }

@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/02 14:43:11 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 18:29:24 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -42,6 +44,10 @@ typedef struct s_info
 	char	**map;
 	int		pos_x;
 	int		pos_y;
+	double	vect_p_x;
+	double	vect_p_y;
+	double	angle;
+	double	ray_len;
 	int		size_h_map;
 	int		size_l_map;
 	char	pov;
@@ -91,5 +97,9 @@ void	ft_walls_check(char **map);
 void	ft_supress_line_break(char *str);
 void	ft_display_map(t_game *game);
 void	my_put_pixel(t_game *game, int map_x, int map_y, int color);
+void	ft_pos_player(t_game *game);
+void	draw_player(t_game *game, char pov);
+int		ft_clean_exit(t_game *game);
+int		ft_key_hook(int keycode, t_game *game);
 
 #endif
