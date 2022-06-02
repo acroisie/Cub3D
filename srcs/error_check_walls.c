@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:45:34 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/02 08:58:24 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/02 11:52:21 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_walls_check(char **map)
 		{
 			if (map[i][j] == '0')
 			{
-				if (i == 0 || j == 0 || i == ft_map_y_size(map) \
+				if (i == 0 || j == 0 || i == (ft_map_y_size(map) - 1) \
 				|| !map[i][j - 1] || map[i][j - 1] == ' ' \
 				|| !map[i][j + 1] || map[i][j + 1] == ' ' \
 				|| !map[i - 1][j] || map[i - 1][j] == ' ' \
