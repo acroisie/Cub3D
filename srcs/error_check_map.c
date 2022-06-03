@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/02 17:14:16 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/03 15:45:33 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ int	ft_is_charset(char *line)
 	i = 0;
 	while (line[i])
 	{
+		printf("Debug; %s\n", line);
 		j = 0;
 		k = 0;
 		while (CHARSET[j])
 		{
+			printf("Debug; [%c], [%c]\n", line[i], CHARSET[j]);
 			if (line[i] != CHARSET[j])
 				k++;
 			j++;
@@ -82,23 +84,21 @@ int	ft_destlen(char **s)
 char	**ft_addline(char **src1, char *s2)
 {
 	int		i;
-	int		j;
 	char	**dest;
 
 	i = 0;
-	j = 0;
 	dest = ft_calloc((ft_destlen(src1) + 2), sizeof(char *));
 	if (dest == NULL)
 		return (NULL);
-	while (src1[j])
-		dest[i++] = ft_strdup(src1[j++]);
-	j = 0;
+	while (src1[i])
+	{
+		dest[i] = ft_strdup(src1[i]);
+		i++;
+	}
 	dest[i] = ft_strdup(s2);
 	ft_supress_line_break(dest[i]);
-	dest[i + 1] = NULL;
-	dest[ft_destlen(dest)] = NULL;
-	ft_free_split(src1);
-	free(s2);
+	// ft_free_split(src1);
+	// free(s2);
 	return (dest);
 }
 
@@ -123,7 +123,9 @@ char	*pass_empty_line(t_game *game)
 int	ft_init_check_map(t_game *game)
 {
 	char	*line;
+	int		i;
 
+	i = 0;
 	game->info.size_h_map = 0;
 	line = ft_strdup(pass_empty_line(game));
 	game->info.map = ft_calloc((1), sizeof(char *));
@@ -147,5 +149,7 @@ int	ft_init_check_map(t_game *game)
 	}
 	ft_player_check(game);
 	ft_walls_check(game->info.map);
+	while(game->info.map[i])
+		printf("Debug map; %s\n", game->info.map[i++]);
 	return (0);
 }
