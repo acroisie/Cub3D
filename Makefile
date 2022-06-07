@@ -6,7 +6,7 @@
 #    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/06/03 15:37:26 by acroisie         ###   ########lyon.fr    #
+#    Updated: 2022/06/07 11:29:57 by acroisie         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS := main.c \
 		error_check_args.c \
 		error_check_map.c \
 		error_check_textures.c \
+		error_check_utils.c \
 		error_check_walls.c \
 		error_check.c \
 		get_next_line.c \

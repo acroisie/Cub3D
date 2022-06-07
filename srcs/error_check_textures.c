@@ -6,109 +6,59 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/07 09:14:36 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/07 11:37:15 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int	ft_process_format_check(char *line)
+int	ft_set_output(char *line)
 {
-	int	i;
+	int	out;
 
-	i = 0;
-	while (line[i] != ',' && line[i])
-	{
-		if (!ft_isdigit(line[i]) || i > 2)
-			return (-1);
-		i++;
-	}
-	return (i);
-}
-
-int	ft_check_format_color(char *line, t_texture *texture)
-{
-	int		i;
-	int		j;
-	int		k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	texture->colors = ft_split(line, ',');
-	i = ft_process_format_check(line);
-	if (line[i + 1])
-	{
-		line = &line[i + 1];
-		j = ft_process_format_check(line);
-	}
-	if (line[j + 1])
-	{
-		line = &line[j + 1];
-		k = ft_process_format_check(line);
-	}
-	if (i <= 0 || j <= 0 || k <= 0 || ft_atoi (texture->colors[0]) > 255 || \
-	ft_atoi (texture->colors[1]) > 255 || ft_atoi (texture->colors[2]) > 255)
-		return (1);
-	return (0);
+	out = -1;
+	if (!strncmp(line, "NO", 2))
+		out = 0;
+	else if (!strncmp(line, "SO", 2))
+		out = 1;
+	else if (!strncmp(line, "WE", 2))
+		out = 2;
+	else if (!strncmp(line, "EA", 2))
+		out = 3;
+	else if (!strncmp(line, "F", 1))
+		out = 4;
+	else if (!strncmp(line, "C", 1))
+		out = 5;
+	return (out);
 }
 
 int	ft_is_texture_flag(char *line, t_texture *texture)
 {
 	char	*temp;
 	int		i;
-	int		save;
 	int		out;
 
 	i = 0;
-	save = 0;
-	out = -1;
 	while (line[i] == ' ')
 		i++;
-	if (!strncmp(&line[i], "NO", 2))
-		out = 0;
-	else if (!strncmp(&line[i], "SO", 2))
-		out = 1;
-	else if (!strncmp(&line[i], "WE", 2))
-		out = 2;
-	else if (!strncmp(&line[i], "EA", 2))
-		out = 3;
-	else if (!strncmp(&line[i], "F", 1))
-		out = 4;
-	else if (!strncmp(&line[i], "C", 1))
-		out = 5;
+	line = &line[i];
+	out = ft_set_output(line);
 	if (out < 0)
 		return (1);
 	else if (out < 4)
 	{
-		temp = ft_strndup(&line[i + 5], 20);
+		temp = ft_strndup(&line[5], 20);
 		if (open(temp, O_RDONLY) < 0)
 		{
 			free(temp);
 			return (1);
 		}
 		else
-		{
-			free(temp);
-			texture->path[out] = ft_strdup(temp);
-		}
-		return (0);
-	}
-	else
-	{
-		save = i + 2;
-		while (line[i] != '\n' && line[i])
-			i++;
-		temp = ft_strndup(&line[save], (i - save));
-		if (ft_check_format_color(temp, texture))
-		{
-			ft_free_split(texture->path);
-			ft_put_error(MSG_8, 2);
-		}
-		else
 			texture->path[out] = ft_strdup(temp);
 		free(temp);
+		return (0);
 	}
+	ft_store_texture(line, i, out, texture);
 	return (0);
 }
 
