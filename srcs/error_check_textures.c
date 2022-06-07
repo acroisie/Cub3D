@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/07 11:37:15 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/07 15:34:42 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,10 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 	{
 		temp = ft_strndup(&line[5], 20);
 		if (open(temp, O_RDONLY) < 0)
-		{
-			free(temp);
-			return (1);
-		}
+			return (the_luther(1, temp));
 		else
 			texture->path[out] = ft_strdup(temp);
-		free(temp);
-		return (0);
+		return (the_luther(0, temp));
 	}
 	ft_store_texture(line, i, out, texture);
 	return (0);

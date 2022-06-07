@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/07 11:28:56 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/07 15:34:15 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int		ft_count_line(char *argv);
 void	ft_textures_check(char *argv, t_game *game);
 void	ft_store_texture(char *line, int i, int out, t_texture *texture);
 void	ft_put_error(char *err_msg, int fd);
+int	the_luther(int i, char *temp);
 char	*get_next_line(int fd);
 int		ft_init_check_map(t_game *game);
 int		ft_destlen(char **s);

@@ -6,11 +6,17 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:48:12 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/07 11:30:42 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/07 15:34:00 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+int	the_luther(int i, char *temp)
+{
+	free(temp);
+	return (i);
+}
 
 int	ft_process_format_check(char *line)
 {
