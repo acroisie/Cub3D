@@ -6,57 +6,49 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/02 09:20:44 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/07 09:14:36 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int	ft_check_format_color(char *line)
+int	ft_process_format_check(char *line)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	**colors;
+	int	i;
 
-	i = 0;
-	j = 0;
-	k = 0;
-	while (line[i] == ' ')
-		i++;
-	line = &line[i];
-	colors = ft_split(line, ',');
 	i = 0;
 	while (line[i] != ',' && line[i])
 	{
 		if (!ft_isdigit(line[i]) || i > 2)
-			return (1);
+			return (-1);
 		i++;
 	}
+	return (i);
+}
+
+int	ft_check_format_color(char *line, t_texture *texture)
+{
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	texture->colors = ft_split(line, ',');
+	i = ft_process_format_check(line);
 	if (line[i + 1])
 	{
 		line = &line[i + 1];
-		while (line[j] != ',' && line[j])
-		{
-			if (!ft_isdigit(line[j]) || j > 2)
-				return (1);
-			j++;
-		}
+		j = ft_process_format_check(line);
 	}
 	if (line[j + 1])
 	{
 		line = &line[j + 1];
-		while (line[k] != '\n' && line[k])
-		{
-			if (!ft_isdigit(line[k]) || k > 2)
-				return (1);
-			k++;
-		}
+		k = ft_process_format_check(line);
 	}
-	if (i == 0 || k == 0 || j == 0)
-		return (1);
-	if (ft_atoi (colors[0]) > 255 || ft_atoi (colors[1]) > 255 \
-	|| ft_atoi (colors[2]) > 255)
+	if (i <= 0 || j <= 0 || k <= 0 || ft_atoi (texture->colors[0]) > 255 || \
+	ft_atoi (texture->colors[1]) > 255 || ft_atoi (texture->colors[2]) > 255)
 		return (1);
 	return (0);
 }
@@ -108,7 +100,7 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 		while (line[i] != '\n' && line[i])
 			i++;
 		temp = ft_strndup(&line[save], (i - save));
-		if (ft_check_format_color(temp))
+		if (ft_check_format_color(temp, texture))
 		{
 			ft_free_split(texture->path);
 			ft_put_error(MSG_8, 2);

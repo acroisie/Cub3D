@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/03 15:45:33 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/07 08:25:37 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int	ft_is_charset(char *line)
 	i = 0;
 	while (line[i])
 	{
-		printf("Debug; %s\n", line);
+		// printf("Debug; %s\n", line);
 		j = 0;
 		k = 0;
 		while (CHARSET[j])
 		{
-			printf("Debug; [%c], [%c]\n", line[i], CHARSET[j]);
+			// printf("Debug; [%c], [%c]\n", line[i], CHARSET[j]);
 			if (line[i] != CHARSET[j])
 				k++;
 			j++;
@@ -123,9 +123,9 @@ char	*pass_empty_line(t_game *game)
 int	ft_init_check_map(t_game *game)
 {
 	char	*line;
-	int		i;
+	// int		i;
 
-	i = 0;
+	// i = 0;
 	game->info.size_h_map = 0;
 	line = ft_strdup(pass_empty_line(game));
 	game->info.map = ft_calloc((1), sizeof(char *));
@@ -149,7 +149,7 @@ int	ft_init_check_map(t_game *game)
 	}
 	ft_player_check(game);
 	ft_walls_check(game->info.map);
-	while(game->info.map[i])
-		printf("Debug map; %s\n", game->info.map[i++]);
+	// while(game->info.map[i])
+		// printf("Debug map; %s\n", game->info.map[i++]);
 	return (0);
 }

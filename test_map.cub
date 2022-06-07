@@ -12,7 +12,7 @@ WE ./asset/texture_we.xpm
 EA ./asset/texture_ea.xpm
 
 F 0,203,184
-C 45,199,0
+C 45,199,255
 
 11111111111111111111
 10000000000000000001
