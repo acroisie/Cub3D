@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/08 16:26:45 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 16:37:57 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	my_color(char *rgb)
 		color += color_tab[i];
 		i++;
 	}
+	ft_free_split(colors);
 	return (color);
 }
 

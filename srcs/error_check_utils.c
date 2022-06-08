@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:48:12 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 10:43:14 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 16:39:10 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ int	ft_check_format_color(char *line, t_texture *texture)
 	}
 	if (i <= 0 || j <= 0 || k <= 0 || ft_atoi (texture->colors[0]) > 255 || \
 	ft_atoi (texture->colors[1]) > 255 || ft_atoi (texture->colors[2]) > 255)
+	{
+		ft_free_split(texture->colors);
 		return (1);
+	}
+	ft_free_split(texture->colors);
 	return (0);
 }
 
