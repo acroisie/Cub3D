@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 11:58:28 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 16:46:45 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 		if (open(temp, O_RDONLY) < 0)
 			return (the_luther(1, temp));
 		else
-			texture->path[out] = ft_strdup(temp);
+			texture->path[out] = ft_gc_strdup(temp);
 		return (the_luther(0, temp));
 	}
 	ft_store_texture(line, i, out, texture);
@@ -66,7 +66,7 @@ void	ft_textures_check(char *argv, t_game *game)
 	i = 0;
 	game->fd = open(argv, O_RDONLY);
 	line = get_next_line(game->fd);
-	game->texture.path = ft_calloc(7, sizeof(char *));
+	game->texture.path = ft_gc_calloc(7, sizeof(char *));
 	while (line && i < 6)
 	{
 		if (ft_strlen(line) > 1)
@@ -76,12 +76,12 @@ void	ft_textures_check(char *argv, t_game *game)
 			else
 			{
 				ft_free_split(game->texture.path);
-				free(line);
+				ft_gc_free(line);
 				ft_put_error(MSG_7, 2);
 			}
 		}
-		free(line);
+		ft_gc_free(line);
 		line = get_next_line(game->fd);
 	}
-	free(line);
+	ft_gc_free(line);
 }

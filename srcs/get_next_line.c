@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 12:20:02 by acroisie          #+#    #+#             */
-/*   Updated: 2022/05/23 12:20:38 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 17:01:49 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ char	*get_next_line(int fd)
 
 	brut_line = ft_fill_buffer(fd, buffer);
 	line = ft_line_split(brut_line, buffer);
-	free(brut_line);
+	ft_gc_free(brut_line);
 	if (line[0] == '\0')
 	{
-		free(line);
+		ft_gc_free(line);
 		return (NULL);
 	}
 	return (line);

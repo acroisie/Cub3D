@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 11:34:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/04/13 17:39:28 by acroisie         ###   ########lyon.fr   */
+/*   Created: 2022/03/14 14:30:19 by acroisie          #+#    #+#             */
+/*   Updated: 2022/03/23 10:34:07 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strndup(char *src, int n)
+int	ft_isspace(int c)
 {
-	int		i;
-	char	*copy;
-	int		len;
-
-	i = 0;
-	len = ft_strlen(src);
-	copy = ft_gc_calloc((len + 1), sizeof(char));
-	if (copy == NULL)
-		return (NULL);
-	while (src[i] && i < n)
-	{
-		copy[i] = src[i];
-		i++;
-	}
-	copy[i] = '\0';
-	return (copy);
+	if (c == ' ')
+		return (1);
+	return (0);
 }

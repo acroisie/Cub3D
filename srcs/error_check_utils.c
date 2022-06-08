@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:48:12 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 16:39:10 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 16:46:45 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	the_luther(int i, char *temp)
 {
-	free(temp);
+	ft_gc_free(temp);
 	return (i);
 }
 
@@ -75,10 +75,10 @@ void	ft_store_texture(char *line, int i, int out, t_texture *texture)
 	if (ft_check_format_color(temp, texture))
 	{
 		ft_free_split(texture->path);
-		free(temp);
+		ft_gc_free(temp);
 		ft_put_error(MSG_8, 2);
 	}
 	else
-		texture->path[out] = ft_strdup(temp);
-	free(temp);
+		texture->path[out] = ft_gc_strdup(temp);
+	ft_gc_free(temp);
 }

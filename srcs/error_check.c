@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:21:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/02 13:28:06 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 17:02:27 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_put_error(char *err_msg, int fd)
 {
 	ft_putendl_fd("Error", fd);
 	ft_putendl_fd(err_msg, fd);
+	ft_gc_destroy();
 	exit (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 14:41:03 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 17:01:54 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,24 +86,6 @@ int	ft_destlen(char **s)
 	return (i);
 }
 
-char	**ft_addline(char **src1, char *s2)
-{
-	int		i;
-	char	**dest;
-
-	i = 0;
-	dest = ft_calloc((ft_destlen(src1) + 2), sizeof(char *));
-	while (src1[i])
-	{
-		dest[i] = ft_strdup(src1[i]);
-		i++;
-	}
-	ft_free_split(src1);
-	dest[i] = ft_strdup(s2);
-	ft_supress_line_break(dest[i]);
-	return (dest);
-}
-
 char	*pass_empty_line(t_game *game)
 {
 	char	*line;
@@ -114,7 +96,7 @@ char	*pass_empty_line(t_game *game)
 		if (line[0] == '\n')
 		{
 			line = get_next_line(game->fd);
-			free(line);
+			ft_gc_free(line);
 		}
 		else
 			break ;
@@ -127,22 +109,22 @@ int	ft_init_check_map(t_game *game)
 	char	*line;
 
 	game->info.size_h_map = 0;
-	line = ft_strdup(pass_empty_line(game));
-	game->info.map = ft_calloc(1, sizeof(char *));
+	line = ft_gc_strdup(pass_empty_line(game));
+	game->info.map = ft_gc_calloc(1, sizeof(char *));
 	game->info.map = ft_addline(game->info.map, line);
 	while (line)
 	{
 		if (line[0] == '\n')
 		{
-			free(line);
+			ft_gc_free(line);
 			break ;
 		}
 		else if (ft_is_charset(line))
 		{
-			free(line);
+			ft_gc_free(line);
 			ft_put_error(MSG_9, 2);
 		}
-		free(line);
+		ft_gc_free(line);
 		line = get_next_line(game->fd);
 		if (line && line[0] != '\n')
 			game->info.map = ft_addline(game->info.map, line);

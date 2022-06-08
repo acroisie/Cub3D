@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:45:34 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/02 11:52:21 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 17:54:41 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ void	ft_walls_check(char **map)
 	i = 0;
 	while (map[i])
 	{
+		ft_supress_line_break(map[i]);
 		j = 0;
 		while (map[i][j])
 		{
 			if (map[i][j] == '0')
 			{
+				printf("Debug; [%c]\n", map[i][j]);
 				if (i == 0 || j == 0 || i == (ft_map_y_size(map) - 1) \
 				|| !map[i][j - 1] || map[i][j - 1] == ' ' \
 				|| !map[i][j + 1] || map[i][j + 1] == ' ' \

@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 09:43:00 by acroisie          #+#    #+#             */
-/*   Updated: 2021/11/15 09:25:58 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/04/13 17:39:39 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = 0;
 	if (ft_strlen(s) - start < len)
 		len = ft_strlen(s) - start;
-	str = malloc((len + 1) * sizeof(char));
+	str = ft_gc_calloc((len + 1), sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	while (i < len)

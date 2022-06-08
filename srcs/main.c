@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 14:39:29 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 17:02:49 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	ft_clean_exit(t_game *game)
 {
 	ft_free_split(game->info.map);
+	ft_gc_destroy();
 	exit(0);
 }
 
@@ -32,7 +33,7 @@ int	main(int argc, char **argv)
 	mlx_hook(game.mlx_window, 17, 0L, ft_clean_exit, &game);
 	mlx_hook(game.mlx_window, 2, 1L << 0, ft_key_hook, &game);
 	mlx_loop(game.mlx);
-	//ft_free_split(game.info.map);// penser a free map a la fin du prog
+	//ft_free_split(game.info.map);// penser a ft_gc_free map a la fin du prog
 	return (0);
 }
 
