@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/07 15:34:15 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 16:12:06 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # define BUFFER_SIZE 42
-# define CHARSET "10NSEO \n"
-# define CHARSET_2 "NSEO"
+# define CHARSET "10NSEW \n"
+# define CHARSET_2 "NSEW"
 # define MSG_1 "Argument missing"
 # define MSG_2 "Too many arguments"
 # define MSG_3 "Wrong map exstension, you must provide a .cub"
@@ -42,15 +42,18 @@
 typedef struct s_info
 {
 	char	**map;
-	int		pos_x;
-	int		pos_y;
+	double	pos_x;
+	double	pos_y;
 	double	vect_p_x;
 	double	vect_p_y;
 	double	angle;
-	double	ray_len;
+	double	ray_len_x;
+	double	ray_len_y;
 	int		size_h_map;
 	int		size_l_map;
 	char	pov;
+	double	rays[1024];
+	double	fov;
 }t_info;
 
 typedef struct s_img
@@ -92,7 +95,7 @@ int		ft_count_line(char *argv);
 void	ft_textures_check(char *argv, t_game *game);
 void	ft_store_texture(char *line, int i, int out, t_texture *texture);
 void	ft_put_error(char *err_msg, int fd);
-int	the_luther(int i, char *temp);
+int		the_luther(int i, char *temp);
 char	*get_next_line(int fd);
 int		ft_init_check_map(t_game *game);
 int		ft_destlen(char **s);
@@ -101,7 +104,7 @@ void	ft_supress_line_break(char *str);
 void	ft_display_map(t_game *game);
 void	my_put_pixel(t_game *game, int map_x, int map_y, int color);
 void	ft_pos_player(t_game *game);
-void	draw_player(t_game *game, char pov);
+void	draw_player(t_game *game);
 int		ft_clean_exit(t_game *game);
 int		ft_key_hook(int keycode, t_game *game);
 

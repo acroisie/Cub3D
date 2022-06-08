@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:38:33 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/02 18:24:53 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 16:27:00 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,55 @@
 
 void	forward(t_game *game)
 {
-	game->info.pos_y -= 1;
+	game->info.pos_y += sin(game->info.angle + (game->info.fov / 2));
+	game->info.pos_x += cos(game->info.angle + (game->info.fov / 2));
 	ft_display_map(game);
-	draw_player(game, game->info.pov);
+	draw_player(game);
 }
 
 void	back(t_game *game)
 {
-	game->info.pos_y += 1;
+	game->info.pos_y -= sin(game->info.angle + (game->info.fov / 2));
+	game->info.pos_x -= cos(game->info.angle + (game->info.fov / 2));
 	ft_display_map(game);
-	draw_player(game, game->info.pov);
+	draw_player(game);
 }
 
 void	left(t_game *game)
 {
 	game->info.pos_x -= 1;
 	ft_display_map(game);
-	draw_player(game, game->info.pov);
+	draw_player(game);
 }
 
 void	right(t_game *game)
 {
 	game->info.pos_x += 1;
 	ft_display_map(game);
-	draw_player(game, game->info.pov);
+	draw_player(game);
 }
 
 void	turn_left(t_game *game)
 {
-	game->info.angle -= 0.08;
-	//dprintf(2, "%f\n", game->info.angle);
+	if (game->info.angle <= (-2 * M_PI))
+		game->info.angle = 0;
+	game->info.angle -= .05;
 	ft_display_map(game);
 	ft_display_map(game);
-	draw_player(game, game->info.pov);
+	draw_player(game);
 }
 
 void	turn_right(t_game *game)
 {
-	game->info.angle += 0.08;
+	if (game->info.angle >= (2 * M_PI))
+		game->info.angle = 0;
+	game->info.angle += .05;
 	ft_display_map(game);
-	draw_player(game, game->info.pov);
+	draw_player(game);
 }
-
 
 int	ft_key_hook(int keycode, t_game *game)
 {
-	dprintf(2, "%d\n", keycode);
 	if (keycode == 53)
 		ft_clean_exit(game);
 	if (keycode == 13 || keycode == 126)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/03 15:33:10 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 16:26:45 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,13 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 	}
 }
 
-void	draw_player(t_game *game, char pov)
+void	draw_player(t_game *game)
 {
 	int		x;
 	int		y;
 	int		wall_x;
 	int		wall_y;
+	int		i;
 
 	x = 0;
 	while (x < 5)
@@ -127,53 +128,38 @@ void	draw_player(t_game *game, char pov)
 	}
 	x = 0;
 	y = 0;
-	if (pov == 'E')
-	{
-		while (x < 30)
-		{
-			mlx_pixel_put(game->mlx, game->mlx_window, x + game->info.pos_x,
-				y + game->info.pos_y, 5454548);
-			x++;
-		}
-	}
-	else if (pov == 'O')
-	{
-		while (x > -30)
-		{
-			mlx_pixel_put(game->mlx, game->mlx_window, x + game->info.pos_x,
-				y + game->info.pos_y, 5454548);
-			x--;
-		}
-	}
-	else if (pov == 'N')
-	{
-		game->info.vect_p_x = game->info.pos_x + (x * cos(game->info.angle));
-		game->info.vect_p_y = game->info.pos_y + (y * sin(game->info.angle));
+	i = 0;
+	game->info.fov = 0;
+	while (i < 1024)
+ 	{
+		game->info.vect_p_x = game->info.pos_x + (x * cos(game->info.angle
+					+ game->info.fov));
+		game->info.vect_p_y = game->info.pos_y + (y * sin(game->info.angle
+					+ game->info.fov));
 		wall_x = (int)game->info.vect_p_x / 24;
 		wall_y = (int)game->info.vect_p_y / 24;
+		x = 0;
+		y = 0;
 		while (1)
 		{
 			if (game->info.map[wall_y][wall_x] == '1')
-				break;
-			game->info.vect_p_x = game->info.pos_x + (x * cos(game->info.angle));
-			game->info.vect_p_y = game->info.pos_y + (y * sin(game->info.angle));
+				break ;
 			mlx_pixel_put(game->mlx, game->mlx_window, game->info.vect_p_x,
 				game->info.vect_p_y, 5454548);
+			game->info.vect_p_x = game->info.pos_x + (x * cos(game->info.angle
+						+ game->info.fov));
+			game->info.vect_p_y = game->info.pos_y + (y * sin(game->info.angle
+						+ game->info.fov));
 			wall_x = (int)game->info.vect_p_x / 24;
 			wall_y = (int)game->info.vect_p_y / 24;
 			x++;
 			y++;
 		}
-		game->info.ray_len = (game->info.pos_x - game->info.vect_p_x)
-			/ (x * cos(game->info.angle));
-	}
-	else if (pov == 'S')
-	{
-		while (y < 30)
-		{
-			mlx_pixel_put(game->mlx, game->mlx_window, x + game->info.pos_x,
-				y + game->info.pos_y, 5454548);
-			y++;
-		}
+		game->info.ray_len_x = game->info.vect_p_x;
+		game->info.ray_len_y = game->info.vect_p_y;
+		mlx_pixel_put(game->mlx, game->mlx_window, game->info.ray_len_x,
+			game->info.ray_len_y, 0xFF0000);
+		game->info.fov += (M_PI / 3) / 1024;
+		i++;
 	}
 }

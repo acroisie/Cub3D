@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 13:31:00 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 14:41:03 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,16 @@ void	ft_player_check(t_game *game)
 			{
 				if (CHARSET_2[k] == game->info.map[i][j])
 				{
+					if (game->info.map[i][j] == 'N')
+						game->info.angle = (3 * M_PI) / 2;
+					if (game->info.map[i][j] == 'S')
+						game->info.angle = M_PI / 2;
+					if (game->info.map[i][j] == 'E')
+						game->info.angle = 0;
+					if (game->info.map[i][j] == 'W')
+						game->info.angle = M_PI;
 					game->info.pos_x = j * 24;
 					game->info.pos_y = i * 24;
-					game->info.angle = 0;
 					game->info.pov = game->info.map[i][j];
 					game->info.map[i][j] = '0';
 				}
