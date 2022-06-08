@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/07 08:25:37 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 13:31:00 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,10 @@ int	ft_is_charset(char *line)
 	i = 0;
 	while (line[i])
 	{
-		// printf("Debug; %s\n", line);
 		j = 0;
 		k = 0;
 		while (CHARSET[j])
 		{
-			// printf("Debug; [%c], [%c]\n", line[i], CHARSET[j]);
 			if (line[i] != CHARSET[j])
 				k++;
 			j++;
@@ -88,17 +86,14 @@ char	**ft_addline(char **src1, char *s2)
 
 	i = 0;
 	dest = ft_calloc((ft_destlen(src1) + 2), sizeof(char *));
-	if (dest == NULL)
-		return (NULL);
 	while (src1[i])
 	{
 		dest[i] = ft_strdup(src1[i]);
 		i++;
 	}
+	ft_free_split(src1);
 	dest[i] = ft_strdup(s2);
 	ft_supress_line_break(dest[i]);
-	// ft_free_split(src1);
-	// free(s2);
 	return (dest);
 }
 
@@ -123,19 +118,24 @@ char	*pass_empty_line(t_game *game)
 int	ft_init_check_map(t_game *game)
 {
 	char	*line;
-	// int		i;
 
-	// i = 0;
 	game->info.size_h_map = 0;
 	line = ft_strdup(pass_empty_line(game));
-	game->info.map = ft_calloc((1), sizeof(char *));
+	game->info.map = ft_calloc(1, sizeof(char *));
 	game->info.map = ft_addline(game->info.map, line);
 	while (line)
 	{
 		if (line[0] == '\n')
+		{
+			free(line);
 			break ;
+		}
 		else if (ft_is_charset(line))
+		{
+			free(line);
 			ft_put_error(MSG_9, 2);
+		}
+		free(line);
 		line = get_next_line(game->fd);
 		if (line && line[0] != '\n')
 			game->info.map = ft_addline(game->info.map, line);
@@ -149,7 +149,5 @@ int	ft_init_check_map(t_game *game)
 	}
 	ft_player_check(game);
 	ft_walls_check(game->info.map);
-	// while(game->info.map[i])
-		// printf("Debug map; %s\n", game->info.map[i++]);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:48:12 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/07 15:34:00 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 10:43:14 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_store_texture(char *line, int i, int out, t_texture *texture)
 	if (ft_check_format_color(temp, texture))
 	{
 		ft_free_split(texture->path);
+		free(temp);
 		ft_put_error(MSG_8, 2);
 	}
 	else

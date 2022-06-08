@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/07 15:34:42 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/08 11:58:28 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_textures_check(char *argv, t_game *game)
 			else
 			{
 				ft_free_split(game->texture.path);
+				free(line);
 				ft_put_error(MSG_7, 2);
 			}
 		}
