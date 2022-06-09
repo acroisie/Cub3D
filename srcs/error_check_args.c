@@ -6,13 +6,13 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 15:44:54 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 16:44:48 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/09 11:32:49 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int	ft_opening_check(char *argv)
+void	ft_opening_check(char *argv, t_game *game)
 {
 	int	fd;
 
@@ -20,13 +20,12 @@ int	ft_opening_check(char *argv)
 	if (fd < 0)
 	{
 		close(fd);
-		return (1);
+		ft_put_error(MSG_5, 2, game);
 	}
 	close(fd);
-	return (0);
 }
 
-int	ft_folder_check(char *argv)
+void	ft_folder_check(char *argv, t_game *game)
 {
 	int	fd;
 
@@ -34,13 +33,12 @@ int	ft_folder_check(char *argv)
 	if (fd > 0)
 	{
 		close(fd);
-		return (1);
+		ft_put_error(MSG_4, 2, game);
 	}
 	close(fd);
-	return (0);
 }
 
-int	ft_extension_check(char *argv)
+void	ft_extension_check(char *argv, t_game *game)
 {
 	int	i;
 
@@ -52,13 +50,12 @@ int	ft_extension_check(char *argv)
 		i++;
 	}
 	if (argv[i] == '\0')
-		return (1);
+		ft_put_error(MSG_3, 2, game);
 	if (ft_strncmp(&argv[ft_strlen(argv) - 4], ".cub", 4))
-		return (1);
-	return (0);
+		ft_put_error(MSG_3, 2, game);
 }
 
-int	ft_count_line(char *argv)
+int	ft_count_line(char *argv, t_game *game)
 {
 	int		fd;
 	int		count;
@@ -75,5 +72,7 @@ int	ft_count_line(char *argv)
 	}
 	ft_gc_free(line);
 	close(fd);
+	if (!count)
+		ft_put_error(MSG_6, 2, game);
 	return (count);
 }
