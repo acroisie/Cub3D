@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:48:12 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 16:46:45 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/09 11:05:27 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_check_format_color(char *line, t_texture *texture)
 	return (0);
 }
 
-void	ft_store_texture(char *line, int i, int out, t_texture *texture)
+void	ft_store_texture(char *line, int i, int out, t_game *game)
 {
 	int		save;
 	char	*temp;
@@ -72,13 +72,13 @@ void	ft_store_texture(char *line, int i, int out, t_texture *texture)
 	while (line[i] != '\n' && line[i])
 		i++;
 	temp = ft_strndup(&line[save], (i - save));
-	if (ft_check_format_color(temp, texture))
+	if (ft_check_format_color(temp, &game->texture))
 	{
-		ft_free_split(texture->path);
+		ft_free_split(game->texture.path);
 		ft_gc_free(temp);
-		ft_put_error(MSG_8, 2);
+		ft_put_error(MSG_8, 2, game);
 	}
 	else
-		texture->path[out] = ft_gc_strdup(temp);
+		game->texture.path[out] = ft_gc_strdup(temp);
 	ft_gc_free(temp);
 }

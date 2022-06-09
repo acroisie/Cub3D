@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 16:46:45 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/09 11:04:37 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_set_output(char *line)
 	return (out);
 }
 
-int	ft_is_texture_flag(char *line, t_texture *texture)
+int	ft_is_texture_flag(char *line, t_texture *texture, t_game *game)
 {
 	char	*temp;
 	int		i;
@@ -54,7 +54,7 @@ int	ft_is_texture_flag(char *line, t_texture *texture)
 			texture->path[out] = ft_gc_strdup(temp);
 		return (the_luther(0, temp));
 	}
-	ft_store_texture(line, i, out, texture);
+	ft_store_texture(line, i, out, game);
 	return (0);
 }
 
@@ -71,13 +71,13 @@ void	ft_textures_check(char *argv, t_game *game)
 	{
 		if (ft_strlen(line) > 1)
 		{
-			if (!ft_is_texture_flag(line, &game->texture))
+			if (!ft_is_texture_flag(line, &game->texture, game))
 				i++;
 			else
 			{
 				ft_free_split(game->texture.path);
 				ft_gc_free(line);
-				ft_put_error(MSG_7, 2);
+				ft_put_error(MSG_7, 2, game);
 			}
 		}
 		ft_gc_free(line);

@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:45:34 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/08 17:54:41 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/09 11:06:27 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_supress_line_break(char *str)
 	}
 }
 
-void	ft_walls_check(char **map)
+void	ft_walls_check(char **map, t_game *game)
 {
 	int	i;
 	int	j;
@@ -49,13 +49,12 @@ void	ft_walls_check(char **map)
 		{
 			if (map[i][j] == '0')
 			{
-				printf("Debug; [%c]\n", map[i][j]);
 				if (i == 0 || j == 0 || i == (ft_map_y_size(map) - 1) \
 				|| !map[i][j - 1] || map[i][j - 1] == ' ' \
 				|| !map[i][j + 1] || map[i][j + 1] == ' ' \
 				|| !map[i - 1][j] || map[i - 1][j] == ' ' \
 				|| !map[i + 1][j] || map[i + 1][j] == ' ' )
-					ft_put_error(MSG_11, 2);
+					ft_put_error(MSG_11, 2, game);
 			}
 			j++;
 		}

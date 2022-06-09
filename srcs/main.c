@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 17:02:49 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/09 10:59:42 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	ft_clean_exit(t_game *game)
 {
-	ft_free_split(game->info.map);
+	if (game->fd)
+		close(game->fd);
 	ft_gc_destroy();
 	exit(0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 16:12:06 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/09 11:06:37 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,13 @@ int		ft_folder_check(char *argv);
 int		ft_extension_check(char *argv);
 int		ft_count_line(char *argv);
 void	ft_textures_check(char *argv, t_game *game);
-void	ft_store_texture(char *line, int i, int out, t_texture *texture);
-void	ft_put_error(char *err_msg, int fd);
+void	ft_store_texture(char *line, int i, int out, t_game *game);
+void	ft_put_error(char *err_msg, int fd, t_game *game);
 int		the_luther(int i, char *temp);
 char	*get_next_line(int fd);
 int		ft_init_check_map(t_game *game);
 int		ft_destlen(char **s);
-void	ft_walls_check(char **map);
+void	ft_walls_check(char **map, t_game *game);
 void	ft_supress_line_break(char *str);
 void	ft_display_map(t_game *game);
 void	my_put_pixel(t_game *game, int map_x, int map_y, int color);

@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/08 17:01:54 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/09 11:06:50 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,7 @@ int	ft_init_check_map(t_game *game)
 			break ;
 		}
 		else if (ft_is_charset(line))
-		{
-			ft_gc_free(line);
-			ft_put_error(MSG_9, 2);
-		}
+			ft_put_error(MSG_9, 2, game);
 		ft_gc_free(line);
 		line = get_next_line(game->fd);
 		if (line && line[0] != '\n')
@@ -132,11 +129,8 @@ int	ft_init_check_map(t_game *game)
 	}
 	line = pass_empty_line(game);
 	if (line)
-	{
-		ft_free_split(game->info.map);
-		ft_put_error(MSG_10, 2);
-	}
+		ft_put_error(MSG_10, 2, game);
 	ft_player_check(game);
-	ft_walls_check(game->info.map);
+	ft_walls_check(game->info.map, game);
 	return (0);
 }
