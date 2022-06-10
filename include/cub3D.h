@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/09 11:33:09 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/10 09:32:37 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+
 # define BUFFER_SIZE 42
+
 # define CHARSET "10NSEW \n"
 # define CHARSET_2 "NSEW"
+
 # define MSG_1 "Argument missing"
 # define MSG_2 "Too many arguments"
 # define MSG_3 "Wrong map exstension, you must provide a .cub"
@@ -38,6 +41,7 @@
 # define MSG_9 "Wrong character used, you must use \"N,S,E,W,1,0,' ',\\n\""
 # define MSG_10 "Cut a map by newline is forbidden"
 # define MSG_11 "Map is invalid"
+# define MSG_12 "Player is missing"
 
 typedef struct s_info
 {

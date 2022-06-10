@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/09 11:25:20 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/10 09:33:03 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	ft_player_check(t_game *game)
 	int	i;
 	int	j;
 	int	k;
+	int	player;
 
 	i = 0;
+	player = 0;
 	game->info.pos_x = 0;
 	game->info.pos_y = 0;
 	while (game->info.map[i])
@@ -31,6 +33,7 @@ void	ft_player_check(t_game *game)
 			{
 				if (CHARSET_2[k] == game->info.map[i][j])
 				{
+					player++;
 					if (game->info.map[i][j] == 'N')
 						game->info.angle = (3 * M_PI) / 2;
 					if (game->info.map[i][j] == 'S')
@@ -50,6 +53,8 @@ void	ft_player_check(t_game *game)
 		}
 		i++;
 	}
+	if (!player)
+		ft_put_error(MSG_12, 2, game);
 }
 
 int	ft_is_charset(char *line)
