@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/08 16:37:57 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/14 16:41:44 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	my_color(char *rgb)
 	i = 0;
 	color = 0;
 	colors = ft_split(rgb, ',');
+	if (!colors)// retour d'erreur
+		return (0);// retour d'erreur
 	color_tab[0] = atoi(colors[0]);
 	color_tab[1] = atoi(colors[1]);
 	color_tab[2] = atoi(colors[2]);
@@ -68,13 +70,14 @@ void	ft_display_map(t_game *game)
 		i++;
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img.img_ptr, 0, 0);
+	mlx_destroy_image(game->mlx, game->img.img_ptr);
 }
 
 void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 {
 	int		x;
 	int		y;
-	char 	*dst;
+	char	*dst;
 
 	x = 0;
 	(void)color;
@@ -109,11 +112,14 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 
 void	draw_player(t_game *game)
 {
-	int		x;
-	int		y;
-	int		wall_x;
-	int		wall_y;
 	int		i;
+	int		touched;
+	double	x = 0;
+	double	ray_h_y = 0;
+	double	ray_v_x = 0;
+	double	y = 0;
+	double	h_intercept = 0;
+	double	v_intercept = 0;
 
 	x = 0;
 	while (x < 5)
@@ -130,37 +136,38 @@ void	draw_player(t_game *game)
 	x = 0;
 	y = 0;
 	i = 0;
-	game->info.fov = 0;
-	while (i < 1024)
- 	{
-		game->info.vect_p_x = game->info.pos_x + (x * cos(game->info.angle
-					+ game->info.fov));
-		game->info.vect_p_y = game->info.pos_y + (y * sin(game->info.angle
-					+ game->info.fov));
-		wall_x = (int)game->info.vect_p_x / 24;
-		wall_y = (int)game->info.vect_p_y / 24;
-		x = 0;
-		y = 0;
-		while (1)
-		{
-			if (game->info.map[wall_y][wall_x] == '1')
-				break ;
-			mlx_pixel_put(game->mlx, game->mlx_window, game->info.vect_p_x,
-				game->info.vect_p_y, 5454548);
-			game->info.vect_p_x = game->info.pos_x + (x * cos(game->info.angle
-						+ game->info.fov));
-			game->info.vect_p_y = game->info.pos_y + (y * sin(game->info.angle
-						+ game->info.fov));
-			wall_x = (int)game->info.vect_p_x / 24;
-			wall_y = (int)game->info.vect_p_y / 24;
-			x++;
-			y++;
+	while (i < 2)
+	{
+		game->info.fov += (M_PI / 3)/ 2;
+		touched = 0;
+		while (touched == 0)
+		{	
+			while (h_intercept <= y)
+			{
+				ray_h_y += 1 - fmod(game->info.pos_y, 1);
+				x += ray_h_y * tan(game->info.fov);
+				dprintf(2, "debug x : %d\n", (int)x);
+				h_intercept = game->info.pos_x + x;
+				dprintf(2, "debug hintercept : %d\n", (int)h_intercept);
+				if (game->info.map[(int)h_intercept][(int)x] == '1')
+					touched = 1;
+				mlx_pixel_put(game->mlx, game->mlx_window, x,
+					h_intercept, 0xFF0000);
+			}
+			while (v_intercept <= x)
+			{
+				ray_v_x += 1 - fmod(game->info.pos_x, 1);
+				y += ray_v_x * tan(game->info.fov + game->info.angle);
+				v_intercept = game->info.pos_y + y;
+				if (game->info.map[(int)v_intercept][(int)y] == '1')
+					touched = 1;
+				mlx_pixel_put(game->mlx, game->mlx_window, v_intercept,
+					y, 0xFF0000);
+				dprintf(2, "debug x : %f\n", y);
+				dprintf(2, "debug hintercept : %f\n", v_intercept);
+			}
 		}
-		game->info.ray_len_x = game->info.vect_p_x;
-		game->info.ray_len_y = game->info.vect_p_y;
-		mlx_pixel_put(game->mlx, game->mlx_window, game->info.ray_len_x,
-			game->info.ray_len_y, 0xFF0000);
-		game->info.fov += (M_PI / 3) / 1024;
+		game->info.fov += (M_PI / 3)/ 2;
 		i++;
 	}
 }

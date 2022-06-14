@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/10 09:33:03 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/13 16:13:54 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	ft_player_check(t_game *game)
 						game->info.angle = 0;
 					if (game->info.map[i][j] == 'W')
 						game->info.angle = M_PI;
-					game->info.pos_x = j * 24;//To delete when 3d is ok
-					game->info.pos_y = i * 24;//To delete when 3d is ok
+					game->info.pos_x = j * 24 + (24/2);//To delete when 3d is ok
+					game->info.pos_y = i * 24 + (24/2);//To delete when 3d is ok
 					game->info.pov = game->info.map[i][j];
 					game->info.map[i][j] = '0';
 				}
