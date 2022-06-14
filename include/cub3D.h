@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/10 09:32:37 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/14 08:46:31 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define MSG_10 "Cut a map by newline is forbidden"
 # define MSG_11 "Map is invalid"
 # define MSG_12 "Player is missing"
+# define MSG_13 "You must use only one player position"
 
 typedef struct s_info
 {

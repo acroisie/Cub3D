@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/10 09:33:03 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/14 08:45:49 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	ft_player_check(t_game *game)
 	}
 	if (!player)
 		ft_put_error(MSG_12, 2, game);
+	if (player > 1)
+		ft_put_error(MSG_13, 2, game);
 }
 
 int	ft_is_charset(char *line)
