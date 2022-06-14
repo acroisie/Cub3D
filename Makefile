@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/06/08 13:41:43 by acroisie         ###   ########lyon.fr    #
+#    Updated: 2022/06/14 11:33:26 by acroisie         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,7 @@ SRCS := main.c \
 		error_check_walls.c \
 		error_check.c \
 		get_next_line.c \
-		display_map.c \
-		hooks.c
+		raycasting.c
 		
 OBJS := $(SRCS:.c=.o)
 

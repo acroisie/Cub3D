@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/09 11:09:07 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/14 11:45:13 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,17 @@ int	main(int argc, char **argv)
 
 	game = ft_errors_check(argc, argv);
 	game.mlx = mlx_init();
-	game.mlx_window = mlx_new_window(game.mlx, (600),
-			(game.info.size_h_map), "cub3D");
-	ft_display_map(&game);
-	draw_player(&game);
+	game.mlx_window = mlx_new_window(game.mlx, 1024, 768, "cub3D");
+	raycasting_engine(&game);
 	mlx_hook(game.mlx_window, 17, 0L, ft_clean_exit, &game);
-	mlx_hook(game.mlx_window, 2, 1L << 0, ft_key_hook, &game);
+	// mlx_hook(game.mlx_window, 2, 1L << 0, ft_key_hook, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }
 
 /*
 /------- To do list -------/
-- Leaks
-- Close fd
+- Destroy ptrs in exit
+- Add malloc error msg
 - Norm
 */

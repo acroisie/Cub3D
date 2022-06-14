@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/14 08:45:49 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/14 11:19:39 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ void	ft_player_check(t_game *game)
 						game->info.angle = 0;
 					if (game->info.map[i][j] == 'W')
 						game->info.angle = M_PI;
-					game->info.pos_x = j * 24;//To delete when 3d is ok
-					game->info.pos_y = i * 24;//To delete when 3d is ok
-					game->info.pov = game->info.map[i][j];
+					game->info.pos_x = j;
+					game->info.pos_y = i;
 					game->info.map[i][j] = '0';
 				}
 				k++;
@@ -83,17 +82,7 @@ int	ft_is_charset(char *line)
 	return (0);
 }
 
-int	ft_destlen(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*pass_empty_line(t_game *game)
+char	*skip_empty_line(t_game *game)
 {
 	char	*line;
 
@@ -115,8 +104,7 @@ int	ft_init_check_map(t_game *game)
 {
 	char	*line;
 
-	game->info.size_h_map = 0;//To delete when 3d is ok
-	line = ft_gc_strdup(pass_empty_line(game));
+	line = ft_gc_strdup(skip_empty_line(game));
 	game->info.map = ft_gc_calloc(1, sizeof(char *));
 	game->info.map = ft_addline(game->info.map, line);
 	while (line)
@@ -132,9 +120,8 @@ int	ft_init_check_map(t_game *game)
 		line = get_next_line(game->fd);
 		if (line && line[0] != '\n')
 			game->info.map = ft_addline(game->info.map, line);
-		game->info.size_h_map += 24; //To delete when 3d is ok
 	}
-	line = pass_empty_line(game);
+	line = skip_empty_line(game);
 	if (line)
 		ft_put_error(MSG_10, 2, game);
 	ft_player_check(game);

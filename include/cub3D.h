@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/14 08:46:31 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/14 11:36:52 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,7 @@ typedef struct s_info
 	char	**map;
 	double	pos_x;
 	double	pos_y;
-	double	vect_p_x;
-	double	vect_p_y;
 	double	angle;
-	double	ray_len_x;
-	double	ray_len_y;
-	int		size_h_map;
-	int		size_l_map;
-	char	pov;
-	double	rays[1024];
-	double	fov;
 }t_info;
 
 typedef struct s_img
@@ -92,6 +83,8 @@ typedef struct s_game
 	t_texture	texture;
 }t_game;
 
+/*--------------------------Parsing--------------------------*/
+
 t_game	ft_errors_check(int argc, char **argv);
 void	ft_opening_check(char *argv, t_game *game);
 void	ft_folder_check(char *argv, t_game *game);
@@ -106,11 +99,10 @@ int		ft_init_check_map(t_game *game);
 int		ft_destlen(char **s);
 void	ft_walls_check(char **map, t_game *game);
 void	ft_supress_line_break(char *str);
-void	ft_display_map(t_game *game);
-void	my_put_pixel(t_game *game, int map_x, int map_y, int color);
-void	ft_pos_player(t_game *game);
-void	draw_player(t_game *game);
+
+/*-------------------------Raycasting------------------------*/
+
 int		ft_clean_exit(t_game *game);
-int		ft_key_hook(int keycode, t_game *game);
+void	raycasting_engine(t_game *game);
 
 #endif
