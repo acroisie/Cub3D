@@ -6,9 +6,10 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/13 16:13:54 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 14:21:37 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../include/cub3D.h"
 
@@ -42,8 +43,8 @@ void	ft_player_check(t_game *game)
 						game->info.angle = 0;
 					if (game->info.map[i][j] == 'W')
 						game->info.angle = M_PI;
-					game->info.pos_x = j * 24 + (24/2);//To delete when 3d is ok
-					game->info.pos_y = i * 24 + (24/2);//To delete when 3d is ok
+					game->info.pos_x = j * game->info.u + (game->info.u/2);//To delete when 3d is ok
+					game->info.pos_y = i * game->info.u + (game->info.u/2);//To delete when 3d is ok
 					game->info.pov = game->info.map[i][j];
 					game->info.map[i][j] = '0';
 				}
@@ -55,6 +56,8 @@ void	ft_player_check(t_game *game)
 	}
 	if (!player)
 		ft_put_error(MSG_12, 2, game);
+	if (player > 1)
+		ft_put_error(MSG_13, 2, game);
 }
 
 int	ft_is_charset(char *line)
@@ -130,7 +133,8 @@ int	ft_init_check_map(t_game *game)
 		line = get_next_line(game->fd);
 		if (line && line[0] != '\n')
 			game->info.map = ft_addline(game->info.map, line);
-		game->info.size_h_map += 24; //To delete when 3d is ok
+		game->info.size_h_map += game->info.u; //To delete when 3d is ok
+		dprintf(2,"%d\n", game->info.u);
 	}
 	line = pass_empty_line(game);
 	if (line)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/10 09:32:37 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 14:21:47 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define MSG_10 "Cut a map by newline is forbidden"
 # define MSG_11 "Map is invalid"
 # define MSG_12 "Player is missing"
+# define MSG_13 "You must use only one player position"
 
 typedef struct s_info
 {
@@ -51,13 +52,12 @@ typedef struct s_info
 	double	vect_p_x;
 	double	vect_p_y;
 	double	angle;
-	double	ray_len_x;
-	double	ray_len_y;
 	int		size_h_map;
 	int		size_l_map;
 	char	pov;
 	double	rays[1024];
 	double	fov;
+	int		u;
 }t_info;
 
 typedef struct s_img

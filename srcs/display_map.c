@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/15 13:46:04 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 14:21:37 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void	ft_display_map(t_game *game)
 				|| game->info.map[i][j] == 'S' || game->info.map[i][j] == 'E'
 				|| game->info.map[i][j] == 'W')
 				my_put_pixel(game, x, y, my_color(game->texture.path[5]));
-			x += 24;
+			x += game->info.u;
 			j++;
 		}
-		y += 24;
+		y += game->info.u;
 		i++;
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img.img_ptr, 0, 0);
@@ -81,12 +81,12 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 
 	x = 0;
 	(void)color;
-	while (x < 24)
+	while (x < game->info.u)
 	{
 		y = 0;
-		while (y < 24)
+		while (y < game->info.u)
 		{
-			if (y == 0 || y == 24)
+			if (y == 0 || y == game->info.u)
 			{
 				dst = game->img.img_addr + ((y + map_y) * game->img.size_line
 						+ (x + map_x) * (game->img.bits_per_pixel / 8));
@@ -98,7 +98,7 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 						+ (x + map_x) * (game->img.bits_per_pixel / 8));
 				*(unsigned int *)dst = color;
 			}
-			if (x == 0 || x == 24)
+			if (x == 0 || x == game->info.u)
 			{
 				dst = game->img.img_addr + ((y + map_y) * game->img.size_line
 						+ (x + map_x) * (game->img.bits_per_pixel / 8));
@@ -110,8 +110,14 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 	}
 }
 
+int	ft_intersection(t_game *game, double pos_x, double pos_y)
+{
+	if (game->info.map[(int)pos_y][(int)pos_x] == '1')
+		return (1);
+	return (0);
+}
 
-void	ft_raycast(t_game *game)
+void	draw_player(t_game *game)
 {
 	double	x;
 	double	y;
@@ -121,6 +127,7 @@ void	ft_raycast(t_game *game)
 	double	y_ray;
 	double	temp;
 	int		obstacle;
+	int		i;
 
 	x = 0;
 	while (x < 5)
@@ -140,22 +147,35 @@ void	ft_raycast(t_game *game)
 	pos_x = game->info.pos_x;
 	pos_y = game->info.pos_y;
 	obstacle = 0;
-	while (!obstacle)
-	{
-		if (x_ray < y_ray)
+	game->info.fov = 0;
+	i = 0;
+	while (i < 1024)
+	{	
+		while (!obstacle)
 		{
-			temp = (game->info.u - fmod(pos_x, game->info.u)) / cos(angle);
-			x_ray += temp;
-			pos_x += (game->info.u - fmod(pos_x, game->info.u));
-			pos_y += temp sin(90 - angle);
-		}	
-	else
-	{
-		temp = (10 - fmod(pos_y, 10)) / cos(90 - angle);
-		y_ray += temp;
-		pos_y += (game->info.u - fmod(pos_y, game->info.u));
-		pos_x += temp * sin(angle);
-	}
-	obstacle = ft_intersection();
+			if (x_ray < y_ray)
+			{
+				temp = (game->info.u - fmod(pos_x, game->info.u))
+					/ cos(game->info.fov);
+				x_ray += temp;
+				pos_x += (game->info.u - fmod(pos_x, game->info.u));
+				pos_y += temp * sin(90 - game->info.fov);
+				dprintf(2, "1 pos_x:%d\n",(int)pos_x);
+				dprintf(2, "1 pos_y:%d\n",(int)pos_y);
+			}	
+			else
+			{
+				temp = (game->info.u - fmod(pos_y, game->info.u))
+					/ cos(90 - game->info.fov);
+				y_ray += temp;
+				pos_y += (game->info.u - fmod(pos_y, game->info.u));
+				pos_x += temp * sin(game->info.fov);
+				dprintf(2, "1 pos_y:%d\n",(int)pos_y);
+				dprintf(2, "1 pos_x:%d\n",(int)pos_x);
+			}
+			obstacle = ft_intersection(game, pos_x, pos_y);
+		}
+		i++;
+		game->info.fov += (M_PI / 3) / 1024;
 	}
 }

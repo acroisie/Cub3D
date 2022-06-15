@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/13 16:12:33 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 14:22:22 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	game.info.u = (int)4;
+	//dprintf(2, "here %d\n", game.info.u);
 	game = ft_errors_check(argc, argv);
 	game.mlx = mlx_init();
 	game.mlx_window = mlx_new_window(game.mlx, (600),
