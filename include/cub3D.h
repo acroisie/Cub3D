@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/14 11:36:52 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 13:10:42 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_info
 	double	pos_x;
 	double	pos_y;
 	double	angle;
+	int		u;
 }t_info;
 
 typedef struct s_img
