@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/14 16:41:44 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 13:46:04 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,16 +110,17 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 	}
 }
 
-void	draw_player(t_game *game)
+
+void	ft_raycast(t_game *game)
 {
-	int		i;
-	int		touched;
-	double	x = 0;
-	double	ray_h_y = 0;
-	double	ray_v_x = 0;
-	double	y = 0;
-	double	h_intercept = 0;
-	double	v_intercept = 0;
+	double	x;
+	double	y;
+	double	pos_x;
+	double	pos_y;
+	double	x_ray;
+	double	y_ray;
+	double	temp;
+	int		obstacle;
 
 	x = 0;
 	while (x < 5)
@@ -133,41 +134,28 @@ void	draw_player(t_game *game)
 		}
 		x++;
 	}
-	x = 0;
-	y = 0;
-	i = 0;
-	while (i < 2)
+	x_ray = 0;
+	y_ray = 0;
+	temp = 0;
+	pos_x = game->info.pos_x;
+	pos_y = game->info.pos_y;
+	obstacle = 0;
+	while (!obstacle)
 	{
-		game->info.fov += (M_PI / 3)/ 2;
-		touched = 0;
-		while (touched == 0)
-		{	
-			while (h_intercept <= y)
-			{
-				ray_h_y += 1 - fmod(game->info.pos_y, 1);
-				x += ray_h_y * tan(game->info.fov);
-				dprintf(2, "debug x : %d\n", (int)x);
-				h_intercept = game->info.pos_x + x;
-				dprintf(2, "debug hintercept : %d\n", (int)h_intercept);
-				if (game->info.map[(int)h_intercept][(int)x] == '1')
-					touched = 1;
-				mlx_pixel_put(game->mlx, game->mlx_window, x,
-					h_intercept, 0xFF0000);
-			}
-			while (v_intercept <= x)
-			{
-				ray_v_x += 1 - fmod(game->info.pos_x, 1);
-				y += ray_v_x * tan(game->info.fov + game->info.angle);
-				v_intercept = game->info.pos_y + y;
-				if (game->info.map[(int)v_intercept][(int)y] == '1')
-					touched = 1;
-				mlx_pixel_put(game->mlx, game->mlx_window, v_intercept,
-					y, 0xFF0000);
-				dprintf(2, "debug x : %f\n", y);
-				dprintf(2, "debug hintercept : %f\n", v_intercept);
-			}
-		}
-		game->info.fov += (M_PI / 3)/ 2;
-		i++;
+		if (x_ray < y_ray)
+		{
+			temp = (game->info.u - fmod(pos_x, game->info.u)) / cos(angle);
+			x_ray += temp;
+			pos_x += (game->info.u - fmod(pos_x, game->info.u));
+			pos_y += temp sin(90 - angle);
+		}	
+	else
+	{
+		temp = (10 - fmod(pos_y, 10)) / cos(90 - angle);
+		y_ray += temp;
+		pos_y += (game->info.u - fmod(pos_y, game->info.u));
+		pos_x += temp * sin(angle);
+	}
+	obstacle = ft_intersection();
 	}
 }
