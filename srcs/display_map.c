@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/16 17:12:29 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 17:35:33 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,18 @@ void	draw_line(t_game *game, double x2, double y2)
 	double	step;
 	double	i;
 
-	dx = fabs(x2 - game->info.pos_x);
-	dy = fabs(y2 - game->info.pos_y);
+	printf("x1; %f, y1; %f\n", game->info.pos_x, game->info.pos_y);
+	printf("x2; %f, y2; %f\n", x2, y2);
+	dx = fabs(x2 - game->info.pos_x * UNIT);
+	dy = fabs(y2 - game->info.pos_y * UNIT);
 	if (dx >= dy)
 		step = dx;
 	else
 		step = dy;
 	dx = dx / step;
 	dy = dy / step;
-	x = game->info.pos_x;
-	y = game->info.pos_y;
+	x = game->info.pos_x * UNIT;
+	y = game->info.pos_y * UNIT;
 	i = 1;
 	while (i <= step)
 	{
@@ -154,6 +156,6 @@ void	ft_display_map(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
 	game->img.img_ptr, 0, 0);
 	draw_player(game);
-	draw_line(game, game->info.pos_x * UNIT, game->info.pos_y * UNIT);
+	draw_line(game, game->info.pos_x * UNIT, game->info.pos_y * UNIT - 100);
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 }
