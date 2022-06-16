@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/15 18:20:39 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 14:45:19 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_display_map(t_game *game)
 
 	y = 0;
 	i = 0;
-	game->img.img_ptr = mlx_new_image(game->mlx, 600, game->info.size_h_map);
+	game->img.img_ptr = mlx_new_image(game->mlx, 1024, game->info.size_h_map);
 	game->img.img_addr = mlx_get_data_addr(game->img.img_ptr,
 			&game->img.bits_per_pixel, &game->img.size_line,
 			&game->img.endian);
@@ -63,10 +63,10 @@ void	ft_display_map(t_game *game)
 				|| game->info.map[i][j] == 'S' || game->info.map[i][j] == 'E'
 				|| game->info.map[i][j] == 'W')
 				my_put_pixel(game, x, y, my_color(game->texture.path[5]));
-			x += U;
+			x += UNIT;
 			j++;
 		}
-		y += U;
+		y += UNIT;
 		i++;
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img.img_ptr, 0, 0);
@@ -81,12 +81,12 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 
 	x = 0;
 	(void)color;
-	while (x < U)
+	while (x < UNIT)
 	{
 		y = 0;
-		while (y < U)
+		while (y < UNIT)
 		{
-			if (y == 0 || y == U)
+			if (y == 0 || y == UNIT)
 			{
 				dst = game->img.img_addr + ((y + map_y) * game->img.size_line
 						+ (x + map_x) * (game->img.bits_per_pixel / 8));
@@ -98,7 +98,7 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 						+ (x + map_x) * (game->img.bits_per_pixel / 8));
 				*(unsigned int *)dst = color;
 			}
-			if (x == 0 || x == U)
+			if (x == 0 || x == UNIT)
 			{
 				dst = game->img.img_addr + ((y + map_y) * game->img.size_line
 						+ (x + map_x) * (game->img.bits_per_pixel / 8));
@@ -110,24 +110,22 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 	}
 }
 
-int	ft_intersection(t_game *game, double pos_x, double pos_y)
+int	ft_intersection(t_game *game, int pos_x, int pos_y)
 {
-		dprintf(2, "\npos_y:%d\n",(int)pos_y / 24);
-		dprintf(2, "pos_x:%d\n",(int)pos_x / 24);
-	if (game->info.map[(int)pos_y / U][(int)pos_x / U] == '1')
+	dprintf(2, "\npos_y:%d\n",(int)pos_y);
+	dprintf(2, "pos_x:%d\n",(int)pos_x);
+	if (game->info.map[(int)pos_y][(int)pos_x] == '1')
 		return (1);
 	return (0);
 }
 
 void	draw_player(t_game *game)
 {
+	t_vect vx;
+	t_vect vy;
+	double	temp;
 	double	x;
 	double	y;
-	double	pos_x;
-	double	pos_y;
-	double	x_ray;
-	double	y_ray;
-	double	temp;
 	int		obstacle;
 	int		i;
 
@@ -143,47 +141,46 @@ void	draw_player(t_game *game)
 		}
 		x++;
 	}
-	x_ray = 0;
-	y_ray = 0;
-	temp = 0;
-	pos_x = game->info.pos_x;
-	pos_y = game->info.pos_y;
+	vx.x = game->info.pos_x;
+	vx.y = game->info.pos_y;
+	vy.x = game->info.pos_x;
+	vy.y = game->info.pos_y;
 	obstacle = 0;
-	game->info.step = 0;
 	i = 0;
+	//dprintf(2, "%f\n", game->info.r_angle);
+	game->info.fov = M_PI / 3;
+	game->info.r_step = 0;
+	
 	while (i < 1024)
 	{	
-		while (!obstacle)
+		while (obstacle == 0)
 		{
-			if (x_ray < y_ray)
+			if (vx.lenght < vy.lenght)
 			{
-				temp = (U - fmod(pos_x, U))
-					/ sin(game->info.angle + game->info.step);
-				x_ray += temp;
-				pos_x += (U - fmod(pos_x, U));
-				pos_y += temp * cos(game->info.angle + game->info.step);
-				dprintf(2, "\nangle 1: %f\n", game->info.angle);
-				dprintf(2, "step 1: %f\n", game->info.step);
-				dprintf(2, "pos_y 1:%d\n", (int)pos_y/24);
-				dprintf(2, "pos_x 1:%d\n", (int)pos_x/24);
+				temp = (UNIT - fmod(vx.x, UNIT)) * cos(game->info.r_angle + game->info.r_step);
+				vx.lenght += temp;
+				vx.x += (UNIT - fmod(vx.x, UNIT)) * cos(game->info.r_angle + game->info.r_step);
+				vx.y += (UNIT - fmod(vx.y, UNIT)) * sin(game->info.r_angle + game->info.r_step);
+				mlx_pixel_put(game->mlx, game->mlx_window, vx.x,
+					vx.y, 0xFF562);
+				dprintf(2, "vx.x %d et vx.y %d\n", (int)vx.x / UNIT, (int)vx.y / UNIT);
+				obstacle = ft_intersection(game, (int)vx.x / UNIT, (int)vx.y / UNIT);
 			}	
 			else
 			{
-				temp = (U - fmod(pos_y, U))
-					* sin(game->info.angle + game->info.step);
-				y_ray += temp;
-				pos_x += temp * sin(game->info.angle + game->info.step);
-				pos_y += (U - fmod(pos_y, U));
-				dprintf(2, "\nangle 2: %f\n", game->info.angle);
-				dprintf(2, "step 2: %f\n", game->info.step);
-				dprintf(2, "pos_y 2:%d\n", (int)pos_y/24);
-				dprintf(2, "pos_x 2:%d\n", (int)pos_x/24);
+				temp = (UNIT - fmod(vy.y, UNIT)) * cos(game->info.r_angle + game->info.r_step);
+				vy.lenght += temp;
+				vy.x += (UNIT - fmod(vy.x, UNIT)) * sin(game->info.r_angle + game->info.r_step);
+				vy.y += (UNIT - fmod(vy.y, UNIT)) * cos(game->info.r_angle + game->info.r_step);
+				dprintf(2, "Uy %f\n", game->info.r_angle + game->info.r_step);
+				mlx_pixel_put(game->mlx, game->mlx_window, vy.x,
+					vy.y, 0xFFFFFF);
+				dprintf(2, "vy.x %d et vy.y %d\n", (int)vy.x / UNIT, (int)vy.y / UNIT);
+				obstacle = ft_intersection(game, (int)vy.x / UNIT, (int)vy.y / UNIT);
 			}
-			obstacle = ft_intersection(game, pos_x, pos_y);
 		}
-		mlx_pixel_put(game->mlx, game->mlx_window, pos_x,
-			pos_y, 0xFFFFFF);
-		game->info.step += (M_PI / 3) / 1024;
+		game->info.r_step += game->info.fov / 1024;
+		//dprintf(2, " r_step %f\n", game->info.r_step);
 		i++;
 	}
 }

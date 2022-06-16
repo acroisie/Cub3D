@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/15 14:26:40 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 14:40:27 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int	ft_clean_exit(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	game;
+
 	game = ft_errors_check(argc, argv);
 	game.mlx = mlx_init();
-	game.mlx_window = mlx_new_window(game.mlx, (600),
+	game.mlx_window = mlx_new_window(game.mlx, (1024),
 			(game.info.size_h_map), "cub3D");
 	ft_display_map(&game);
 	draw_player(&game);

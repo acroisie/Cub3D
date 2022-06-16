@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/15 16:44:46 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 14:43:12 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ void	ft_player_check(t_game *game)
 				{
 					player++;
 					if (game->info.map[i][j] == 'N')
-						game->info.angle = M_PI / 2;
+						game->info.r_angle = M_PI / 2;
 					if (game->info.map[i][j] == 'S')
-						game->info.angle = M_PI / 2;
+						game->info.r_angle = (3 * M_PI) / 2;
 					if (game->info.map[i][j] == 'E')
-						game->info.angle = 0;
+						game->info.r_angle = 0;
 					if (game->info.map[i][j] == 'W')
-						game->info.angle = M_PI;
-					game->info.pos_x = j * U + (U/2);//To delete when 3d is ok
-					game->info.pos_y = i * U + (U/2);//To delete when 3d is ok
-					game->info.pov = game->info.map[i][j];
+						game->info.r_angle = M_PI;
+					game->info.pos_x = j * UNIT + (UNIT/2);//To delete when 3d is ok
+					game->info.pos_y = i * UNIT + (UNIT/2);//To delete when 3d is ok
+					game->info.orientation = game->info.map[i][j];
 					game->info.map[i][j] = '0';
 				}
 				k++;
@@ -133,8 +133,8 @@ int	ft_init_check_map(t_game *game)
 		line = get_next_line(game->fd);
 		if (line && line[0] != '\n')
 			game->info.map = ft_addline(game->info.map, line);
-		game->info.size_h_map += U; //To delete when 3d is ok
-		dprintf(2,"%d\n", U);
+		game->info.size_h_map += UNIT; //To delete when 3d is ok
+		dprintf(2,"%d\n", UNIT);
 	}
 	line = pass_empty_line(game);
 	if (line)

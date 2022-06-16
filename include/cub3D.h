@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/15 16:36:13 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 14:40:15 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <sys/stat.h>
 
 # define BUFFER_SIZE 42
+# define UNIT 64
 
 # define CHARSET "10NSEW \n"
 # define CHARSET_2 "NSEW"
@@ -43,23 +44,26 @@
 # define MSG_11 "Map is invalid"
 # define MSG_12 "Player is missing"
 # define MSG_13 "You must use only one player position"
-# define U 24
 
 typedef struct s_info
 {
 	char	**map;
 	double	pos_x;
 	double	pos_y;
-	double	vect_p_x;
-	double	vect_p_y;
-	double	angle;
+	double	r_angle;
 	int		size_h_map;
 	int		size_l_map;
-	char	pov;
-	double	rays[1024];
-	double	step;
-	int		u;
+	char	orientation;
+	double	fov;
+	double	r_step;
 }t_info;
+
+typedef struct s_vect
+{
+	double	x;
+	double	y;
+	double	lenght;
+}t_vect;
 
 typedef struct s_img
 {
