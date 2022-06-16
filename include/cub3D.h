@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/15 14:21:47 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 16:36:13 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define MSG_11 "Map is invalid"
 # define MSG_12 "Player is missing"
 # define MSG_13 "You must use only one player position"
+# define U 24
 
 typedef struct s_info
 {
@@ -56,7 +57,7 @@ typedef struct s_info
 	int		size_l_map;
 	char	pov;
 	double	rays[1024];
-	double	fov;
+	double	step;
 	int		u;
 }t_info;
 
