@@ -6,7 +6,7 @@
 #    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/06/16 14:37:29 by acroisie         ###   ########lyon.fr    #
+#    Updated: 2022/06/16 15:20:49 by acroisie         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS := display_map.c \
 		error_check_walls.c \
 		error_check.c \
 		get_next_line.c \
+		hooks_utils.c \
 		hooks.c \
 		main.c \
 		raycasting.c

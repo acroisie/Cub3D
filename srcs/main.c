@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/16 14:48:53 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 16:33:04 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 
 	game = ft_errors_check(argc, argv);
 	game.mlx = mlx_init();
-	game.mlx_window = mlx_new_window(game.mlx, 1024, 768, "cub3D");
+	game.mlx_window = mlx_new_window(game.mlx, 16 * UNIT, 12 * UNIT, "cub3D");
 	ft_display_map(&game);
 	mlx_hook(game.mlx_window, 17, 0L, ft_clean_exit, &game);
 	mlx_hook(game.mlx_window, 2, 1L << 0, ft_key_hook, &game);

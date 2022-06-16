@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/16 15:12:43 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 17:12:29 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,24 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 		y = 0;
 		while (y < UNIT)
 		{
-			if (y == 0 || y == UNIT)
-			{
-				dst = game->img.img_addr + ((y + map_y) * game->img.size_line \
-				+ (x + map_x) * (game->img.bits_per_pixel / 8));
-				*(unsigned int *)dst = 68248;
-			}
-			else
-			{
+			// if (y == 0 || y == UNIT)
+			// {
+			// 	dst = game->img.img_addr + ((y + map_y) * game->img.size_line \
+			// 	+ (x + map_x) * (game->img.bits_per_pixel / 8));
+			// 	*(unsigned int *)dst = 68248;
+			// }
+			// else
+			// {
 				dst = game->img.img_addr + ((y + map_y) * game->img.size_line \
 				+ (x + map_x) * (game->img.bits_per_pixel / 8));
 				*(unsigned int *)dst = color;
-			}
-			if (x == 0 || x == UNIT)
-			{
-				dst = game->img.img_addr + ((y + map_y) * game->img.size_line \
-				+ (x + map_x) * (game->img.bits_per_pixel / 8));
-				*(unsigned int *)dst = 68248;
-			}
+			// }
+			// if (x == 0 || x == UNIT)
+			// {
+			// 	dst = game->img.img_addr + ((y + map_y) * game->img.size_line \
+			// 	+ (x + map_x) * (game->img.bits_per_pixel / 8));
+			// 	*(unsigned int *)dst = 68248;
+			// }
 			y++;
 		}
 		x++;
@@ -92,6 +92,35 @@ void	draw_player(t_game *game)
 	}
 }
 
+void	draw_line(t_game *game, double x2, double y2)
+{
+	double	dx;
+	double	dy;
+	double	x;
+	double	y;
+	double	step;
+	double	i;
+
+	dx = fabs(x2 - game->info.pos_x);
+	dy = fabs(y2 - game->info.pos_y);
+	if (dx >= dy)
+		step = dx;
+	else
+		step = dy;
+	dx = dx / step;
+	dy = dy / step;
+	x = game->info.pos_x;
+	y = game->info.pos_y;
+	i = 1;
+	while (i <= step)
+	{
+		mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0);
+		x += dx;
+		y += dy;
+		i++;
+	}
+}
+
 void	ft_display_map(t_game *game)
 {
 	int	x;
@@ -101,7 +130,7 @@ void	ft_display_map(t_game *game)
 
 	y = 0;
 	i = 0;
-	game->img.img_ptr = mlx_new_image(game->mlx, 1024, 768);
+	game->img.img_ptr = mlx_new_image(game->mlx, 16 * UNIT, 12 * UNIT);
 	game->img.img_addr = mlx_get_data_addr(game->img.img_ptr, \
 	&game->img.bits_per_pixel, &game->img.size_line, &game->img.endian);
 	while (game->info.map[i])
@@ -125,6 +154,6 @@ void	ft_display_map(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
 	game->img.img_ptr, 0, 0);
 	draw_player(game);
+	draw_line(game, game->info.pos_x * UNIT, game->info.pos_y * UNIT);
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 }
-

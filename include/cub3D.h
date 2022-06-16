@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/16 14:54:21 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 16:34:20 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define BUFFER_SIZE 42
 # define UNIT 64
+# define FOV 1.0472
 
 # define CHARSET "10NSEW \n"
 # define CHARSET_2 "NSEW"
@@ -52,7 +53,7 @@ typedef struct s_info
 	int		size_h_map;
 	int		size_l_map;
 	char	orientation;
-	double	fov;
+	// double	fov;
 	double	r_step;
 }t_info;
 
@@ -119,8 +120,12 @@ void	ft_display_map(t_game *game);
 int		ft_clean_exit(t_game *game);
 void	raycasting_engine(t_game *game);
 
-/*-------------------------  Others  ------------------------*/
+/*-------------------------  Hooks  -------------------------*/
 
 int		ft_key_hook(int keycode, t_game *game);
+void	forward(t_game *game);
+void	back(t_game *game);
+void	left(t_game *game);
+void	right(t_game *game);
 
 #endif
