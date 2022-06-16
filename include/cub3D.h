@@ -6,11 +6,9 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/15 13:10:42 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 14:54:21 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -26,6 +24,7 @@
 # include <sys/stat.h>
 
 # define BUFFER_SIZE 42
+# define UNIT 64
 
 # define CHARSET "10NSEW \n"
 # define CHARSET_2 "NSEW"
@@ -49,9 +48,20 @@ typedef struct s_info
 	char	**map;
 	double	pos_x;
 	double	pos_y;
-	double	angle;
-	int		u;
+	double	r_angle;
+	int		size_h_map;
+	int		size_l_map;
+	char	orientation;
+	double	fov;
+	double	r_step;
 }t_info;
+
+typedef struct s_vect
+{
+	double	x;
+	double	y;
+	double	lenght;
+}t_vect;
 
 typedef struct s_img
 {
@@ -83,7 +93,6 @@ typedef struct s_game
 	t_img		img;
 	t_texture	texture;
 }t_game;
-
 /*--------------------------Parsing--------------------------*/
 
 t_game	ft_errors_check(int argc, char **argv);
@@ -101,9 +110,17 @@ int		ft_destlen(char **s);
 void	ft_walls_check(char **map, t_game *game);
 void	ft_supress_line_break(char *str);
 
+/*-------------------------    2D    ------------------------*/
+
+void	ft_display_map(t_game *game);
+
 /*-------------------------Raycasting------------------------*/
 
 int		ft_clean_exit(t_game *game);
 void	raycasting_engine(t_game *game);
+
+/*-------------------------  Others  ------------------------*/
+
+int		ft_key_hook(int keycode, t_game *game);
 
 #endif
