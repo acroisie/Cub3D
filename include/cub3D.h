@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/16 14:40:15 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 21:03:30 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <sys/stat.h>
 
 # define BUFFER_SIZE 42
-# define UNIT 64
+# define UNIT 1
 
 # define CHARSET "10NSEW \n"
 # define CHARSET_2 "NSEW"

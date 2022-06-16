@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/16 14:45:19 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 21:06:58 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 
 int	ft_intersection(t_game *game, int pos_x, int pos_y)
 {
-	dprintf(2, "\npos_y:%d\n",(int)pos_y);
-	dprintf(2, "pos_x:%d\n",(int)pos_x);
+	dprintf(2, "intercept y:%d\n",(int)pos_y);
+	dprintf(2, "intercept x:%d\n",(int)pos_x);
 	if (game->info.map[(int)pos_y][(int)pos_x] == '1')
 		return (1);
 	return (0);
@@ -121,13 +121,17 @@ int	ft_intersection(t_game *game, int pos_x, int pos_y)
 
 void	draw_player(t_game *game)
 {
-	t_vect vx;
-	t_vect vy;
-	double	temp;
 	double	x;
 	double	y;
-	int		obstacle;
+	double	x_intercept;
+	double	y_intercept;
+	double	x_step;
+	double	y_step;
+	double	tile_step_x;
+	double	tile_step_y;
 	int		i;
+	double 	dx;
+	double 	dy;
 
 	x = 0;
 	while (x < 5)
@@ -141,45 +145,46 @@ void	draw_player(t_game *game)
 		}
 		x++;
 	}
-	vx.x = game->info.pos_x;
-	vx.y = game->info.pos_y;
-	vy.x = game->info.pos_x;
-	vy.y = game->info.pos_y;
-	obstacle = 0;
-	i = 0;
-	//dprintf(2, "%f\n", game->info.r_angle);
 	game->info.fov = M_PI / 3;
 	game->info.r_step = 0;
-	
-	while (i < 1024)
+	i = 0;
+	tile_step_x = UNIT;
+	tile_step_y = UNIT;
+	dx = (UNIT - fmod(game->info.pos_x, UNIT));
+	dy = (UNIT - fmod(game->info.pos_y, UNIT));
+	x_step = UNIT - fmod(game->info.pos_x, UNIT) * tan(game->info.r_angle);
+	y_step = UNIT - fmod(game->info.pos_y, UNIT) / tan(game->info.r_angle);
+	x_intercept = game->info.pos_x + dx + (-dy
+		/ tan(game->info.r_angle));
+	y_intercept = game->info.pos_y + dy + dy
+		/ tan(game->info.r_angle);
+	dprintf(2, "angle: %f\n", game->info.r_angle);
+	dprintf(2, "pos_x: %d\n", (int)game->info.pos_x);
+	dprintf(2, "pos_y: %d\n", (int) game->info.pos_y);
+	dprintf(2, "dx: %f\n", dx);
+	dprintf(2, "dy: %f\n", dy);
+	dprintf(2, "xstep: %f\n", x_step);
+	dprintf(2, "ystep: %f\n", y_step);
+	dprintf(2, "x_intercept: %f\n", x_intercept);
+	dprintf(2, "y_intercept: %f\n", y_intercept);
+	while (i < 3)
 	{	
-		while (obstacle == 0)
-		{
-			if (vx.lenght < vy.lenght)
-			{
-				temp = (UNIT - fmod(vx.x, UNIT)) * cos(game->info.r_angle + game->info.r_step);
-				vx.lenght += temp;
-				vx.x += (UNIT - fmod(vx.x, UNIT)) * cos(game->info.r_angle + game->info.r_step);
-				vx.y += (UNIT - fmod(vx.y, UNIT)) * sin(game->info.r_angle + game->info.r_step);
-				mlx_pixel_put(game->mlx, game->mlx_window, vx.x,
-					vx.y, 0xFF562);
-				dprintf(2, "vx.x %d et vx.y %d\n", (int)vx.x / UNIT, (int)vx.y / UNIT);
-				obstacle = ft_intersection(game, (int)vx.x / UNIT, (int)vx.y / UNIT);
-			}	
-			else
-			{
-				temp = (UNIT - fmod(vy.y, UNIT)) * cos(game->info.r_angle + game->info.r_step);
-				vy.lenght += temp;
-				vy.x += (UNIT - fmod(vy.x, UNIT)) * sin(game->info.r_angle + game->info.r_step);
-				vy.y += (UNIT - fmod(vy.y, UNIT)) * cos(game->info.r_angle + game->info.r_step);
-				dprintf(2, "Uy %f\n", game->info.r_angle + game->info.r_step);
-				mlx_pixel_put(game->mlx, game->mlx_window, vy.x,
-					vy.y, 0xFFFFFF);
-				dprintf(2, "vy.x %d et vy.y %d\n", (int)vy.x / UNIT, (int)vy.y / UNIT);
-				obstacle = ft_intersection(game, (int)vy.x / UNIT, (int)vy.y / UNIT);
-			}
-		}
-		game->info.r_step += game->info.fov / 1024;
+		
+		//while (y_intercept < y)
+		//{
+		//	if (game->info.map[(int)x/UNIT][(int)y_intercept/UNIT] == '1')
+		//		dprintf(2, "hitVertical\n");
+		//	x += tile_step_x;
+		//	y_intercept += y_step;
+		//}
+		//while (x_intercept < x)
+		//{
+		//	if (game->info.map[(int)x_intercept/UNIT][(int)y/UNIT] == '1')
+		//		dprintf(2, "hitHorizontal\n");
+		//	x += tile_step_x;
+		//	y_intercept += y_step;
+		//}
+		game->info.r_step += game->info.fov / 3;
 		//dprintf(2, " r_step %f\n", game->info.r_step);
 		i++;
 	}
