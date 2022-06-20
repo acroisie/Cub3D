@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/20 14:23:28 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/20 14:46:53 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,46 +92,23 @@ void	draw_player(t_game *game)
 	}
 }
 
-void	draw_line(t_game *game, double x2, double y2)
+void	draw_line(t_game *game, int lenght)
 {
-	double	dx;
-	double	dy;
+
 	double	x;
 	double	y;
-	double	step;
 	double	i;
 
-	dx = x2 - (game->info.pos_x * UNIT);
-	dy = y2 - (game->info.pos_y * UNIT);
-	if (dx >= dy)
-		step = dx;
-	else
-		step = dy;
-	dx = dx / step;
-	dy = dy / step;
 	x = game->info.pos_x * UNIT;
 	y = game->info.pos_y * UNIT;
 	i = 0;
-	while (i < step)
+	while (i < lenght)
 	{
 		mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
 		x += cos(game->info.orientation);
 		y += sin(game->info.orientation);
 		i++;
 	}
-}
-
-void	ft_raycast(t_game *game)
-{
-	t_vect	ray;
-	double	dx;
-
-	printf("Debug; %f\n", game->info.orientation);
-	dx = (UNIT - fmod(game->info.pos_x, UNIT));
-	ray.x = game->info.pos_x + dx;
-	ray.lenght = dx / cos(game->info.orientation);
-	ray.y = game->info.pos_y + (ray.lenght * sin(game->info.orientation));
-	draw_line(game, ray.x * UNIT, ray.y * UNIT);
 }
 
 void	ft_display_map(t_game *game)
@@ -146,7 +123,6 @@ void	ft_display_map(t_game *game)
 	game->img.img_ptr = mlx_new_image(game->mlx, 16 * UNIT, 12 * UNIT);
 	game->img.img_addr = mlx_get_data_addr(game->img.img_ptr, \
 	&game->img.bits_per_pixel, &game->img.size_line, &game->img.endian);
-	// game->img.bits_per_pixel /= 8;
 	while (game->info.map[i])
 	{
 		x = 0;
@@ -168,7 +144,7 @@ void	ft_display_map(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
 	game->img.img_ptr, 0, 0);
 	draw_player(game);
-	ft_raycast(game);
-	// draw_line(game, (6 * UNIT), (5 * UNIT));
+
+	draw_line(game, 500);
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 }

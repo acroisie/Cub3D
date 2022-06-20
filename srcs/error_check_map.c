@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/20 13:37:17 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/20 15:00:18 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	ft_player_check(t_game *game)
 				{
 					player++;
 					if (game->info.map[i][j] == 'N')
-						game->info.orientation = M_PI_2 + 0.05;
+						game->info.orientation = M_PI_2;
 					if (game->info.map[i][j] == 'S')
-						game->info.orientation = -M_PI_2 + 2;
+						game->info.orientation = -M_PI_2;
 					if (game->info.map[i][j] == 'E')
 						game->info.orientation = 0;
 					if (game->info.map[i][j] == 'W')
