@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:38:33 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/16 16:22:37 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/20 11:58:48 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 void	turn_left(t_game *game)
 {
-	if (game->info.r_angle <= -M_2_PI)
-		game->info.r_angle = 0;
-	game->info.r_angle -= 0.05;
+	// if (game->info.r_angle <= -M_2_PI)
+	// 	game->info.r_angle = 0;
+	game->info.orientation -= 0.05;
 	ft_display_map(game);
 }
 
 void	turn_right(t_game *game)
 {
-	if (game->info.r_angle + FOV >= M_2_PI)
-		game->info.r_angle = 0 - FOV;
-	game->info.r_angle += 0.05;
+	// if (game->info.r_angle + FOV >= M_2_PI)
+	// 	game->info.r_angle = 0 - FOV;
+	game->info.orientation += 0.05;
 	ft_display_map(game);
 }
 
 int	ft_key_hook(int keycode, t_game *game)
 {
+	printf("Key; %d\n", keycode);
 	if (keycode == 53)
 		ft_clean_exit(game);
 	if (keycode == 13 || keycode == 126)

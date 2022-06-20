@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/16 17:35:04 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/20 14:16:32 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_info
 	double	r_angle;
 	int		size_h_map;
 	int		size_l_map;
-	char	orientation;
+	double	orientation;
 	// double	fov;
 	double	r_step;
 }t_info;

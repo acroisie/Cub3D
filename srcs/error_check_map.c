@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/16 16:31:43 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/20 13:37:17 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	ft_player_check(t_game *game)
 				{
 					player++;
 					if (game->info.map[i][j] == 'N')
-						game->info.r_angle = M_PI_2;
+						game->info.orientation = M_PI_2 + 0.05;
 					if (game->info.map[i][j] == 'S')
-						game->info.r_angle = -M_PI_2;
+						game->info.orientation = -M_PI_2 + 2;
 					if (game->info.map[i][j] == 'E')
-						game->info.r_angle = 0;
+						game->info.orientation = 0;
 					if (game->info.map[i][j] == 'W')
-						game->info.r_angle = M_PI;
+						game->info.orientation = M_PI;
 					game->info.pos_x = j;
 					game->info.pos_y = i;
 					game->info.map[i][j] = '0';
