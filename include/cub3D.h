@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/20 14:16:32 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/20 16:10:40 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,9 @@ typedef struct s_info
 	char	**map;
 	double	pos_x;
 	double	pos_y;
-	double	r_angle;
 	int		size_h_map;
 	int		size_l_map;
 	double	orientation;
-	// double	fov;
 	double	r_step;
 }t_info;
 
@@ -94,6 +92,7 @@ typedef struct s_game
 	t_img		img;
 	t_texture	texture;
 }t_game;
+
 /*--------------------------Parsing--------------------------*/
 
 t_game	ft_errors_check(int argc, char **argv);
@@ -114,6 +113,7 @@ void	ft_supress_line_break(char *str);
 /*-------------------------    2D    ------------------------*/
 
 void	ft_display_map(t_game *game);
+void	draw_line(t_game *game, int lenght);
 
 /*-------------------------Raycasting------------------------*/
 
