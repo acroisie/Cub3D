@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/20 16:10:40 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/20 16:18:33 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	draw_line(t_game *game, int lenght);
 /*-------------------------Raycasting------------------------*/
 
 int		ft_clean_exit(t_game *game);
-void	raycasting_engine(t_game *game);
+void	ft_raycast(t_game *game);
 
 /*-------------------------  Hooks  -------------------------*/
 
