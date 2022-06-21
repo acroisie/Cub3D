@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/21 16:26:24 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/21 21:35:36 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	ft_draw_line(t_game *game, double lenght)
 	double	y;
 	double	i;
 
+	lenght *= UNIT;
 	x = game->info.pos_x * UNIT;
 	y = game->info.pos_y * UNIT;
 	i = 0;
@@ -106,8 +107,8 @@ void	ft_draw_line(t_game *game, double lenght)
 		while (i < lenght)
 		{
 			mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
-			x += cos(game->info.orientation) / UNIT;
-			y += sin(game->info.orientation) / UNIT;
+			x += cos(game->info.orientation);
+			y += sin(game->info.orientation);
 			i++;
 		}	
 	}
@@ -116,8 +117,8 @@ void	ft_draw_line(t_game *game, double lenght)
 		while (i > lenght)
 		{
 			mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
-			x += cos(game->info.orientation) / UNIT;
-			y += sin(game->info.orientation) / UNIT;
+			x += cos(game->info.orientation);
+			y += sin(game->info.orientation);
 			i--;
 		}
 	}
@@ -155,8 +156,8 @@ void	ft_display_map(t_game *game)
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
 	game->img.img_ptr, 0, 0);
-	// draw_player(game);
+	draw_player(game);
 	ft_raycast(game);
-	ft_draw_line(game, 500);
+	// ft_draw_line(game, 500);
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 }
