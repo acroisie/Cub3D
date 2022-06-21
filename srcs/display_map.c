@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/20 16:17:02 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/21 16:26:24 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,24 @@ void	my_put_pixel(t_game *game, int map_x, int map_y, int color)
 		y = 0;
 		while (y < UNIT)
 		{
-			// if (y == 0 || y == UNIT)
-			// {
-			// 	dst = game->img.img_addr + ((y + map_y) * game->img.size_line \
-			// 	+ (x + map_x) * (game->img.bits_per_pixel / 8));
-			// 	*(unsigned int *)dst = 68248;
-			// }
-			// else
-			// {
+			if (y == 0 || y == UNIT)
+			{
+				dst = game->img.img_addr + ((y + map_y) * game->img.size_line \
+				+ (x + map_x) * (game->img.bits_per_pixel / 8));
+				*(unsigned int *)dst = 68248;
+			}
+			else
+			{
 				dst = game->img.img_addr + ((y + map_y) * game->img.size_line \
 				+ (x + map_x) * (game->img.bits_per_pixel / 8));
 				*(unsigned int *)dst = color;
-			// }
-			// if (x == 0 || x == UNIT)
-			// {
-			// 	dst = game->img.img_addr + ((y + map_y) * game->img.size_line \
-			// 	+ (x + map_x) * (game->img.bits_per_pixel / 8));
-			// 	*(unsigned int *)dst = 68248;
-			// }
+			}
+			if (x == 0 || x == UNIT)
+			{
+				dst = game->img.img_addr + ((y + map_y) * game->img.size_line \
+				+ (x + map_x) * (game->img.bits_per_pixel / 8));
+				*(unsigned int *)dst = 68248;
+			}
 			y++;
 		}
 		x++;
@@ -92,9 +92,8 @@ void	draw_player(t_game *game)
 	}
 }
 
-void	draw_line(t_game *game, int lenght)
+void	ft_draw_line(t_game *game, double lenght)
 {
-
 	double	x;
 	double	y;
 	double	i;
@@ -102,12 +101,25 @@ void	draw_line(t_game *game, int lenght)
 	x = game->info.pos_x * UNIT;
 	y = game->info.pos_y * UNIT;
 	i = 0;
-	while (i < lenght)
+	if (lenght > 0)
 	{
-		mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
-		x += cos(game->info.orientation);
-		y += sin(game->info.orientation);
-		i++;
+		while (i < lenght)
+		{
+			mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
+			x += cos(game->info.orientation) / UNIT;
+			y += sin(game->info.orientation) / UNIT;
+			i++;
+		}	
+	}
+	else
+	{
+		while (i > lenght)
+		{
+			mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
+			x += cos(game->info.orientation) / UNIT;
+			y += sin(game->info.orientation) / UNIT;
+			i--;
+		}
 	}
 }
 
@@ -143,8 +155,8 @@ void	ft_display_map(t_game *game)
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
 	game->img.img_ptr, 0, 0);
-	draw_player(game);
+	// draw_player(game);
 	ft_raycast(game);
-	// draw_line(game, 500);
+	ft_draw_line(game, 500);
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 }

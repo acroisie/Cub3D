@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/20 16:18:33 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/21 16:04:13 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/stat.h>
 
 # define BUFFER_SIZE 42
-# define UNIT 64
+# define UNIT 48
 # define FOV 1.0472
 
 # define CHARSET "10NSEW \n"
@@ -113,7 +113,7 @@ void	ft_supress_line_break(char *str);
 /*-------------------------    2D    ------------------------*/
 
 void	ft_display_map(t_game *game);
-void	draw_line(t_game *game, int lenght);
+void	ft_draw_line(t_game *game, double lenght);
 
 /*-------------------------Raycasting------------------------*/
 
