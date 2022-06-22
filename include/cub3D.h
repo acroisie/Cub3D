@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/22 11:11:07 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/22 14:40:11 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,10 @@ void	back(t_game *game);
 void	left(t_game *game);
 void	right(t_game *game);
 
+
+
+
+
+
+void	draw_player(t_game *game);
 #endif
