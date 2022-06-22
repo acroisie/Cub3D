@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/22 14:40:11 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/22 16:37:53 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_vect
 {
 	double	x;
 	double	y;
+	double	dir;
 	double	lenght;
 }t_vect;
 

@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/22 15:32:18 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/22 16:50:56 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,12 @@
 
 int	ft_intersection(t_game *game, t_vect v1)
 {
-	if (v1.y < 12 && v1.y >= 0)
+	if (game->info.map[(int)v1.y][(int)v1.x])
 	{
-		if (v1.x < 16 && v1.x >= 0)
+		if (game->info.map[(int)v1.y][(int)v1.x] == '1')
 		{
-			if (game->info.map[(int)v1.y][(int)v1.x])
-			{	
-				if (game->info.map[(int)v1.y][(int)v1.x] == '1')
-				{
-					dprintf(2, "Debug 2; v1.x = %d, v2.y = %d\n", (int)v1.x, (int)v1.y);
-						return (1);
-				}
-			}
+			dprintf(2, "Debug 2; v1.x = %d, v2.y = %d\n", (int)v1.x, (int)v1.y);
+				return (1);
 		}
 	}
 	return (0);
@@ -54,6 +48,7 @@ void	ft_raycast(t_game *game, double angle)
 	obstacle = 0;
 	v1.x = game->info.pos_x;
 	v1.y = game->info.pos_y;
+	v1.dir = angle;
 	v1.lenght = 0;
 	if (angle < M_PI_2 || angle > 3 * M_PI_2)
 	{
@@ -71,7 +66,7 @@ void	ft_raycast(t_game *game, double angle)
 	angle = ft_init_angle(angle);
 	while (!obstacle)
 	{
-		v1.x += (dx * sign);
+		v1.x += ((0.01 + dx) * sign);
 		temp = dx / cos(angle);
 		v1.y += (y_sign * (temp * sin(angle)));
 		v1.lenght += temp;
