@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/22 13:20:48 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/22 13:59:30 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 int	ft_intersection(t_game *game, t_vect v1)
 {
-	dprintf(2, "Debug 2; v1.x = %d, v2.y = %d map = ", (int)v1.x, (int)v1.y);
-	// if (v1.y < 12 && v1.y >= 0)
-	// 	if (v1.x < 16 && v1.x >= 0)
+	if (v1.y < 12 && v1.y >= 0)
+	{
+		if (v1.x < 16 && v1.x >= 0)
+		{
 			if (game->info.map[(int)v1.y][(int)v1.x])
+			{
 				if (game->info.map[(int)v1.y][(int)v1.x] == '1')
-					return (1);
+				{
+					dprintf(2, "Debug 2; v1.x = %d, v2.y = %d\n", (int)v1.x, (int)v1.y);
+						return (1);
+				}
+			}
+		}
+	}
 	return (0);
 }
 
@@ -49,21 +57,18 @@ void	ft_raycast(t_game *game, double angle)
 	angle = ft_init_angle(angle);
 	while (!obstacle)
 	{
-		if (angle > M_PI_2 && \
-		angle < 3 * M_PI_2)
+		if (angle < M_PI_2 || \
+		angle > 3 * M_PI_2)
 			dx = 1 - fmod(v1.x, 1);
 		else
 			dx = fmod(v1.x, 1);
+		if (dx == 0)
+			dx = 1;
 		// double tmp = game->info.orientation;
 		// game->info.orientation = angle;
 		// ft_draw_line(game , 1); //Angle
 		// game->info.orientation = tmp;
-		if (angle > M_PI_2 && \
-		angle < 3 * M_PI_2)
-			v1.x += dx;
-		else
-			v1.x += -dx;
-		// v1.x += dx;
+		v1.x += dx;
 		temp = dx / cos(angle);
 		v1.y += (temp * sin(angle));
 		v1.lenght += temp;
