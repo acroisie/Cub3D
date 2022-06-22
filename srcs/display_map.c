@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/21 21:35:36 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/22 09:52:23 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ void	ft_display_map(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
 	game->img.img_ptr, 0, 0);
 	draw_player(game);
-	ft_raycast(game);
-	// ft_draw_line(game, 500);
+	ft_raycast(game, game->info.orientation);
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 }
