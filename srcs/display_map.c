@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/22 09:52:23 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/22 18:53:45 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,38 @@ void	ft_draw_line(t_game *game, double lenght)
 		while (i > lenght)
 		{
 			mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
+			x += cos(game->info.orientation);
+			y += sin(game->info.orientation);
+			i--;
+		}
+	}
+}
+
+void	ft_draw_line1(t_game *game, double lenght)//to delete
+{
+	double	x;
+	double	y;
+	double	i;
+
+	lenght *= UNIT;
+	x = game->info.pos_x * UNIT +1;
+	y = game->info.pos_y * UNIT +1;
+	i = 0;
+	if (lenght > 0)
+	{
+		while (i < lenght)
+		{
+			mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0x0000FF);
+			x += cos(game->info.orientation);
+			y += sin(game->info.orientation);
+			i++;
+		}	
+	}
+	else
+	{
+		while (i > lenght)
+		{
+			mlx_pixel_put(game->mlx, game->mlx_window, x, y,  0x0000FF);
 			x += cos(game->info.orientation);
 			y += sin(game->info.orientation);
 			i--;
