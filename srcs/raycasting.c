@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/22 17:10:07 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/22 18:16:39 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ double	ft_init_angle(double angle)
 	return (angle);
 }
 
-void	ft_init_rays(t_vect *v1, t_game	*game, double angle)
+void	ft_init_ray_x(t_vect *v1, t_game	*game, double angle)
 {
 	v1->x = game->info.pos_x;
 	v1->y = game->info.pos_y;
@@ -56,13 +56,34 @@ void	ft_init_rays(t_vect *v1, t_game	*game, double angle)
 	}
 }
 
+void	ft_init_ray_y(t_vect *v2, t_game	*game, double angle)
+{
+	v2->x = game->info.pos_x;
+	v2->y = game->info.pos_y;
+	v2->lenght = 0;
+	v2->y_sign = 1;
+	if (angle > M_PI)
+	{
+		v2->delta = 1 - fmod(v2->y, 1);
+		v2->y_sign = -1;
+	}
+	else
+		v2->delta = fmod(v2->x, 1);
+	if (angle < M_PI_2 || angle > 3 * M_PI_2)
+		v2->x_sign = 1;
+	else
+		v2->x_sign = -1;
+}
+
 void	ft_raycast(t_game *game, double angle)
 {
 	t_vect	v1;
+	t_vect	v2;
 	double	temp;
 	int		obstacle;
 
-	ft_init_rays(&v1, game, angle);
+	ft_init_ray_x(&v1, game, angle);
+	ft_init_ray_y(&v2, game, angle);
 	obstacle = 0;
 	angle = ft_init_angle(angle);
 	while (!obstacle)
