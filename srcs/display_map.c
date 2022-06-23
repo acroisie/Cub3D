@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/23 15:55:50 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/23 16:18:12 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,26 +102,13 @@ void	ft_draw_line(t_game *game, double angle, double lenght)
 	x = game->info.pos_x * UNIT;
 	y = game->info.pos_y * UNIT;
 	i = 0;
-	if (lenght > 0)
+	while (i < lenght)
 	{
-		while (i < lenght)
-		{
-			mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
-			x += cos(angle);
-			y += sin(angle);
-			i++;
-		}	
-	}
-	else
-	{
-		while (i > lenght)
-		{
-			mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
-			x += cos(angle);
-			y += sin(angle);
-			i--;
-		}
-	}
+		mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
+		x += cos(angle);
+		y += sin(angle);
+		i++;
+	}	
 }
 
 void	ft_display_map(t_game *game)
@@ -159,17 +146,19 @@ void	ft_display_map(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
 	game->img.img_ptr, 0, 0);
 	draw_player(game);
-	step = FOV / 150;
+	/*-------------------------Raycasting------------------------*/
+	step = FOV / 1024;
 	int ray_ind = 0;
 	double angle = fmod(game->info.orientation - (FOV / 2), 2 * M_PI);
 	if (angle < 0)
 		angle = 2 * M_PI + angle;
-	while (ray_ind < 150)
+	while (ray_ind < 1024)
 	{
 		ft_draw_line(game, angle, ft_raycast(game, angle));
 		angle += step;
 		angle = fmod(angle, 2 * M_PI);
 		ray_ind++;
 	}
+	/*------------------------------------------------------------*/
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 }
