@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/23 16:18:12 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/23 19:18:50 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,12 +147,12 @@ void	ft_display_map(t_game *game)
 	game->img.img_ptr, 0, 0);
 	draw_player(game);
 	/*-------------------------Raycasting------------------------*/
-	step = FOV / 1024;
+	step = FOV / 20;
 	int ray_ind = 0;
 	double angle = fmod(game->info.orientation - (FOV / 2), 2 * M_PI);
 	if (angle < 0)
 		angle = 2 * M_PI + angle;
-	while (ray_ind < 1024)
+	while (ray_ind < 20)
 	{
 		ft_draw_line(game, angle, ft_raycast(game, angle));
 		angle += step;
