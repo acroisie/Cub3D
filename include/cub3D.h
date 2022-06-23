@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/23 08:37:21 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/23 13:47:49 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define BUFFER_SIZE 42
 # define UNIT 64
-# define FOV 1.0472
+# define FOV 1.04666666666
 
 # define CHARSET "10NSEW \n"
 # define CHARSET_2 "NSEW"
@@ -123,6 +123,9 @@ void	ft_draw_line(t_game *game, double lenght);
 
 int		ft_clean_exit(t_game *game);
 void	ft_raycast(t_game *game, double angle);
+double	ft_init_angle(double angle);
+void	ft_init_ray_x(t_vect *v1, t_game *game, double angle);
+void	ft_init_ray_y(t_vect *v2, t_game *game, double angle);
 
 /*-------------------------  Hooks  -------------------------*/
 

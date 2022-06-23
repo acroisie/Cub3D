@@ -6,7 +6,7 @@
 #    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/06/21 19:46:23 by acroisie         ###   ########lyon.fr    #
+#    Updated: 2022/06/23 13:39:09 by acroisie         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS := display_map.c \
 		hooks_utils.c \
 		hooks.c \
 		main.c \
+		raycasting_utils.c \
 		raycasting.c
 		
 OBJS := $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/23 08:36:41 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/23 14:21:24 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void	ft_display_map(t_game *game)
 	int	y;
 	int	i;
 	int	j;
+	double	step;
+
 
 	y = 0;
 	i = 0;
@@ -157,6 +159,17 @@ void	ft_display_map(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
 	game->img.img_ptr, 0, 0);
 	draw_player(game);
-	ft_raycast(game, game->info.orientation);
+	step = FOV / 150;
+	int ray_ind = 0;
+	double angle = fmod(game->info.orientation - (FOV / 2), 2 * M_PI);
+	if (angle < 0)
+		angle = 2 * M_PI + angle;
+	while (ray_ind < 150)
+	{
+		ft_raycast(game, angle);
+		angle += step;
+		angle = fmod(angle, 2 * M_PI);
+		ray_ind++;
+	}
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 }
