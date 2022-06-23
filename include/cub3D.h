@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/23 13:47:49 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/23 15:54:15 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,12 @@ void	ft_supress_line_break(char *str);
 /*-------------------------    2D    ------------------------*/
 
 void	ft_display_map(t_game *game);
-void	ft_draw_line(t_game *game, double lenght);
+void	ft_draw_line(t_game *game, double angle, double lenght);
 
 /*-------------------------Raycasting------------------------*/
 
 int		ft_clean_exit(t_game *game);
-void	ft_raycast(t_game *game, double angle);
+double	ft_raycast(t_game *game, double angle);
 double	ft_init_angle(double angle);
 void	ft_init_ray_x(t_vect *v1, t_game *game, double angle);
 void	ft_init_ray_y(t_vect *v2, t_game *game, double angle);

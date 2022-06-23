@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/23 14:21:24 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/23 15:55:50 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	draw_player(t_game *game)
 	}
 }
 
-void	ft_draw_line(t_game *game, double lenght)
+void	ft_draw_line(t_game *game, double angle, double lenght)
 {
 	double	x;
 	double	y;
@@ -107,8 +107,8 @@ void	ft_draw_line(t_game *game, double lenght)
 		while (i < lenght)
 		{
 			mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
-			x += cos(game->info.orientation);
-			y += sin(game->info.orientation);
+			x += cos(angle);
+			y += sin(angle);
 			i++;
 		}	
 	}
@@ -117,8 +117,8 @@ void	ft_draw_line(t_game *game, double lenght)
 		while (i > lenght)
 		{
 			mlx_pixel_put(game->mlx, game->mlx_window, x, y, 0xFF0000);
-			x += cos(game->info.orientation);
-			y += sin(game->info.orientation);
+			x += cos(angle);
+			y += sin(angle);
 			i--;
 		}
 	}
@@ -166,7 +166,7 @@ void	ft_display_map(t_game *game)
 		angle = 2 * M_PI + angle;
 	while (ray_ind < 150)
 	{
-		ft_raycast(game, angle);
+		ft_draw_line(game, angle, ft_raycast(game, angle));
 		angle += step;
 		angle = fmod(angle, 2 * M_PI);
 		ray_ind++;
