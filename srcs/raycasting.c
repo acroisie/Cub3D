@@ -6,21 +6,30 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/23 09:04:46 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/23 13:28:23 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int	ft_intersection(t_game *game, t_vect *v1)
+int	ft_intersection(t_game *game, t_vect *ray)
 {
-	dprintf(2, "Debug 2; v1.x = %d, v1.y = %d\n", (int)v1->x, (int)v1->y);
-	// dprintf(2, "Debug 2; v2.x = %d, v2.y = %d\n", (int)v2->x, (int)v2->y);
-	// if (game->info.map[(int)v2->y][(int)v2->x])
-	// 	if (game->info.map[(int)v2->y][(int)v2->x] == '1')
-	if (game->info.map[(int)v1->y][(int)v1->x])
-		if (game->info.map[(int)v1->y][(int)v1->x] == '1')
+	if (ray->y < 0)
+		ray->y = 0;
+	else if (ray->y > 11)
+		ray->y = 11;
+	if (ray->x < 0)
+		ray->x = 0;
+	else if (ray->x > 15)
+		ray->x = 15;
+	if (game->info.map[(int)ray->y][(int)ray->x])
+	{
+		if (game->info.map[(int)ray->y][(int)ray->x] == '1')
+		{
+			dprintf(2, "Debug ; ray.x = %d, ray.y = %d\n", (int)ray->x, (int)ray->y);
 			return (1);
+		}
+	}
 	return (0);
 }
 
@@ -70,7 +79,7 @@ void	ft_init_ray_y(t_vect *v2, t_game	*game, double angle)
 		v2->delta = 1 - fmod(v2->y, 1);
 		v2->y_sign = 1;
 	}
-	if (angle < M_PI_2 || angle > 3 * M_PI)
+	if (angle < M_PI_2 || angle > 3 * M_PI_2)
 		v2->x_sign = 1;
 	else
 		v2->x_sign = -1;
@@ -78,36 +87,48 @@ void	ft_init_ray_y(t_vect *v2, t_game	*game, double angle)
 
 void	ft_raycast(t_game *game, double angle)
 {
-	// t_vect	v1;
+	t_vect	v1;
 	t_vect	v2;
 	double	temp;
-	int		obstacle;
+	int		obstacle1;
+	int		obstacle2;
 
-	// ft_init_ray_x(&v1, game, angle);
+	ft_init_ray_x(&v1, game, angle);
 	ft_init_ray_y(&v2, game, angle);
-	obstacle = 0;
+	obstacle1 = 0;
+	obstacle2 = 0;
 	angle = ft_init_angle(angle);
 	temp = 0;
-	while (!obstacle)
+	while (1)
 	{
-		// if (v1.lenght < v2.lenght)
-		// {
-			// v1.x += ((0.01 + v1.delta) * v1.x_sign);
-			// temp = v1.delta / cos(angle);
-			// v1.y += (v1.y_sign * (temp * sin(angle)));
-			// v1.lenght += temp;
-			// v1.delta = 1;
-		// }
-		// else
-		// {
+		if (!obstacle1)
+		{
+			printf("V1\n");
+			v1.x += ((0.01 + v1.delta) * v1.x_sign);
+			temp = v1.delta / cos(angle);
+			// if (angle != M_PI_2 && angle != 3 * M_PI_2)
+				v1.y += (v1.y_sign * (temp * sin(angle)));
+			v1.lenght += temp;
+			v1.delta = 1;
+			obstacle1 = ft_intersection(game, &v1);
+		}
+		else if (!obstacle2)
+		{
+			printf("V2\n");
 			v2.y += ((0.01 + v2.delta) * v2.y_sign);
 			temp = v2.delta / sin(angle);
-			v2.x += (v2.x_sign * (temp * cos(angle)));
+			// if (angle != 0 && angle != M_PI)
+				v2.x += (v2.x_sign * (temp * cos(angle)));
 			v2.lenght += temp;
 			v2.delta = 1;
-		// }
-		obstacle = ft_intersection(game, &v2);
+			obstacle2 = ft_intersection(game, &v2);
+		}
+		if (obstacle1 && obstacle2)
+			break ;
 	}
-	ft_draw_line(game, v2.lenght);
-	// ft_draw_line(game, v2.lenght);
+	if (v1.lenght < v2.lenght)
+		temp = v1.lenght;
+	else
+		temp = v2.lenght;
+	ft_draw_line(game, temp);
 }
