@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/22 19:17:42 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/23 08:37:21 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ void	ft_supress_line_break(char *str);
 
 void	ft_display_map(t_game *game);
 void	ft_draw_line(t_game *game, double lenght);
-void	ft_draw_line1(t_game *game, double lenght);// To delete
 
 /*-------------------------Raycasting------------------------*/
 
@@ -133,5 +132,4 @@ void	back(t_game *game);
 void	left(t_game *game);
 void	right(t_game *game);
 
-void	draw_player(t_game *game);
 #endif
