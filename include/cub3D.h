@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/24 14:11:29 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/24 17:43:05 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_info
 	double	pos_y;
 	int		size_h_map;
 	int		size_l_map;
+	int		width;
+	int		heigth;
 	double	orientation;
 	double	r_step;
 }t_info;

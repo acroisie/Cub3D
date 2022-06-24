@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/24 14:35:29 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/24 17:38:20 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int	main(int argc, char **argv)
 
 	game = ft_errors_check(argc, argv);
 	game.mlx = mlx_init();
-	game.mlx_window = mlx_new_window(game.mlx, 16 * UNIT, 12 * UNIT, "cub3D");
 	ft_init_map(&game);
+	game.mlx_window = mlx_new_window(game.mlx, game.info.width
+			* UNIT, game.info.heigth * UNIT, "cub3D");
 	ft_display_map(&game);
 	mlx_hook(game.mlx_window, 17, 0L, ft_clean_exit, &game);
 	mlx_hook(game.mlx_window, 2, 1L << 0, ft_key_hook, &game);

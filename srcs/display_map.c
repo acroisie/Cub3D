@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/24 17:10:07 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/24 17:42:00 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	ft_draw_line(t_game *game, double angle, double lenght)
 	}	
 }
 
-void	ft_draw_wall(t_game *game, double lenght, int x)
+void	ft_draw_wall(t_game *game, double lenght, int x, double angle)
 {
 	double	h;
 	int		i;
@@ -92,13 +92,14 @@ void	ft_draw_wall(t_game *game, double lenght, int x)
 	double	heigth;
 
 	y = 0;
-	heigth = UNIT * 12;
+	heigth = UNIT * game->info.heigth;
+	lenght *= cos(fmod(game->info.orientation - angle, 2 * M_PI));
 	h = heigth / lenght;
 	//dprintf(2, "h : %f\n", h);
 	i = 0;
 	while (i < heigth)
 	{
-		if (i > 12 * UNIT)
+		if (i > game->info.heigth * UNIT)
 			break ;
 		if (i >= 0 && i <= (heigth / 2) - h / 2)
 			my_put_pixel(game, x, y, 0xabdbe3);
@@ -121,13 +122,12 @@ void	ft_display_map(t_game *game)
 	angle = fmod(game->info.orientation - (FOV / 2), 2 * M_PI);
 	ray_ind = 0;
 	ft_draw_player(game);
-	step = FOV / (UNIT * 16);
+	step = FOV / (UNIT * game->info.width);
 	if (angle < 0)
 		angle = 2 * M_PI + angle;
-	while (ray_ind < (UNIT * 16))
+	while (ray_ind < (UNIT * game->info.width))
 	{
-		ft_draw_wall(game, (ft_raycast(game, angle)) * \
-			cos(fmod(game->info.orientation - angle, 2 * M_PI)), ray_ind);
+		ft_draw_wall(game, (ft_raycast(game, angle)), ray_ind, angle);
 		angle += step;
 		angle = fmod(angle, 2 * M_PI);
 		ray_ind++;

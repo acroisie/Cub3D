@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:07:16 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/24 15:38:24 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/24 17:37:05 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,25 @@
 
 void	ft_init_map(t_game *game)
 {
-	game->img.img_ptr = mlx_new_image(game->mlx, 16 * UNIT, 12 * UNIT);
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	game->info.width = 0;
+	while (game->info.map[i])
+	{
+		while (game->info.map[i][j])
+			j++;
+		if (j > game->info.width)
+			game->info.width = j;
+		i++;
+	}
+	game->info.heigth = i;
+	game->img.img_ptr = mlx_new_image(game->mlx, game->info.width \
+		* UNIT, game->info.heigth * UNIT);
 	game->img.img_addr = mlx_get_data_addr(game->img.img_ptr, \
-	&game->img.bits_per_pixel, &game->img.size_line, &game->img.endian);
+		&game->img.bits_per_pixel, &game->img.size_line, &game->img.endian);
 }
 
 void	ft_draw_grid(t_game *game, int map_x, int map_y, int color)
