@@ -6,11 +6,27 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/22 19:12:25 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/24 14:35:21 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+int	init_orientation_player(t_game *game, int i, int j)
+{
+	if (game->info.map[i][j] == 'N')
+		game->info.orientation = 3 * M_PI_2;
+	if (game->info.map[i][j] == 'S')
+		game->info.orientation = M_PI_2;
+	if (game->info.map[i][j] == 'E')
+		game->info.orientation = 0;
+	if (game->info.map[i][j] == 'W')
+		game->info.orientation = M_PI;
+	game->info.pos_x = j + 0.5;
+	game->info.pos_y = i + 0.5;
+	game->info.map[i][j] = '0';
+	return (1);
+}
 
 void	ft_player_check(t_game *game)
 {
@@ -19,38 +35,20 @@ void	ft_player_check(t_game *game)
 	int	k;
 	int	player;
 
-	i = 0;
+	i = -1;
 	player = 0;
 	game->info.pos_x = 0;
 	game->info.pos_y = 0;
-	while (game->info.map[i])
+	while (game->info.map[++i])
 	{
-		j = 0;
-		while (game->info.map[i][j])
+		j = -1;
+		while (game->info.map[i][++j])
 		{
-			k = 0;
-			while (CHARSET_2[k])
-			{
+			k = -1;
+			while (CHARSET_2[++k])
 				if (CHARSET_2[k] == game->info.map[i][j])
-				{
-					player++;
-					if (game->info.map[i][j] == 'N')
-						game->info.orientation = 3 * M_PI_2;
-					if (game->info.map[i][j] == 'S')
-						game->info.orientation = M_PI_2;
-					if (game->info.map[i][j] == 'E')
-						game->info.orientation = 0;
-					if (game->info.map[i][j] == 'W')
-						game->info.orientation = M_PI;
-					game->info.pos_x = j + 0.5;
-					game->info.pos_y = i + 0.5;
-					game->info.map[i][j] = '0';
-				}
-				k++;
-			}
-			j++;
+					player = init_orientation_player(game, i, j);
 		}
-		i++;
 	}
 	if (!player)
 		ft_put_error(MSG_12, 2, game);

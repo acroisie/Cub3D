@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/24 14:12:59 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/24 14:35:29 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_clean_exit(t_game *game)
 {
-	//DESTROY IMG PTR
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 	if (game->fd)
 		close(game->fd);
