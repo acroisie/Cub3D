@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/06/24 08:29:42 by acroisie         ###   ########lyon.fr    #
+#    Updated: 2022/06/24 14:10:02 by lnemor           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS := display_map.c \
 		hooks.c \
 		main.c \
 		raycasting_utils.c \
-		raycasting.c
+		raycasting.c \
+		draw_map.c
 		
 OBJS := $(SRCS:.c=.o)
 

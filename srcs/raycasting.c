@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/24 08:44:41 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/24 13:01:03 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ double	ft_raycast(t_game *game, double angle)
 			v1.y += (v1.y_sign * (temp * sin(angle)));
 			v1.lenght += temp;
 			v1.delta = 1;
+			printf("v1\n");
 			obstacle1 = ft_intersection(game, &v1);
-			// printf("v1\n");
 		}
 		else if (!obstacle2)
 		{
@@ -61,13 +61,13 @@ double	ft_raycast(t_game *game, double angle)
 			v2.x += (v2.x_sign * (temp * cos(angle)));
 			v2.lenght += temp;
 			v2.delta = 1;
+			printf("v2\n");
 			obstacle2 = ft_intersection(game, &v2);
-			// printf("v2\n");
 		}
 		if (obstacle1 && obstacle2)
 			break ;
 	}
-	// printf("end\n\n");
+	printf("end\n\n");
 	if (v1.lenght < v2.lenght)
 		return (fabs(v1.lenght));
 	return (fabs(v2.lenght));
