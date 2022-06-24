@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/23 15:58:07 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/24 08:44:41 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_intersection(t_game *game, t_vect *ray)
 		ray->x = 0;
 	else if (ray->x > 15)
 		ray->x = 15;
-	if (game->info.map[(int)ray->y][(int)ray->x])
+	// if (game->info.map[(int)ray->y][(int)ray->x])
 		if (game->info.map[(int)ray->y][(int)ray->x] == '1')
 			return (1);
 	return (0);
@@ -52,6 +52,7 @@ double	ft_raycast(t_game *game, double angle)
 			v1.lenght += temp;
 			v1.delta = 1;
 			obstacle1 = ft_intersection(game, &v1);
+			// printf("v1\n");
 		}
 		else if (!obstacle2)
 		{
@@ -61,10 +62,12 @@ double	ft_raycast(t_game *game, double angle)
 			v2.lenght += temp;
 			v2.delta = 1;
 			obstacle2 = ft_intersection(game, &v2);
+			// printf("v2\n");
 		}
 		if (obstacle1 && obstacle2)
 			break ;
 	}
+	// printf("end\n\n");
 	if (v1.lenght < v2.lenght)
 		return (fabs(v1.lenght));
 	return (fabs(v2.lenght));

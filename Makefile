@@ -6,13 +6,13 @@
 #    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/06/23 13:39:09 by acroisie         ###   ########lyon.fr    #
+#    Updated: 2022/06/24 08:29:42 by acroisie         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc 
 
-CC_FLAGS = -Wall -Werror -Wextra
+CC_FLAGS = -Wall -Werror -Wextra -O3 -Ofast -ffast-math
 
 NAME := cub3D
 
@@ -37,8 +37,8 @@ OBJS := $(SRCS:.c=.o)
 all : libft mlx $(NAME)
 
 $(NAME):		$(addprefix objs/, $(OBJS))
-#					$(CC) -o $(NAME) $(addprefix objs/, $(OBJS)) libft/libft.a mlx/libmlx.a -framework OpenGL -framework AppKit
-					$(CC) -o $(NAME) $(addprefix objs/, $(OBJS)) libft/libft.a mlx/libmlx.a -framework OpenGL -framework AppKit -g3 -fsanitize=address
+					$(CC) -o $(NAME) $(addprefix objs/, $(OBJS)) libft/libft.a mlx/libmlx.a -framework OpenGL -framework AppKit
+#					$(CC) -o $(NAME) $(addprefix objs/, $(OBJS)) libft/libft.a mlx/libmlx.a -framework OpenGL -framework AppKit -g3 -fsanitize=address
 
 objs/%.o:		srcs/%.c include/cub3D.h libft/libft.a mlx/libmlx.a Makefile
 					@mkdir -p objs
