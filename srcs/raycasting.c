@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 13:35:03 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 14:46:56 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int	ft_intersection(t_game *game, t_vect *ray)
 {
 	if (ray->y < 0)
 		ray->y = 0;
-	//else if (ray->y >)
-	//	ray->y = game->info.heigth - 1;
+	else if (ray->y > game->info.heigth - 1)
+		ray->y = game->info.heigth - 1;
 	if (ray->x < 0)
 		ray->x = 0;
-	//else if (ray->x > game->info.width - 1)
-	//	ray->x = game->info.width - 1;
+	else if (ray->x > ft_strlen(game->info.map[(int)ray->y]) - 1)
+		ray->x = ft_strlen(game->info.map[(int)ray->y]) - 1;
 	if (game->info.map[(int)ray->y][(int)ray->x] == '1')
 		return (1);
 	return (0);
