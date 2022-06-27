@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 15:03:47 by acroisie         ###   ########lyon.fr   */
-/*   Updated: 2022/06/27 15:00:08 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 18:18:28 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -87,6 +87,8 @@ typedef struct s_texture
 	void	*we;
 	void	*ea;
 	int		floor;
+	int		size_x;
+	int		size_y;
 	int		ceiling;
 }t_texture;
 
@@ -101,6 +103,7 @@ typedef struct s_game
 	char		vector;
 	char		dir_y;
 	char		dir_x;
+	int			pixel_from_texture;
 }t_game;
 
 /*--------------------------Parsing--------------------------*/
@@ -122,6 +125,7 @@ void	ft_supress_line_break(char *str);
 int		ft_clean_exit(t_game *game);
 void	ft_map_size(t_game *game);
 void	ft_init_color(t_game *game);
+void	ft_init_texture(t_game *game);
 
 /*-------------------------    2D    ------------------------*/
 

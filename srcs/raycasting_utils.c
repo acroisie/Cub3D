@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:36:41 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 13:02:15 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 16:02:43 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	ft_init_ray_y(t_vect *v2, t_game *game, double angle)
 	{
 		v2->delta = fmod(v2->y, 1);
 		v2->y_sign = -1;
-		game->dir_y = 'B';
+		game->dir_y = 'T';
 	}
 	else
 	{
 		v2->delta = 1 - fmod(v2->y, 1);
 		v2->y_sign = 1;
-		game->dir_y = 'T';
+		game->dir_y = 'B';
 	}
 	if (angle < M_PI_2 || angle > 3 * M_PI_2)
 	{
