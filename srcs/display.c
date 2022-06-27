@@ -6,18 +6,11 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/27 11:10:56 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 11:20:54 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-void	ft_init_map(t_game *game)
-{
-	game->img.img_ptr = mlx_new_image(game->mlx, 16 * UNIT, 12 * UNIT);
-	game->img.img_addr = mlx_get_data_addr(game->img.img_ptr, \
-	&game->img.bits_per_pixel, &game->img.size_line, &game->img.endian);
-}
 
 int	my_color(char *rgb)
 {
