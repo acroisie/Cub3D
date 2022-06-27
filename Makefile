@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/06/24 14:10:02 by lnemor           ###   ########lyon.fr    #
+#    Updated: 2022/06/27 11:08:05 by acroisie         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME := cub3D
 
 		
 		
-SRCS := display_map.c \
+SRCS := display.c \
 		error_check_args.c \
 		error_check_map.c \
 		error_check_textures.c \
@@ -30,8 +30,7 @@ SRCS := display_map.c \
 		hooks.c \
 		main.c \
 		raycasting_utils.c \
-		raycasting.c \
-		draw_map.c
+		raycasting.c
 		
 OBJS := $(SRCS:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/24 14:49:30 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 11:09:05 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,27 @@ double	ft_raycast(t_game *game, double angle)
 	if (v1.lenght < v2.lenght)
 		return (fabs(v1.lenght));
 	return (fabs(v2.lenght));
+}
+
+void	ft_raycast_engine(t_game *game)
+{
+	double	step;
+	int		ray_ind;
+	double	angle;
+
+	angle = fmod(game->info.orientation - (FOV / 2), 2 * M_PI);
+	ray_ind = 0;
+	step = FOV / (UNIT * 16);
+	if (angle < 0)
+		angle = 2 * M_PI + angle;
+	while (ray_ind < (UNIT * 16))
+	{
+		ft_draw_wall(game, (ft_raycast(game, angle)) * \
+			cos(fmod(game->info.orientation - angle, 2 * M_PI)), ray_ind);
+		angle += step;
+		angle = fmod(angle, 2 * M_PI);
+		ray_ind++;
+	}
+	mlx_put_image_to_window(game->mlx, game->mlx_window, \
+	game->img.img_ptr, 0, 0);
 }

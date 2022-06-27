@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/24 17:43:05 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 11:10:04 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/stat.h>
 
 # define BUFFER_SIZE 42
-# define UNIT 64
+# define UNIT 48
 # define FOV 1.04666666666
 
 # define CHARSET "10NSEW \n"
@@ -115,21 +115,18 @@ int		ft_init_check_map(t_game *game);
 int		ft_destlen(char **s);
 void	ft_walls_check(char **map, t_game *game);
 void	ft_supress_line_break(char *str);
+int		ft_clean_exit(t_game *game);
 
 /*-------------------------    2D    ------------------------*/
 
-void	ft_display_map(t_game *game);
-void	ft_draw_line(t_game *game, double angle, double lenght);
 void	ft_init_map(t_game *game);
-void	draw_player(t_game *game);
 int		my_color(char *rgb);
 void	my_put_pixel(t_game *game, int x, int y, int color);
-void	ft_draw_map(t_game *game);
-void	ft_draw_grid(t_game *game, int map_x, int map_y, int color);
+void	ft_draw_wall(t_game *game, double lenght, int x);
 
 /*-------------------------Raycasting------------------------*/
 
-int		ft_clean_exit(t_game *game);
+void	ft_raycast_engine(t_game *game);
 double	ft_raycast(t_game *game, double angle);
 double	ft_init_angle(double angle);
 void	ft_init_ray_x(t_vect *v1, t_game *game, double angle);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/24 17:38:20 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 11:01:04 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	ft_clean_exit(t_game *game)
 {
-	mlx_destroy_image(game->mlx, game->img.img_ptr);
 	if (game->fd)
 		close(game->fd);
+	if (game->img.img_ptr)
+		mlx_destroy_image(game->mlx, game->img.img_ptr);
+	if (game->mlx_window)
+		mlx_destroy_window(game->mlx, game->mlx_window);
 	ft_gc_destroy();
 	exit(0);
 }
@@ -28,9 +31,7 @@ int	main(int argc, char **argv)
 	game = ft_errors_check(argc, argv);
 	game.mlx = mlx_init();
 	ft_init_map(&game);
-	game.mlx_window = mlx_new_window(game.mlx, game.info.width
-			* UNIT, game.info.heigth * UNIT, "cub3D");
-	ft_display_map(&game);
+	ft_raycast_engine(&game);
 	mlx_hook(game.mlx_window, 17, 0L, ft_clean_exit, &game);
 	mlx_hook(game.mlx_window, 2, 1L << 0, ft_key_hook, &game);
 	mlx_loop(game.mlx);
