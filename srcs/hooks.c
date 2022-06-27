@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:38:33 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/23 14:10:29 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 11:01:04 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	turn_left(t_game *game)
 	game->info.orientation -= 0.1;
 	if (game->info.orientation < 0)
 		game->info.orientation = 2 * M_PI;
-	ft_display_map(game);
+	ft_raycast_engine(game);
 }
 
 void	turn_right(t_game *game)
@@ -25,7 +25,7 @@ void	turn_right(t_game *game)
 	game->info.orientation += 0.1;
 	if (game->info.orientation > 2 * M_PI)
 		game->info.orientation = 0;
-	ft_display_map(game);
+	ft_raycast_engine(game);
 }
 
 int	ft_key_hook(int keycode, t_game *game)

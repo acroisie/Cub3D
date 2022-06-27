@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_map.c                                      :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/24 17:10:07 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 11:10:56 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+void	ft_init_map(t_game *game)
+{
+	game->img.img_ptr = mlx_new_image(game->mlx, 16 * UNIT, 12 * UNIT);
+	game->img.img_addr = mlx_get_data_addr(game->img.img_ptr, \
+	&game->img.bits_per_pixel, &game->img.size_line, &game->img.endian);
+}
 
 int	my_color(char *rgb)
 {
@@ -45,45 +52,6 @@ void	my_put_pixel(t_game *game, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	ft_draw_player(t_game *game)
-{
-	double	x;
-	double	y;
-
-	x = 0;
-	while (x < 6)
-	{
-		y = 0;
-		while (y < 6)
-		{
-			my_put_pixel(game, x + \
-			(game->info.pos_x * UNIT) - 3, y + \
-			(game->info.pos_y * UNIT) - 3, 5454548);
-			y++;
-		}
-		x++;
-	}
-}
-
-void	ft_draw_line(t_game *game, double angle, double lenght)
-{
-	double	x;
-	double	y;
-	double	i;
-
-	lenght *= UNIT;
-	x = game->info.pos_x * UNIT;
-	y = game->info.pos_y * UNIT;
-	i = 0;
-	while (i < lenght)
-	{
-		my_put_pixel(game, x, y, 0xFF0000);
-		x += cos(angle);
-		y += sin(angle);
-		i++;
-	}	
-}
-
 void	ft_draw_wall(t_game *game, double lenght, int x)
 {
 	double	h;
@@ -94,7 +62,6 @@ void	ft_draw_wall(t_game *game, double lenght, int x)
 	y = 0;
 	heigth = UNIT * 12;
 	h = heigth / lenght;
-	//dprintf(2, "h : %f\n", h);
 	i = 0;
 	while (i < heigth)
 	{
@@ -111,27 +78,3 @@ void	ft_draw_wall(t_game *game, double lenght, int x)
 	}
 }
 
-void	ft_display_map(t_game *game)
-{
-	double	step;
-	int		ray_ind;
-	double	angle;
-
-	ft_draw_map(game);
-	angle = fmod(game->info.orientation - (FOV / 2), 2 * M_PI);
-	ray_ind = 0;
-	ft_draw_player(game);
-	step = FOV / (UNIT * 16);
-	if (angle < 0)
-		angle = 2 * M_PI + angle;
-	while (ray_ind < (UNIT * 16))
-	{
-		ft_draw_wall(game, (ft_raycast(game, angle)) * \
-			cos(fmod(game->info.orientation - angle, 2 * M_PI)), ray_ind);
-		angle += step;
-		angle = fmod(angle, 2 * M_PI);
-		ray_ind++;
-	}
-	mlx_put_image_to_window(game->mlx, game->mlx_window, \
-	game->img.img_ptr, 0, 0);
-}
