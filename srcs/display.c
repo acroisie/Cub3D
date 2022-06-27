@@ -6,13 +6,13 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/27 11:20:54 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 11:31:00 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int	my_color(char *rgb)
+int	ft_my_color(char *rgb)
 {
 	char	**colors;
 	int		i;
@@ -53,12 +53,12 @@ void	ft_draw_wall(t_game *game, double lenght, int x)
 	double	heigth;
 
 	y = 0;
-	heigth = UNIT * 12;
+	heigth = UNIT * 9;
 	h = heigth / lenght;
 	i = 0;
 	while (i < heigth)
 	{
-		if (i > 12 * UNIT)
+		if (i > 9 * UNIT)
 			break ;
 		if (i >= 0 && i <= (heigth / 2) - h / 2)
 			my_put_pixel(game, x, y, 0xabdbe3);

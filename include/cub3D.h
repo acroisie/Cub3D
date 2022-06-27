@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 11:10:04 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 11:32:52 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int		ft_clean_exit(t_game *game);
 /*-------------------------    2D    ------------------------*/
 
 void	ft_init_map(t_game *game);
-int		my_color(char *rgb);
+int		ft_my_color(char *rgb);
 void	my_put_pixel(t_game *game, int x, int y, int color);
 void	ft_draw_wall(t_game *game, double lenght, int x);
 
