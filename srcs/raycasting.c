@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 11:09:05 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 13:35:03 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int	ft_intersection(t_game *game, t_vect *ray)
 {
 	if (ray->y < 0)
 		ray->y = 0;
-	else if (ray->y > 11)
-		ray->y = 11;
+	//else if (ray->y >)
+	//	ray->y = game->info.heigth - 1;
 	if (ray->x < 0)
 		ray->x = 0;
-	else if (ray->x > 15)
-		ray->x = 15;
+	//else if (ray->x > game->info.width - 1)
+	//	ray->x = game->info.width - 1;
 	if (game->info.map[(int)ray->y][(int)ray->x] == '1')
 		return (1);
 	return (0);
@@ -63,7 +63,11 @@ double	ft_raycast(t_game *game, double angle)
 			ft_calcul_v2(angle, &v2, temp);
 	}
 	if (v1.lenght < v2.lenght)
+	{
+		game->vector = 'x';
 		return (fabs(v1.lenght));
+	}
+	game->vector = 'y';
 	return (fabs(v2.lenght));
 }
 

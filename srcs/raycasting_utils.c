@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:36:41 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/23 13:57:21 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 13:02:15 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,23 @@ void	ft_init_ray_x(t_vect *v1, t_game *game, double angle)
 	v1->y = game->info.pos_y;
 	v1->lenght = 0;
 	v1->y_sign = 1;
+	game->dir_y = 'T';
 	if (angle > M_PI)
+	{
 		v1->y_sign = -1;
+		game->dir_y = 'B';
+	}
 	if (angle < M_PI_2 || angle > 3 * M_PI_2)
 	{
 		v1->delta = 1 - fmod(v1->x, 1);
 		v1->x_sign = 1;
+		game->dir_x = 'R';
 	}
 	else
 	{
 		v1->delta = fmod(v1->x, 1);
 		v1->x_sign = -1;
+		game->dir_x = 'L';
 	}
 }
 
@@ -52,14 +58,22 @@ void	ft_init_ray_y(t_vect *v2, t_game *game, double angle)
 	{
 		v2->delta = fmod(v2->y, 1);
 		v2->y_sign = -1;
+		game->dir_y = 'B';
 	}
 	else
 	{
 		v2->delta = 1 - fmod(v2->y, 1);
 		v2->y_sign = 1;
+		game->dir_y = 'T';
 	}
 	if (angle < M_PI_2 || angle > 3 * M_PI_2)
+	{
 		v2->x_sign = 1;
+		game->dir_x = 'L';
+	}
 	else
+	{
 		v2->x_sign = -1;
+		game->dir_x = 'R';
+	}
 }

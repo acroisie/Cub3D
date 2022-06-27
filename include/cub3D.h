@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 11:32:52 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 13:13:44 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/stat.h>
 
 # define BUFFER_SIZE 42
-# define UNIT 48
+# define UNIT 88
 # define FOV 1.04666666666
 
 # define CHARSET "10NSEW \n"
@@ -97,6 +97,9 @@ typedef struct s_game
 	t_info		info;
 	t_img		img;
 	t_texture	texture;
+	char		vector;
+	char		dir_y;
+	char		dir_x;
 }t_game;
 
 /*--------------------------Parsing--------------------------*/
@@ -116,10 +119,10 @@ int		ft_destlen(char **s);
 void	ft_walls_check(char **map, t_game *game);
 void	ft_supress_line_break(char *str);
 int		ft_clean_exit(t_game *game);
+void	ft_map_size(t_game *game);
 
 /*-------------------------    2D    ------------------------*/
 
-void	ft_init_map(t_game *game);
 int		ft_my_color(char *rgb);
 void	my_put_pixel(t_game *game, int x, int y, int color);
 void	ft_draw_wall(t_game *game, double lenght, int x);

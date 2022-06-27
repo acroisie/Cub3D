@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:48:12 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/09 11:14:18 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 13:21:20 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,23 @@ void	ft_store_texture(char *line, int i, int out, t_game *game)
 	else
 		game->texture.path[out] = ft_gc_strdup(temp);
 	ft_gc_free(temp);
+}
+
+void	ft_map_size(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	game->info.width = 0;
+	while (game->info.map[i])
+	{
+		j = 0; 
+		while (game->info.map[i][j])
+			j++;
+		if (j > game->info.width)
+			game->info.width = j;
+		i++;
+	}
+	game->info.heigth = i;
 }
