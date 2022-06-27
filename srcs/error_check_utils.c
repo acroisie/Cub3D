@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:48:12 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 13:21:20 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 14:51:56 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ft_map_size(t_game *game)
 	game->info.width = 0;
 	while (game->info.map[i])
 	{
-		j = 0; 
+		j = 0;
 		while (game->info.map[i][j])
 			j++;
 		if (j > game->info.width)

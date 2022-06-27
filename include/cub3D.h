@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
 /*   Updated: 2022/06/27 15:03:47 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 15:00:08 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +86,8 @@ typedef struct s_texture
 	void	*so;
 	void	*we;
 	void	*ea;
-	char	*floor;
-	char	*ceiling;
+	int		floor;
+	int		ceiling;
 }t_texture;
 
 typedef struct s_game
@@ -120,6 +121,7 @@ void	ft_walls_check(char **map, t_game *game);
 void	ft_supress_line_break(char *str);
 int		ft_clean_exit(t_game *game);
 void	ft_map_size(t_game *game);
+void	ft_init_color(t_game *game);
 
 /*-------------------------    2D    ------------------------*/
 

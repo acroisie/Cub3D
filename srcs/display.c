@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/27 13:17:15 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 14:59:51 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_my_color(char *rgb)
 	while (i < 3)
 	{
 		color_tab[i] = color | (color_tab[i] << (16 - (i * 8)));
-		color += color_tab[i];
+		color = color_tab[i];
 		i++;
 	}
 	ft_free_split(colors);
@@ -61,11 +61,11 @@ void	ft_draw_wall(t_game *game, double lenght, int x)
 		if (i > 9 * UNIT)
 			break ;
 		if (i >= 0 && i <= (heigth / 2) - h / 2)
-			my_put_pixel(game, x, y, 0xabdbe3);
+			my_put_pixel(game, x, y, game->texture.ceiling);
 		else if (i > (heigth / 2 - h / 2) && i < (heigth / 2) + h / 2)
 			my_put_pixel(game, x, y, 0x21130d);
 		else if (i < heigth)
-			my_put_pixel(game, x, y, 0xE28743);
+			my_put_pixel(game, x, y, game->texture.floor);
 		i++;
 		y++;
 	}

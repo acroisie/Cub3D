@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 11:31:09 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/27 14:13:04 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	game = ft_errors_check(argc, argv);
+	ft_init_color(&game);
 	game.mlx = mlx_init();
 	game.mlx_window = mlx_new_window(game.mlx, 16 * UNIT, 9 * UNIT, "cub3D");
 	game.img.img_ptr = mlx_new_image(game.mlx, 16 * UNIT, 9 * UNIT);
