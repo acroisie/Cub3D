@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 14:46:56 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 10:21:50 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_calcul_v2(double angle, t_vect *v2, double temp)
 	v2->delta = 1;
 }
 
-double	ft_raycast(t_game *game, double angle)
+t_vect	ft_raycast(t_game *game, double angle)
 {
 	t_vect	v1;
 	t_vect	v2;
@@ -65,10 +65,10 @@ double	ft_raycast(t_game *game, double angle)
 	if (v1.lenght < v2.lenght)
 	{
 		game->vector = 'x';
-		return (fabs(v1.lenght));
+		return (v1);
 	}
 	game->vector = 'y';
-	return (fabs(v2.lenght));
+	return (v2);
 }
 
 void	ft_raycast_engine(t_game *game)
@@ -84,8 +84,7 @@ void	ft_raycast_engine(t_game *game)
 		angle = 2 * M_PI + angle;
 	while (ray_ind < (UNIT * 16))
 	{
-		ft_draw_wall(game, (ft_raycast(game, angle)) * \
-			cos(fmod(game->info.orientation - angle, 2 * M_PI)), ray_ind);
+		ft_draw_wall(game, ft_raycast(game, angle), ray_ind, angle);
 		angle += step;
 		angle = fmod(angle, 2 * M_PI);
 		ray_ind++;

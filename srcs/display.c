@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
 /*   Updated: 2022/06/27 18:12:45 by lnemor           ###   ########lyon.fr   */
@@ -68,7 +68,8 @@ void	ft_draw_wall(t_game *game, double lenght, int x)
 	xt = x;
 	yt = 0;
 	heigth = UNIT * 9;
-	h = heigth / lenght;
+	h = heigth / (fabs(vect.lenght) * \
+	cos(fmod(game->info.orientation - angle, 2 * M_PI)));
 	i = 0;
 	ratio = 0;
 	while (i < heigth)
