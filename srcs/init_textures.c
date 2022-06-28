@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:01:43 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/28 12:36:38 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 13:59:15 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ void	ft_init_color(t_game *game)
 
 void	ft_init_texture(t_game *game)
 {
-	game->texture.ea = mlx_xpm_file_to_image(game->mlx,
-			"./asset/texture_ea.xpm", &game->texture.size_x,
-			&game->texture.size_y);
-	if (!game->texture.ea)
+	game->texture.ea.img_ptr = mlx_xpm_file_to_image(game->mlx,
+			"./asset/texture_ea.xpm", &game->texture.ea.width,
+			&game->texture.ea.heigth);
+	if (!game->texture.ea.img_ptr)
 		dprintf(2, "retournez un  error de pth");
-	game->texture.ea = mlx_get_data_addr(game->texture.ea,
-			&game->img.bits_per_pixel, &game->img.size_line, &game->img.endian);
+	game->texture.ea.img_addr = mlx_get_data_addr(game->texture.ea.img_ptr,
+			&game->texture.ea.bits_per_pixel,
+			&game->texture.ea.size_line,
+			&game->texture.ea.endian);
 	dprintf(2, "text\n");
 }

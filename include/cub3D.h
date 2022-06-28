@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/28 13:19:04 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 16:40:23 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,18 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
+	int		width;
+	int		heigth;
 }t_img;
 
 typedef struct s_texture
 {
 	char	**path;
 	char	**colors;
-	void	*no;
-	void	*so;
-	void	*we;
-	void	*ea;
+	t_img	no;
+	t_img	so;
+	t_img	we;
+	t_img	ea;
 	int		floor;
 	int		size_x;
 	int		size_y;

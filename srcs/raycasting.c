@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/28 10:21:50 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 17:23:45 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ t_vect	ft_raycast(t_game *game, double angle)
 	}
 	if (v1.lenght < v2.lenght)
 	{
-		game->vector = 'x';
+		game->vector = 'y';
 		return (v1);
 	}
-	game->vector = 'y';
+	game->vector = 'x';
 	return (v2);
 }
 
@@ -89,6 +89,7 @@ void	ft_raycast_engine(t_game *game)
 		angle = fmod(angle, 2 * M_PI);
 		ray_ind++;
 	}
+	dprintf(1, "rel pos = %f\n", fmod(ft_raycast(game, angle).y, 1 ));
 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
 	game->img.img_ptr, 0, 0);
 }

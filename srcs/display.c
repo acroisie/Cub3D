@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/28 13:29:09 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 18:09:24 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,59 +47,52 @@ void	my_put_pixel(t_game *game, int x, int y, int color)
 
 int	get_pixel_from_texture(t_game *game, int x, int y)
 {
-	if (x >= 0 && x < UNIT && y >= 0 && y < UNIT)
-		return (*(int *)(game->texture.ea + (4 * (int)y) * UNIT) + (4 * (int)x * UNIT));
+	return (*(int *)(game->texture.ea.img_ptr \
+				+ (4 * 256 * y) \
+				+ 4 * x));
 	return (0xFFFFFFF);
 }
 
-
 void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle)
 {
-	double	h;
-	int		i;
+	double	h_of_wall;
 	int		y;
 	double	heigth;
-	int		xt;
-	int		yt;
-	int		ratio;
+	double		y_wall;
 
 	y = 0;
-	xt = x;
-	yt = 0;
+	y_wall = 0;
 	heigth = UNIT * 9;
-	h = heigth / (fabs(vect.lenght) * \
+	h_of_wall = heigth / (fabs(vect.lenght) * \
 	cos(fmod(game->info.orientation - angle, 2 * M_PI)));
-	i = 0;
-	ratio = 0;
-	while (i < heigth)
+	while (y < heigth)
 	{
-		ratio = UNIT / h;
-		if (i > 9 * UNIT)
+		if (y > 9 * UNIT)
 			break ;
-		if (i >= 0 && i <= (heigth / 2) - h / 2)
+		if (y >= 0 && y <= (heigth / 2) - h_of_wall / 2)
 			my_put_pixel(game, x, y, game->texture.ceiling);
-		else if (i > (heigth / 2 - h / 2) && i < (heigth / 2) + h / 2)
+		else if (y > (heigth / 2 - h_of_wall / 2) && y < (heigth / 2) + h_of_wall / 2)
 		{
-			if (game->vector == 'x')
+			y_wall = y_wall * UNIT / h_of_wall;
+			if (game->vector == 'y')
 			{
-				xt = x;
-				yt = y;
-				if (game->dir_x == 'R')
-					my_put_pixel(game, x, y, get_pixel_from_texture(game, (xt % UNIT), (yt % UNIT)));
-				else if (game->dir_x == 'L')
+				if (game->dir_x == 'E')
 					my_put_pixel(game, x, y, 0x236c87);
-			}
-			else if (game->vector == 'y')
-			{
-				if (game->dir_y == 'T')
+				else if (game->dir_x == 'W')
 					my_put_pixel(game, x, y, 0x873e23);
-				else if (game->dir_y == 'B')
+			}
+			else if (game->vector == 'x')
+			{
+				if (game->dir_y == 'N')
+					my_put_pixel(game, x, y, get_pixel_from_texture(game,
+							fmod(vect.x, UNIT), fmod(y_wall, UNIT)));
+				else if (game->dir_y == 'S')
 					my_put_pixel(game, x, y, 0x3a8723);
 			}
+			y_wall++;
 		}
-		else if (i < heigth)
+		else if (y < heigth)
 			my_put_pixel(game, x, y, game->texture.floor);
-		i++;
 		y++;
 	}
 }
