@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/28 13:26:01 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 13:29:09 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,8 @@ void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle)
 				yt = y;
 				if (game->dir_x == 'R')
 					my_put_pixel(game, x, y, get_pixel_from_texture(game, (xt % UNIT), (yt % UNIT)));
-				else if (game->dir_x == 'L')  
-				.
-			=
-					my_put_pixel(game, x, y, 0x236c87);	qaddr_tqq									qbnq` vn1
+				else if (game->dir_x == 'L')
+					my_put_pixel(game, x, y, 0x236c87);
 			}
 			else if (game->vector == 'y')
 			{
