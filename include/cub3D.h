@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 18:18:28 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 13:19:04 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/stat.h>
 
 # define BUFFER_SIZE 42
-# define UNIT 88
+# define UNIT 128
 # define FOV 0.959931
 
 # define CHARSET "10NSEW \n"

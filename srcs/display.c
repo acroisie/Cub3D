@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/27 18:12:45 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 13:26:01 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,15 @@ void	my_put_pixel(t_game *game, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	get_pixel_from_texture(t_game *game, int x, int y, int ratio)
+int	get_pixel_from_texture(t_game *game, int x, int y)
 {
-	if (x >= 0 && x < 64 && y >= 0 && y < 64)
-		return (*(int *)(game->texture.ea + (4 * 64
-				* (int)y * ratio) + (4 * (int)x) * ratio));
+	if (x >= 0 && x < UNIT && y >= 0 && y < UNIT)
+		return (*(int *)(game->texture.ea + (4 * (int)y) * UNIT) + (4 * (int)x * UNIT));
 	return (0xFFFFFFF);
 }
 
 
-void	ft_draw_wall(t_game *game, double lenght, int x)
+void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle)
 {
 	double	h;
 	int		i;
@@ -74,7 +73,7 @@ void	ft_draw_wall(t_game *game, double lenght, int x)
 	ratio = 0;
 	while (i < heigth)
 	{
-		ratio = 64 / h;
+		ratio = UNIT / h;
 		if (i > 9 * UNIT)
 			break ;
 		if (i >= 0 && i <= (heigth / 2) - h / 2)
@@ -86,10 +85,11 @@ void	ft_draw_wall(t_game *game, double lenght, int x)
 				xt = x;
 				yt = y;
 				if (game->dir_x == 'R')
-					my_put_pixel(game, x, y,
-						get_pixel_from_texture(game, xt % 64, yt % 64, ratio));
-				else if (game->dir_x == 'L')
-					my_put_pixel(game, x, y, 0x236c87);
+					my_put_pixel(game, x, y, get_pixel_from_texture(game, (xt % UNIT), (yt % UNIT)));
+				else if (game->dir_x == 'L')  
+				.
+			=
+					my_put_pixel(game, x, y, 0x236c87);	qaddr_tqq									qbnq` vn1
 			}
 			else if (game->vector == 'y')
 			{

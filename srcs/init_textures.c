@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:01:43 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/27 18:21:36 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 12:36:38 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	ft_init_texture(t_game *game)
 	if (!game->texture.ea)
 		dprintf(2, "retournez un  error de pth");
 	game->texture.ea = mlx_get_data_addr(game->texture.ea,
-	dprintf(2, "text\n");
 			&game->img.bits_per_pixel, &game->img.size_line, &game->img.endian);
+	dprintf(2, "text\n");
 }
