@@ -6,10 +6,10 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 15:03:47 by acroisie         ###   ########lyon.fr   */
-/*   Updated: 2022/06/27 15:00:08 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 10:22:44 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -123,16 +123,16 @@ int		ft_clean_exit(t_game *game);
 void	ft_map_size(t_game *game);
 void	ft_init_color(t_game *game);
 
-/*-------------------------    2D    ------------------------*/
+/*-------------------------- Display ------------------------*/
 
 int		ft_my_color(char *rgb);
 void	my_put_pixel(t_game *game, int x, int y, int color);
-void	ft_draw_wall(t_game *game, double lenght, int x);
+void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle);
 
 /*-------------------------Raycasting------------------------*/
 
 void	ft_raycast_engine(t_game *game);
-double	ft_raycast(t_game *game, double angle);
+t_vect	ft_raycast(t_game *game, double angle);
 double	ft_init_angle(double angle);
 void	ft_init_ray_x(t_vect *v1, t_game *game, double angle);
 void	ft_init_ray_y(t_vect *v2, t_game *game, double angle);

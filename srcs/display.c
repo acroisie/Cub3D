@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/27 14:59:51 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 10:25:38 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	my_put_pixel(t_game *game, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	ft_draw_wall(t_game *game, double lenght, int x)
+void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle)
 {
 	double	h;
 	int		i;
@@ -54,7 +54,8 @@ void	ft_draw_wall(t_game *game, double lenght, int x)
 
 	y = 0;
 	heigth = UNIT * 9;
-	h = heigth / lenght;
+	h = heigth / (fabs(vect.lenght) * \
+	cos(fmod(game->info.orientation - angle, 2 * M_PI)));
 	i = 0;
 	while (i < heigth)
 	{
@@ -63,7 +64,7 @@ void	ft_draw_wall(t_game *game, double lenght, int x)
 		if (i >= 0 && i <= (heigth / 2) - h / 2)
 			my_put_pixel(game, x, y, game->texture.ceiling);
 		else if (i > (heigth / 2 - h / 2) && i < (heigth / 2) + h / 2)
-			my_put_pixel(game, x, y, 0x21130d);
+			my_put_pixel(game, x, y, 0x4d4d4d);
 		else if (i < heigth)
 			my_put_pixel(game, x, y, game->texture.floor);
 		i++;
