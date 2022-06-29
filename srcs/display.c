@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/29 14:13:50 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 15:16:47 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,57 +51,4 @@ int	get_pixel_from_texture(char *text_addr, int x, int y)
 				+ (4 * 128 * y) \
 				+ 4 * x));
 	return (0xFFFFFFF);
-}
-
-void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle)
-{
-	double	h_of_wall;
-	int		y;
-	double	height;
-	double	y_wall;
-	double	temp;
-
-	y = 0;
-	y_wall = 0;
-	height = UNIT * RATIO_Y;
-	h_of_wall = height / (fabs(vect.lenght) * \
-	cos(fmod(game->info.orientation - angle, 2 * M_PI)));
-	if (h_of_wall > height)
-		y_wall = (h_of_wall - height) / 2;
-	while (y < height)
-	{
-		if (y >= 0 && y <= (height / 2) - h_of_wall / 2)
-			my_put_pixel(game, x, y, game->texture.ceiling);
-		else if (y > (height / 2 - h_of_wall / 2)
-			&& y < (height / 2) + h_of_wall / 2)
-		{
-			temp = (y_wall * UNIT) / h_of_wall;
-			if (game->vector == 'y')
-			{
-				if (game->dir_x == 'E')
-					my_put_pixel(game, x, y,
-						get_pixel_from_texture(game->texture.ea.img_addr,
-							fmod(vect.y, 1) * UNIT, fmod(temp, UNIT)));
-				else if (game->dir_x == 'W')
-					my_put_pixel(game, x, y,
-						get_pixel_from_texture(game->texture.we.img_addr,
-							fmod(vect.y, 1) * UNIT, fmod(temp, UNIT)));
-			}
-			else if (game->vector == 'x')
-			{
-				if (game->dir_y == 'N')
-					my_put_pixel(game, x, y,
-						get_pixel_from_texture(game->texture.no.img_addr,
-							fmod(vect.x, 1) * UNIT, fmod(temp, UNIT)));
-				else if (game->dir_y == 'S')
-					my_put_pixel(game, x, y,
-						get_pixel_from_texture(game->texture.so.img_addr,
-							fmod(vect.x, 1) * UNIT, fmod(temp, UNIT)));
-			}
-			y_wall++;
-		}
-		else if (y < height)
-			my_put_pixel(game, x, y, game->texture.floor);
-		y++;
-	}
 }

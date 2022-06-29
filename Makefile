@@ -6,7 +6,7 @@
 #    By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 08:07:28 by acroisie          #+#    #+#              #
-#    Updated: 2022/06/27 14:11:58 by lnemor           ###   ########lyon.fr    #
+#    Updated: 2022/06/29 15:17:17 by lnemor           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS := display.c \
 		main.c \
 		raycasting_utils.c \
 		raycasting.c \
-		init_textures.c
+		init_textures.c \
+		draw_walls.c
 		
 OBJS := $(SRCS:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/29 11:02:44 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 15:17:41 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ typedef struct s_game
 	char		dir_y;
 	char		dir_x;
 	int			pixel_from_texture;
+	int			y_on_tex;
+	int			height;
 }t_game;
 
 /*--------------------------Parsing--------------------------*/
@@ -136,6 +138,7 @@ void	ft_init_texture(t_game *game);
 int		ft_my_color(char *rgb);
 void	my_put_pixel(t_game *game, int x, int y, int color);
 void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle);
+int		get_pixel_from_texture(char *text_addr, int x, int y);
 
 /*-------------------------Raycasting------------------------*/
 
