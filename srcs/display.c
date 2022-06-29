@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/29 15:16:47 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 15:59:07 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,4 @@ int	get_pixel_from_texture(char *text_addr, int x, int y)
 	return (*(int *)(text_addr \
 				+ (4 * 128 * y) \
 				+ 4 * x));
-	return (0xFFFFFFF);
 }
