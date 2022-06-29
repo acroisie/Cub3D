@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/29 08:56:28 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 11:02:44 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	"cub3D");
 	game.img.img_ptr = mlx_new_image(game.mlx, RATIO_X * UNIT, RATIO_Y * UNIT);
 	game.img.img_addr = mlx_get_data_addr(game.img.img_ptr, \
-	&game.img.bits_per_pixel, &game.img.size_line, &game.img.endian);
+	&game.img.bpp, &game.img.size_line, &game.img.endian);
 	ft_raycast_engine(&game);
 	mlx_hook(game.mlx_window, 17, 0L, ft_clean_exit, &game);
 	mlx_hook(game.mlx_window, 2, 1L << 0, ft_key_hook, &game);

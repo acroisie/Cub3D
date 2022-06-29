@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/29 08:57:10 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 11:05:44 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,12 @@ void	my_put_pixel(t_game *game, int x, int y, int color)
 	char	*dst;
 
 	dst = game->img.img_addr + y * game->img.size_line \
-	+ x * (game->img.bits_per_pixel / 8);
+	+ x * (game->img.bpp / 8);
 	*(unsigned int *)dst = color;
 }
 
 int	get_pixel_from_texture(char *text_addr, int x, int y)
 {
-	//dprintf(2, "x : %d\n", x);
-	//dprintf(2, "y : %d\n", y);
 	return (*(int *)(text_addr \
 				+ (4 * 128 * y) \
 				+ 4 * x));
@@ -69,8 +67,8 @@ void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle)
 	cos(fmod(game->info.orientation - angle, 2 * M_PI)));
 	while (y < heigth)
 	{
-		if (y > (RATIO_Y * UNIT))
-			break ;
+		// if (y > (RATIO_Y * UNIT))
+		// 	break ;
 		if (y >= 0 && y <= (heigth / 2) - h_of_wall / 2)
 			my_put_pixel(game, x, y, game->texture.ceiling);
 		else if (y > (heigth / 2 - h_of_wall / 2) && y < (heigth / 2) + h_of_wall / 2)

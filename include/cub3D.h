@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/29 08:59:05 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 11:02:44 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define BUFFER_SIZE 42
 # define UNIT 128
 # define RATIO_X 8
-# define RATIO_Y 5
+# define RATIO_Y 6
 # define FOV 0.959931
 
 # define CHARSET "10NSEW \n"
@@ -75,7 +75,7 @@ typedef struct s_img
 {
 	void	*img_ptr;
 	char	*img_addr;
-	int		bits_per_pixel;
+	int		bpp;
 	int		size_line;
 	int		endian;
 	int		width;

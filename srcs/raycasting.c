@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/29 08:56:47 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 10:28:21 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	ft_raycast_engine(t_game *game)
 		angle = fmod(angle, 2 * M_PI);
 		ray_ind++;
 	}
-	dprintf(1, "rel pos = %f\n", fmod(ft_raycast(game, angle).y, 1 ));
 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
 	game->img.img_ptr, 0, 0);
 }
