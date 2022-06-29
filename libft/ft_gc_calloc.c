@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 09:51:00 by acroisie          #+#    #+#             */
-/*   Updated: 2022/04/12 10:11:45 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 15:28:51 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ void	*ft_gc_calloc(size_t elementCount, size_t elementSize)
 	if (!ptr)
 	{
 		ft_gc_destroy();
-		return (0);
+		exit (0);
 	}
 	lst = ft_calloc(1, sizeof(t_list));
 	if (!lst)
 	{
 		free(ptr);
 		ft_gc_destroy();
-		return (0);
+		exit (0);
 	}
 	lst->content = ptr;
 	ft_lstadd_back(ft_gc_start(), lst);

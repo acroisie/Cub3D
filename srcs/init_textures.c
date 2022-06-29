@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:01:43 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/29 15:24:17 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 15:35:46 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_init_color(t_game *game)
 void	ft_init_texture_part_2(t_game *game)
 {
 	game->texture.we.img_ptr = mlx_xpm_file_to_image(game->mlx, \
-			game->texture.path[2], &game->texture.we.width, \
+			game->texture.path[3], &game->texture.we.width, \
 			&game->texture.we.heigth);
 	if (!game->texture.we.img_ptr)
 		ft_put_error(MSG_14, 2, game);
@@ -29,7 +29,7 @@ void	ft_init_texture_part_2(t_game *game)
 			&game->texture.we.bpp, &game->texture.we.size_line, \
 			&game->texture.we.endian);
 	game->texture.ea.img_ptr = mlx_xpm_file_to_image(game->mlx, \
-			game->texture.path[3], &game->texture.ea.width, \
+			game->texture.path[2], &game->texture.ea.width, \
 			&game->texture.ea.heigth);
 	if (!game->texture.ea.img_ptr)
 		ft_put_error(MSG_14, 2, game);
@@ -41,7 +41,7 @@ void	ft_init_texture_part_2(t_game *game)
 void	ft_init_texture(t_game *game)
 {
 	game->texture.no.img_ptr = mlx_xpm_file_to_image(game->mlx, \
-			game->texture.path[0], &game->texture.no.width, \
+			game->texture.path[1], &game->texture.no.width, \
 			&game->texture.no.heigth);
 	if (!game->texture.no.img_ptr)
 		ft_put_error(MSG_14, 2, game);
@@ -49,7 +49,7 @@ void	ft_init_texture(t_game *game)
 			&game->texture.no.bpp, &game->texture.no.size_line, \
 			&game->texture.no.endian);
 	game->texture.so.img_ptr = mlx_xpm_file_to_image(game->mlx,
-			game->texture.path[1], &game->texture.so.width,
+			game->texture.path[0], &game->texture.so.width,
 			&game->texture.so.heigth);
 	if (!game->texture.so.img_ptr)
 		ft_put_error(MSG_14, 2, game);
