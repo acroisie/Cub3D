@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/28 19:06:49 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 08:57:10 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle)
 	double	temp;
 	y = 0;
 	y_wall = 0;
-	heigth = UNIT * 9;
+	heigth = UNIT * RATIO_Y;
 	h_of_wall = heigth / (fabs(vect.lenght) * \
 	cos(fmod(game->info.orientation - angle, 2 * M_PI)));
 	while (y < heigth)
 	{
-		if (y > 9 * UNIT)
+		if (y > (RATIO_Y * UNIT))
 			break ;
 		if (y >= 0 && y <= (heigth / 2) - h_of_wall / 2)
 			my_put_pixel(game, x, y, game->texture.ceiling);

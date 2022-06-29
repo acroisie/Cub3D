@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/28 18:36:07 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 08:57:22 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include <sys/stat.h>
 
 # define BUFFER_SIZE 42
+# define UNIT 128
+# define RATIO_X 8
+# define RATIO_Y 4
 # define UNIT 128
 # define FOV 0.959931
 

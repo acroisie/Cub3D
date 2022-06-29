@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:07:45 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/28 12:40:15 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 08:56:28 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ int	main(int argc, char **argv)
 	ft_init_color(&game);
 	game.mlx = mlx_init();
 	ft_init_texture(&game);
-	game.mlx_window = mlx_new_window(game.mlx, 16 * UNIT, 9 * UNIT, "cub3D");
-	game.img.img_ptr = mlx_new_image(game.mlx, 16 * UNIT, 9 * UNIT);
+	game.mlx_window = mlx_new_window(game.mlx, RATIO_X * UNIT, RATIO_Y * UNIT, \
+	"cub3D");
+	game.img.img_ptr = mlx_new_image(game.mlx, RATIO_X * UNIT, RATIO_Y * UNIT);
 	game.img.img_addr = mlx_get_data_addr(game.img.img_ptr, \
 	&game.img.bits_per_pixel, &game.img.size_line, &game.img.endian);
 	ft_raycast_engine(&game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:05:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/28 17:23:45 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 08:56:47 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ void	ft_raycast_engine(t_game *game)
 
 	angle = fmod(game->info.orientation - (FOV / 2), 2 * M_PI);
 	ray_ind = 0;
-	step = FOV / (UNIT * 16);
+	step = FOV / (UNIT * RATIO_X);
 	if (angle < 0)
 		angle = 2 * M_PI + angle;
-	while (ray_ind < (UNIT * 16))
+	while (ray_ind < (UNIT * RATIO_X))
 	{
 		ft_draw_wall(game, ft_raycast(game, angle), ray_ind, angle);
 		angle += step;
