@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/29 11:05:44 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 14:13:50 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,25 @@ void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle)
 {
 	double	h_of_wall;
 	int		y;
-	double	heigth;
+	double	height;
 	double	y_wall;
 	double	temp;
+
 	y = 0;
 	y_wall = 0;
-	heigth = UNIT * RATIO_Y;
-	h_of_wall = heigth / (fabs(vect.lenght) * \
+	height = UNIT * RATIO_Y;
+	h_of_wall = height / (fabs(vect.lenght) * \
 	cos(fmod(game->info.orientation - angle, 2 * M_PI)));
-	while (y < heigth)
+	if (h_of_wall > height)
+		y_wall = (h_of_wall - height) / 2;
+	while (y < height)
 	{
-		// if (y > (RATIO_Y * UNIT))
-		// 	break ;
-		if (y >= 0 && y <= (heigth / 2) - h_of_wall / 2)
+		if (y >= 0 && y <= (height / 2) - h_of_wall / 2)
 			my_put_pixel(game, x, y, game->texture.ceiling);
-		else if (y > (heigth / 2 - h_of_wall / 2) && y < (heigth / 2) + h_of_wall / 2)
+		else if (y > (height / 2 - h_of_wall / 2)
+			&& y < (height / 2) + h_of_wall / 2)
 		{
-			temp = y_wall * UNIT / h_of_wall;
+			temp = (y_wall * UNIT) / h_of_wall;
 			if (game->vector == 'y')
 			{
 				if (game->dir_x == 'E')
@@ -98,7 +100,7 @@ void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle)
 			}
 			y_wall++;
 		}
-		else if (y < heigth)
+		else if (y < height)
 			my_put_pixel(game, x, y, game->texture.floor);
 		y++;
 	}
