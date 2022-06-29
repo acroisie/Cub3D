@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:45:34 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/27 14:54:08 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 14:28:56 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_supress_line_break(char *str)
 	while (str[i])
 	{
 		if (str[i] == '\n')
-			str[i] = '\0';
+			str[i] = ' ';
 		i++;
 	}
 }

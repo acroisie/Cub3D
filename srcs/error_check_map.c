@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/28 17:25:47 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 14:19:14 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_player_check(t_game *game)
 			k = -1;
 			while (CHARSET_2[++k])
 				if (CHARSET_2[k] == game->info.map[i][j])
-					player = init_orientation_player(game, i, j);
+					player += init_orientation_player(game, i, j);
 		}
 	}
 	if (!player)
