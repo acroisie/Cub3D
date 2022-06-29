@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
 /*   Updated: 2022/06/29 15:17:41 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 15:21:09 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +47,7 @@
 # define MSG_11 "Map is invalid"
 # define MSG_12 "Player is missing"
 # define MSG_13 "You must use only one player position"
+# define MSG_14 "Texture corrupted"
 
 typedef struct s_info
 {
