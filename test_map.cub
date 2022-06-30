@@ -5,13 +5,21 @@ SO ./asset/texture_so.xpm
 NO ./asset/texture_no.xpm
 WE ./asset/texture_we.xpm
 
+EA ./srcs/texture_ea7.xpm
 
-EA ./asset/texture_ea.xpm
+C 247,242,208
+F 153,219,250
 
-F 244,234,210
-C 68,130,188
 
-        1111111111111111111111111
+
+
+
+
+
+
+
+
+        111111111111111111111111
         100000W000110000000000001
         1011000001110000000000001
         1001000000000000000000001

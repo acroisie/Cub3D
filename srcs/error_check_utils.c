@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:48:12 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/27 14:51:56 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/30 14:54:22 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,15 @@ int	ft_check_format_color(char *line, t_texture *texture)
 
 void	ft_store_texture(char *line, int i, int out, t_game *game)
 {
-	int		save;
 	char	*temp;
 
-	save = i + 2;
-	while (line[i] != '\n' && line[i])
+	while (line[i] == ' ')
 		i++;
-	temp = ft_strndup(&line[save], (i - save));
+	line = &line[i];
+	i = 0;
+	while (ft_isspace(line[i + 1]))
+			i++;
+	temp = ft_strndup(&line[i + 1], ft_strl(&line[i + 1]) - 1);
 	if (ft_check_format_color(temp, &game->texture))
 		ft_put_error(MSG_8, 2, game);
 	else

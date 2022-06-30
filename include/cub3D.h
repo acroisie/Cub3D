@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/29 16:02:15 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/30 14:50:16 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int		ft_clean_exit(t_game *game);
 void	ft_map_size(t_game *game);
 void	ft_init_color(t_game *game);
 void	ft_init_texture(t_game *game);
+int	ft_strl(char *s);
 
 /*-------------------------- Display ------------------------*/
 
