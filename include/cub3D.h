@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/30 14:50:16 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/30 15:52:39 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,10 @@ typedef struct s_game
 	char		dir_y;
 	char		dir_x;
 	int			pixel_from_texture;
-	int			y_on_tex;
+	double		y_on_tex;
 	int			height;
+	double		h_of_wall;
+	double		y_wall;
 }t_game;
 
 /*--------------------------Parsing--------------------------*/
@@ -132,14 +134,14 @@ int		ft_clean_exit(t_game *game);
 void	ft_map_size(t_game *game);
 void	ft_init_color(t_game *game);
 void	ft_init_texture(t_game *game);
-int	ft_strl(char *s);
+int		ft_strl(char *s);
 
 /*-------------------------- Display ------------------------*/
 
 int		ft_my_color(char *rgb);
 void	my_put_pixel(t_game *game, int x, int y, int color);
 void	ft_draw_wall(t_game *game, t_vect vect, int x, double angle);
-int		get_pixel_from_texture(char *text_addr, int x, int y);
+int		get_pixel_from_texture(t_img *tex, int x, int y);
 
 /*-------------------------Raycasting------------------------*/
 

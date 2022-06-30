@@ -6,7 +6,7 @@
 /*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:21:02 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/29 15:59:07 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/30 15:10:16 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	my_put_pixel(t_game *game, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	get_pixel_from_texture(char *text_addr, int x, int y)
+int	get_pixel_from_texture(t_img *tex, int x, int y)
 {
-	return (*(int *)(text_addr \
-				+ (4 * 128 * y) \
-				+ 4 * x));
+	return (*(int *)(tex->img_addr \
+				+ (4 * tex->width * y) \
+				+ tex->bpp / 8 * x));
 }
