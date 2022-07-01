@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/29 14:19:14 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/07/01 15:50:32 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,24 +102,23 @@ int	ft_init_check_map(t_game *game)
 {
 	char	*line;
 
-	line = ft_gc_strdup(skip_empty_line(game));
+	line = get_next_line(game->fd);
+	while (line[0] == '\n')
+	{
+		ft_gc_free(line);
+		line = get_next_line(game->fd);
+	}
 	game->info.map = ft_gc_calloc(1, sizeof(char *));
 	game->info.map = ft_addline(game->info.map, line);
-	while (line)
+	while (line && line[0] != '\n')
 	{
-		if (line[0] == '\n')
-		{
-			ft_gc_free(line);
-			break ;
-		}
-		else if (ft_is_charset(line))
+		if (ft_is_charset(line))
 			ft_put_error(MSG_9, 2, game);
 		ft_gc_free(line);
 		line = get_next_line(game->fd);
 		if (line && line[0] != '\n')
 			game->info.map = ft_addline(game->info.map, line);
 	}
-	line = skip_empty_line(game);
 	if (line)
 		ft_put_error(MSG_10, 2, game);
 	ft_player_check(game);

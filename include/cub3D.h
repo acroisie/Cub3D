@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/30 15:52:39 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/06/30 19:05:35 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 # define BUFFER_SIZE 42
 # define UNIT 128
-# define RATIO_X 8
-# define RATIO_Y 6
+# define RATIO_X 7
+# define RATIO_Y 5
 # define FOV 0.959931
 
 # define CHARSET "10NSEW \n"
