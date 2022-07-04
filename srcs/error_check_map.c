@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/07/01 15:50:32 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/07/04 11:14:50 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,25 +80,7 @@ int	ft_is_charset(char *line)
 	return (0);
 }
 
-char	*skip_empty_line(t_game *game)
-{
-	char	*line;
-
-	line = get_next_line(game->fd);
-	while (line)
-	{
-		if (line[0] == '\n')
-		{
-			line = get_next_line(game->fd);
-			ft_gc_free(line);
-		}
-		else
-			break ;
-	}
-	return (line);
-}
-
-int	ft_init_check_map(t_game *game)
+char	*ft_skip_empty_line(t_game *game)
 {
 	char	*line;
 
@@ -108,6 +90,14 @@ int	ft_init_check_map(t_game *game)
 		ft_gc_free(line);
 		line = get_next_line(game->fd);
 	}
+	return (line);
+}
+
+int	ft_init_check_map(t_game *game)
+{
+	char	*line;
+
+	line = ft_skip_empty_line(game);
 	game->info.map = ft_gc_calloc(1, sizeof(char *));
 	game->info.map = ft_addline(game->info.map, line);
 	while (line && line[0] != '\n')
@@ -118,6 +108,11 @@ int	ft_init_check_map(t_game *game)
 		line = get_next_line(game->fd);
 		if (line && line[0] != '\n')
 			game->info.map = ft_addline(game->info.map, line);
+	}
+	while (line && line[0] == '\n')
+	{
+		ft_gc_free(line);
+		line = get_next_line(game->fd);
 	}
 	if (line)
 		ft_put_error(MSG_10, 2, game);
