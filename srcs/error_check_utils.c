@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:48:12 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/30 14:54:22 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/07/12 16:06:23 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	ft_check_format_color(char *line, t_texture *texture)
 		k = ft_process_format_check(line);
 	}
 	if (i <= 0 || j <= 0 || k <= 0 || ft_atoi (texture->colors[0]) > 255 || \
-	ft_atoi (texture->colors[1]) > 255 || ft_atoi (texture->colors[2]) > 255)
+	ft_atoi (texture->colors[1]) > 255 || ft_atoi (texture->colors[2]) > 255 \
+	|| ft_destlen(texture->colors) > 3)
 		return (1);
 	ft_free_split(texture->colors);
 	return (0);
@@ -69,7 +70,7 @@ void	ft_store_texture(char *line, int i, int out, t_game *game)
 	line = &line[i];
 	i = 0;
 	while (ft_isspace(line[i + 1]))
-			i++;
+		i++;
 	temp = ft_strndup(&line[i + 1], ft_strl(&line[i + 1]) - 1);
 	if (ft_check_format_color(temp, &game->texture))
 		ft_put_error(MSG_8, 2, game);
