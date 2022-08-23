@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_textures.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:40:28 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/30 15:02:20 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/08/23 16:43:53 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_is_texture_flag(char *line, t_texture *texture, t_game *game)
 	while (line[i] == ' ')
 		i++;
 	line = &line[i];
-	if (ft_set_output(line) < 0)
+	if (ft_set_output(line) < 0 || game->texture.path[ft_set_output(line)] != 0)
 		return (1);
 	else if (ft_set_output(line) < 4)
 	{

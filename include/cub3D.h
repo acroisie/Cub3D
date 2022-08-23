@@ -6,7 +6,7 @@
 /*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:08:32 by acroisie          #+#    #+#             */
-/*   Updated: 2022/06/30 19:05:35 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/08/23 16:46:05 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define MSG_4 "You must provide a file, not a folder"
 # define MSG_5 "Cannot open the file"
 # define MSG_6 "File is empty"
-# define MSG_7 "Wrong texture path"
+# define MSG_7 "Wrong texture/color definition"
 # define MSG_8 "Wrong color format"
 # define MSG_9 "Wrong character used, you must use \"N,S,E,W,1,0,' ',\\n\""
 # define MSG_10 "Cut a map by newline is forbidden"
