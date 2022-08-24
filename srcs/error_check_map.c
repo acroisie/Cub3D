@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:20 by acroisie          #+#    #+#             */
-/*   Updated: 2022/08/23 17:05:37 by lnemor           ###   ########lyon.fr   */
+/*   Updated: 2022/08/24 14:39:01 by acroisie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,13 @@ char	*ft_skip_empty_line(t_game *game)
 	char	*line;
 
 	line = get_next_line(game->fd);
-	while (line[0] == '\n')
+	while (line && line[0] == '\n')
 	{
 		ft_gc_free(line);
 		line = get_next_line(game->fd);
 	}
+	if (!line)
+		ft_put_error(MSG_9, 2, game);
 	return (line);
 }
 
