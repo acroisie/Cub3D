@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check_walls.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acroisie <acroisie@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lnemor <lnemor@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 16:45:34 by lnemor            #+#    #+#             */
-/*   Updated: 2022/06/29 14:28:56 by acroisie         ###   ########lyon.fr   */
+/*   Updated: 2022/08/24 14:07:13 by lnemor           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,21 @@ void	ft_supress_line_break(char *str)
 	}
 }
 
-void	ft_replace_char(char *str)
+void	ft_replace_char(char **map)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (str[i])
+	while (map[i])
 	{
-		if (str[i] == ' ')
-			str[i] = '1';
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == ' ')
+				map[i][j] = '1';
+			j++;
+		}
 		i++;
 	}
 }
@@ -71,8 +77,8 @@ void	ft_walls_check(char **map, t_game *game)
 			}
 			j++;
 		}
-		ft_replace_char(map[i]);
 		i++;
 	}
 	ft_map_size(game);
+	ft_replace_char(map);
 }
